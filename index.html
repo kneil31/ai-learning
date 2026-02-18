@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning — Ram's Journey</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #191919;
+            color: #e0e0e0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            min-width: 260px;
+            background: #202020;
+            border-right: 1px solid #2d2d2d;
+            padding: 20px 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-brand {
+            padding: 8px 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #9ca3af;
+            letter-spacing: -0.3px;
+        }
+        .sidebar-brand span { color: #e0e0e0; }
+        .sidebar-link {
+            display: block;
+            padding: 6px 12px;
+            margin: 1px 0;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all 0.15s;
+            line-height: 1.5;
+        }
+        .sidebar-link:hover {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        .sidebar-link.active {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+        .sidebar-section-label {
+            padding: 12px 12px 4px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #525252;
+            letter-spacing: 1px;
+        }
+        .sidebar-divider {
+            height: 1px;
+            background: #2d2d2d;
+            margin: 8px 12px;
+        }
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 16px 12px 8px;
+            font-size: 11px;
+            color: #525252;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px 60px;
+        }
+
+        /* Pages (sections) */
+        .page {
+            display: none;
+            max-width: 720px;
+            animation: fadeIn 0.2s;
+        }
+        .page.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .back-link {
+            display: inline-block;
+            font-size: 13px;
+            color: #8b5cf6;
+            text-decoration: none;
+            margin-bottom: 16px;
+            padding: 4px 0;
+            transition: color 0.15s;
+        }
+        .back-link:hover {
+            color: #a78bfa;
+        }
+
+        .page-breadcrumb {
+            font-size: 12px;
+            color: #525252;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .page-meta {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 36px;
+        }
+
+        /* Content Blocks */
+        .content-block {
+            margin-bottom: 32px;
+        }
+        .block-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2d2d2d;
+        }
+
+        /* Kid Story */
+        .kid-block {
+            padding: 24px;
+            background: #1c1917;
+            border-radius: 8px;
+            border-left: 3px solid #f59e0b;
+        }
+        .story-para {
+            font-size: 15px;
+            line-height: 1.85;
+            color: #fef3c7;
+            margin-bottom: 14px;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+        .story-para:last-child { margin-bottom: 0; }
+
+        /* Tech Story */
+        .tech-block {
+            padding: 24px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            border-left: 3px solid #8b5cf6;
+        }
+        .tech-para {
+            font-size: 14px;
+            line-height: 1.75;
+            color: #c4b5fd;
+            margin-bottom: 12px;
+        }
+
+        /* Diagram */
+        .diagram-box {
+            background: #0f0f1a;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 16px;
+            overflow-x: auto;
+        }
+        .diagram-box pre {
+            font-family: 'SF Mono', 'Fira Code', Menlo, Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #a78bfa;
+            white-space: pre;
+        }
+
+        /* Week Tiles */
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .week-tile {
+            background: #202020;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .week-tile:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.08);
+        }
+        .week-tile.week-coming {
+            opacity: 0.5;
+        }
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .week-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+        }
+        .week-status {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent);
+        }
+        .week-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e0e0e0;
+            margin-bottom: 12px;
+        }
+        .week-progress-bar {
+            height: 4px;
+            background: #2d2d2d;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+        .week-progress-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+        .week-progress-text {
+            font-size: 12px;
+            color: #525252;
+            margin-bottom: 14px;
+        }
+        .week-topics {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .week-topic {
+            display: block;
+            font-size: 13px;
+            color: #9ca3af;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .week-topic:hover {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        .week-topic.locked {
+            color: #3d3d3d;
+            cursor: default;
+        }
+        .week-topic.locked:hover {
+            background: transparent;
+            color: #3d3d3d;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            text-align: center;
+            margin: 8px 0 24px;
+            position: relative;
+        }
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #2d2d2d;
+        }
+        .section-divider span {
+            position: relative;
+            background: #191919;
+            padding: 0 16px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: #525252;
+        }
+
+        /* Pipeline Steps */
+        .pipeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .pipe-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: #202020;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .pipe-step {
+            cursor: pointer;
+        }
+        .pipe-step:hover {
+            transform: translateX(4px);
+            box-shadow: 0 2px 12px rgba(139, 92, 246, 0.15);
+            border-color: #3d3d3d;
+        }
+        .pipe-step.final {
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d1a4e 100%);
+            border-color: #7c3aed;
+        }
+        .pipe-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .pipe-content {
+            flex: 1;
+        }
+        .pipe-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: #525252;
+            margin-bottom: 2px;
+        }
+        .pipe-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 2px;
+        }
+        .pipe-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+        .pipe-output {
+            font-size: 12px;
+            font-weight: 600;
+            color: #a78bfa;
+            white-space: nowrap;
+            padding: 4px 10px;
+            background: #1a1a2e;
+            border-radius: 6px;
+            border: 1px solid #2d2d4e;
+        }
+        .pipe-connector {
+            width: 2px;
+            height: 12px;
+            background: #3d3d3d;
+            margin: 0 0 0 37px;
+        }
+
+        /* Key Terms */
+        .search-input {
+            width: 100%;
+            padding: 10px 14px;
+            background: #202020;
+            border: 1px solid #2d2d2d;
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        .search-input:focus { border-color: #8b5cf6; }
+        .search-input::placeholder { color: #525252; }
+
+        .term-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #2d2d2d;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 12px;
+            align-items: baseline;
+        }
+        .term-row.hidden { display: none; }
+        .term-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #a78bfa;
+        }
+        .term-def {
+            font-size: 14px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+        .term-source {
+            display: none;
+        }
+
+        /* Script */
+        .script-box {
+            padding: 28px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            border-left: 3px solid #8b5cf6;
+        }
+        .script-para {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #e0e7ff;
+            margin-bottom: 16px;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+        .script-para:last-child { margin-bottom: 0; }
+
+        /* Share Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #7c3aed;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .content { padding: 20px; }
+            .page-title { font-size: 24px; }
+            .term-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-brand">🧠 <span>AI Learning</span></div>
+
+            <a href="#pipeline" class="sidebar-link" onclick="showSection('pipeline')">🔗 The Full Pipeline</a>
+<div class="sidebar-divider"></div>
+<div class="sidebar-section-label">STORIES</div>
+<a href="#topic-0" class="sidebar-link" onclick="showSection('topic-0')">1. 4-Step LLM Learning Path</a>
+<a href="#topic-1" class="sidebar-link" onclick="showSection('topic-1')">2. How LLMs Are Built + Data Prep</a>
+<a href="#topic-2" class="sidebar-link" onclick="showSection('topic-2')">3. Tokenization</a>
+<a href="#topic-3" class="sidebar-link" onclick="showSection('topic-3')">4. Transformers</a>
+<a href="#topic-4" class="sidebar-link" onclick="showSection('topic-4')">5. Model Architecture</a>
+<a href="#topic-5" class="sidebar-link" onclick="showSection('topic-5')">6. Model Training</a>
+<a href="#topic-6" class="sidebar-link" onclick="showSection('topic-6')">7. Post Training SFT</a>
+<div class="sidebar-divider"></div>
+<a href="#terms" class="sidebar-link" onclick="showSection('terms')">📚 Key Terms</a>
+<a href="#script" class="sidebar-link" onclick="showSection('script')">🎤 2-Min Script</a>
+
+
+            <div class="sidebar-divider"></div>
+            <a href="#" class="sidebar-link share-btn" onclick="shareDashboard(event)">📤 Share This Page</a>
+
+            <div class="sidebar-footer">
+                Updated Feb 18, 2026<br>
+                7 topics • 38 terms
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+
+            <!-- Pipeline -->
+            <div class="page active" id="pipeline">
+                <div class="page-breadcrumb">Overview</div>
+                <h1 class="page-title">The Full Pipeline</h1>
+                <div class="page-meta">How every LLM is built — from raw internet to helpful chatbot</div>
+
+                <!-- Week Tiles -->
+                <div class="week-grid">
+                    
+            <div class="week-tile week-active" style="--accent: #8b5cf6;">
+                <div class="week-header">
+                    <div class="week-number">WEEK 1</div>
+                    <div class="week-status">In Progress</div>
+                </div>
+                <div class="week-title">How LLMs Are Built</div>
+                <div class="week-progress-bar">
+                    <div class="week-progress-fill" style="width: 100%; background: #8b5cf6;"></div>
+                </div>
+                <div class="week-progress-text">7/7 topics</div>
+                <div class="week-topics">
+                    <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-6')">Post Training SFT</a>
+                </div>
+            </div>
+        
+            <div class="week-tile week-coming" style="--accent: #3b82f6;">
+                <div class="week-header">
+                    <div class="week-number">WEEK 2</div>
+                    <div class="week-status">Coming Soon</div>
+                </div>
+                <div class="week-title">RAG & Retrieval</div>
+                <div class="week-progress-bar">
+                    <div class="week-progress-fill" style="width: 0%; background: #3b82f6;"></div>
+                </div>
+                <div class="week-progress-text">0/1 topics</div>
+                <div class="week-topics">
+                    <span class="week-topic locked">Topics coming soon...</span>
+                </div>
+            </div>
+        
+                </div>
+
+                <div class="section-divider">
+                    <span>THE 6-STEP PIPELINE</span>
+                </div>
+
+                <div class="pipeline-steps">
+                    
+                    <div class="pipe-step" onclick="navigateTo('topic-1')" >
+                        <div class="pipe-icon" style="background: #3b82f6;">🌐</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">STEP 1</div>
+                            <div class="pipe-title">Crawl the Internet</div>
+                            <div class="pipe-desc">2.7B pages — Common Crawl vacuums the web</div>
+                        </div>
+                        <div class="pipe-output">200-400 TB raw</div>
+                    </div>
+                    <div class="pipe-connector"></div>
+        
+                    <div class="pipe-step" onclick="navigateTo('topic-1')" >
+                        <div class="pipe-icon" style="background: #10b981;">🧹</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">STEP 2</div>
+                            <div class="pipe-title">Clean the Data</div>
+                            <div class="pipe-desc">Remove HTML, duplicates, PII, toxic content</div>
+                        </div>
+                        <div class="pipe-output">44 TB clean (FineWeb)</div>
+                    </div>
+                    <div class="pipe-connector"></div>
+        
+                    <div class="pipe-step" onclick="navigateTo('topic-2')" >
+                        <div class="pipe-icon" style="background: #f59e0b;">🔢</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">STEP 3</div>
+                            <div class="pipe-title">Tokenize</div>
+                            <div class="pipe-desc">Text → numbers using BPE (50K-200K vocab)</div>
+                        </div>
+                        <div class="pipe-output">15T tokens</div>
+                    </div>
+                    <div class="pipe-connector"></div>
+        
+                    <div class="pipe-step" onclick="navigateTo('topic-4')" >
+                        <div class="pipe-icon" style="background: #8b5cf6;">📐</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">STEP 4</div>
+                            <div class="pipe-title">Embed → Transform → Softmax</div>
+                            <div class="pipe-desc">Token IDs → vectors → transformer blocks → probabilities → next token</div>
+                        </div>
+                        <div class="pipe-output">The architecture</div>
+                    </div>
+                    <div class="pipe-connector"></div>
+        
+                    <div class="pipe-step" onclick="navigateTo('topic-5')" >
+                        <div class="pipe-icon" style="background: #ef4444;">🔄</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">STEP 5</div>
+                            <div class="pipe-title">Pre-Train</div>
+                            <div class="pipe-desc">Forward → Loss → Backward → Repeat 1M+ times</div>
+                        </div>
+                        <div class="pipe-output">$10M-$100M+ 💸</div>
+                    </div>
+                    <div class="pipe-connector"></div>
+        
+                    <div class="pipe-step" onclick="navigateTo('topic-6')" >
+                        <div class="pipe-icon" style="background: #ec4899;">🎓</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">STEP 6</div>
+                            <div class="pipe-title">Post-Train (SFT + RL)</div>
+                            <div class="pipe-desc">14K-100K Q&A pairs → genius learns manners</div>
+                        </div>
+                        <div class="pipe-output">Helpful + Safe</div>
+                    </div>
+                    <div class="pipe-connector"></div>
+        
+                    <div class="pipe-step final">
+                        <div class="pipe-icon" style="background: #7c3aed;">🤖</div>
+                        <div class="pipe-content">
+                            <div class="pipe-label">RESULT</div>
+                            <div class="pipe-title">ChatGPT / Claude / Llama</div>
+                            <div class="pipe-desc">Same recipe — some just use bigger LEGO towers</div>
+                        </div>
+                        <div class="pipe-output">Ship it! 🚀</div>
+                    </div>
+    
+                </div>
+            </div>
+
+            <!-- Story Pages -->
+            
+        <div class="page" id="topic-0">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 1 of 7</div>
+            <h1 class="page-title">4-Step LLM Learning Path</h1>
+            <div class="page-meta">Starting point — the roadmap</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you want to build a house. Would you start by putting up the roof? No way! You'd start with the foundation, then walls, then the roof, and finally the furniture inside. 🏗️</p>
+<p class="story-para">Learning AI works EXACTLY the same way. There are 4 steps, and you MUST do them in order:</p>
+<p class="story-para">Step 1 is learning the basics — what is a neural network? How does a machine learn from data? This is your foundation. Skip this, and everything else feels like magic you can't explain. 🧱</p>
+<p class="story-para">Step 2 is learning about Transformers — the special brain design from 2017 that changed everything. It's like learning how the engine works before you try to build a car. 🏎️</p>
+<p class="story-para">Step 3 is the fun part — pre-training (teaching the brain from scratch, costs $100 MILLION!), fine-tuning (teaching it YOUR specific job, much cheaper), and RAG (giving it a cheat sheet to look things up without retraining). 📚</p>
+<p class="story-para">Step 4 is building real things — AI agents that can use tools, browse the web, and actually DO stuff. This is the roof and furniture — it only works because you built everything underneath first! 🤖</p>
+<p class="story-para">The secret? All the resources for these 4 steps are FREE. Andrew Ng, Jay Alammar, Hugging Face — they all teach this for free online!</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">There are exactly 4 steps to go from zero to AI engineer, and ORDER MATTERS. Step 1: ML fundamentals (neural networks, gradient descent). Step 2: Transformers and attention. Step 3: Pre-training ($100M+), fine-tuning (cheap), and RAG (no retraining). Step 4: Applications and AI agents. Skip a step and the house falls down.</p>
+
+                <div class="diagram-box">
+                    <pre>  🏗️ THE 4-STEP PATH
+
+  Step 1: ML FUNDAMENTALS     🧱 Foundation
+       │
+  Step 2: TRANSFORMERS        🏎️ Engine
+       │
+  Step 3: PRE-TRAIN / FINE-TUNE / RAG
+       │  $100M    $cheap    $free
+       │
+  Step 4: AI AGENTS &amp; APPS    🤖 The Product
+
+  ⚠️ Skip a step = house falls down</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-1">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 2 of 7</div>
+            <h1 class="page-title">How LLMs Are Built + Data Prep</h1>
+            <div class="page-meta">Topic 1 — zoom into Step 3 of the roadmap</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you want to teach a robot to speak every language in the world. Where do you start? The INTERNET! 🌐</p>
+<p class="story-para">First, you send out a web crawler — a little spider bot that visits 2.7 BILLION web pages and copies everything it finds. That's 200-400 terabytes of raw messy text. Think of it like vacuuming the entire internet into a giant bag. 🕷️</p>
+<p class="story-para">But that bag is FILTHY — it's got HTML code, duplicate pages, people's private info, and toxic content. So you run it through a cleaning machine. Common Crawl collects the raw data, and teams like Hugging Face clean it into something called FineWeb — 44 terabytes of squeaky clean text. 🧹</p>
+<p class="story-para">Now you feed that clean text into the model and let it train. This is the EXPENSIVE part — GPT-3 cost $10 million, GPT-4 cost over $100 million! Thousands of GPUs running for months. 💸</p>
+<p class="story-para">But here's the funny part — after all that training, the model is like a genius who never learned manners. It knows EVERYTHING but can't hold a conversation! So you do post-training — teach it to be helpful and safe. That's much cheaper and faster. 🎓</p>
+<p class="story-para">And THAT'S how every LLM is built — vacuum the internet, clean it, train on it, then teach it manners!</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Every LLM starts with the internet. Crawl 2.7B pages (Common Crawl, 200-400 TB raw). Clean it — remove HTML, duplicates, PII, toxic content (FineWeb = 44 TB clean, 15 trillion tokens). Tokenize text into numbers. Pretrain ($10M-$100M+, months, thousands of GPUs). Result: a genius with no manners. Post-train to make it helpful and safe. Deploy.</p>
+
+                <div class="diagram-box">
+                    <pre>  🌐 Internet (2.7B pages)
+       │
+  ┌────▼──────┐
+  │  CRAWL     │ ──▶ 200-400 TB raw
+  └────┬──────┘
+  ┌────▼──────┐
+  │  CLEAN     │ ──▶ 44 TB (FineWeb)
+  └────┬──────┘
+  ┌────▼──────┐
+  │  PRETRAIN  │ ──▶ 💸 $10M-$100M+
+  └────┬──────┘
+  ┌────▼──────┐
+  │ POST-TRAIN │ ──▶ Genius → Helpful 🎓
+  └────┬──────┘
+       ▼
+  🤖 Ready to chat!</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-2">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 3 of 7</div>
+            <h1 class="page-title">Tokenization</h1>
+            <div class="page-meta">Topic 2 — data is clean, now convert text → numbers</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Here's a problem: computers don't understand words. They ONLY understand numbers. So how do you get a computer to read "Tell me a joke"? You need a translator! That translator is called a Tokenizer. 🔢</p>
+<p class="story-para">The tokenizer has a dictionary — a vocabulary — with every word-piece it knows and a number for each one. "Tell" = 41, "me" = 553, "a" = 264, "joke" = 22691. Now the computer can work with it!</p>
+<p class="story-para">But how big should the dictionary be? If you use WHOLE WORDS, your dictionary needs 500,000+ entries (every word on the internet!). That's way too big. If you use SINGLE LETTERS, the dictionary is tiny (just 26 letters!) but "Hello" becomes 5 tokens instead of 1 — everything takes forever. ❌</p>
+<p class="story-para">The sweet spot? Sub-word tokenization! Break words into PIECES. "unhappiness" becomes "un" + "happiness". Common words stay whole, rare words get split up. Dictionary size: 50,000 to 200,000 entries. Perfect balance! ✅</p>
+<p class="story-para">The most popular way to build this dictionary is called BPE — Byte Pair Encoding. It starts with individual letters, then keeps merging the most popular pairs together. "h"+"u"+"g" → "hu"+"g" → "hug". Like building bigger LEGO pieces from smaller ones until you have the right set! 🧱</p>
+<p class="story-para">Fun fact: type gibberish like "xqzplm" and it explodes into tiny tokens. Type "the cat sat" and it's just 3 tokens. The tokenizer knows common words!</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Computers only understand numbers. The tokenizer converts text ↔ numbers using a vocabulary (50K-200K entries). Word-level = too big (500K+). Character-level = too long (6.5x). Sub-word (BPE) = perfect balance. BPE algorithm: start with characters, count pairs, merge most frequent, repeat until target vocab size. GPT-3.5 uses ~100K tokens, GPT-4o uses ~200K. Same text = different token IDs across models.</p>
+
+                <div class="diagram-box">
+                    <pre>  "Tell me a joke"
+       │
+  ┌────▼───────────┐
+  │ TEXT SPLITTING   │ ──▶ [Tell] [me] [a] [joke]
+  └────┬───────────┘
+  ┌────▼───────────┐
+  │ VOCAB LOOKUP    │ ──▶ [41, 553, 264, 22691]
+  └────┬───────────┘
+       ▼
+  Numbers the model can eat! 🍽️
+
+  BPE builds vocab:
+  letters → merge pairs → merge more → 50K-200K ✅</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-3">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 4 of 7</div>
+            <h1 class="page-title">Transformers</h1>
+            <div class="page-meta">Topic 3 — tokens exist, now what brain design processes them?</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">In 2017, a team at Google published a paper called "Attention Is All You Need" and changed EVERYTHING. Before this, AI read text one word at a time, like reading through a tiny keyhole — slow and forgetful. 🔑</p>
+<p class="story-para">The Transformer reads ALL words at once! And it has a superpower called "attention" — it figures out which words are important to each other. Read this: "The cat sat on the mat because IT was tired." What does "it" mean? The cat or the mat? YOU know it's the cat. The Transformer figures this out too — by letting every word "look at" every other word and decide what matters. That's attention! 👁️</p>
+<p class="story-para">The original Transformer had two halves: an Encoder (reads and understands text) and a Decoder (generates new text). It was built for translation — French in, English out. 🇫🇷➡️🇬🇧</p>
+<p class="story-para">But then researchers made a wild discovery: throw away the encoder, keep ONLY the decoder, and you get something that's AMAZING at generating text. One word at a time, predicting what comes next. This is called a "decoder-only" transformer. 🔮</p>
+<p class="story-para">And here's the punchline — ChatGPT, Claude, Llama, Gemini — EVERY modern AI chatbot uses this exact same decoder-only design. The 2017 paper literally changed the world! 🌍</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">In 2017, Google Brain published "Attention Is All You Need" — originally for machine translation (French → English). The Transformer reads all words at once using attention (each word looks at every other word to understand context). It had two halves: Encoder (reads input) and Decoder (generates output). Researchers discovered: keep only the decoder = text generation powerhouse. GPT, Claude, Llama = ALL decoder-only transformers. Jay Alammar's "Illustrated Transformer" is the best guide.</p>
+
+                <div class="diagram-box">
+                    <pre>  2017: "Attention Is All You Need" (Google)
+
+  ORIGINAL TRANSFORMER:
+  ┌──────────┬──────────┐
+  │ ENCODER  │ DECODER  │  ← Translation
+  │ (read)   │ (write)  │
+  └──────────┴──────────┘
+
+  MODERN LLMs:
+  ┌──────────┐
+  │ DECODER  │  ← Text generation
+  │  ONLY    │
+  └──────────┘
+  GPT, Claude, Llama = ALL this ☝️
+
+  🔑 Attention = words "look at" each other</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-4">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 5 of 7</div>
+            <h1 class="page-title">Model Architecture</h1>
+            <div class="page-meta">Topics 3 + 4 — combine tokens + transformers into the full pipeline</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you're playing a word-guessing game with a really smart robot. You say "I hope you are" and the robot has to guess what comes next. 🤖</p>
+<p class="story-para">But here's the thing — the robot can't read words! It only understands numbers. So first, a helper called the Tokenizer chops your words into secret number codes. "I" becomes 42, "hope" becomes 891, and so on.</p>
+<p class="story-para">But plain numbers aren't enough. The robot needs RICHER numbers — like a whole list of clues for each word. So the Embedding Layer turns each number code into a long list of clues. Think of it like turning a name tag into a full personality profile! 🏷️➡️📋</p>
+<p class="story-para">Now comes the big brain part. Those clue-lists pass through a bunch of Transformer Blocks — like a stack of really smart filters. Each filter makes the clues better and better. GPT-2 has 12 filters. GPT-3 has 96. Same type of filter, just MORE of them — like building a taller LEGO tower! 🧱</p>
+<p class="story-para">Finally, the robot looks at the LAST clue-list and asks: "Out of all 50,000 words I know, which one should come next?" It gives every word a score. "well" gets 86 points. "happy" gets 11. "banana" gets 0. Highest score wins! 🏆</p>
+<p class="story-para">And that's it — that's how ChatGPT, Claude, and every AI chatbot works. Same recipe, just some use bigger LEGO towers than others!</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Text flows through 4 stages — like a Pega case flow. First the Tokenizer chops text into IDs. Then the Embedding Layer turns IDs into vectors (learned during training). Those vectors flow through stacked Transformer Blocks (12 in GPT-2, 96 in GPT-3). Only the LAST vector survives — it hits Linear + Softmax, producing 50,000 probabilities. Highest wins. Same architecture for GPT-2 (1.5B), GPT-3 (175B), Llama-3 (405B) — different hyperparameters (layers + dimension).</p>
+
+                <div class="diagram-box">
+                    <pre> "I hope you are"
+       │
+  ┌────▼─────┐
+  │ TOKENIZER │ ──▶ [42, 891, 67, 55]
+  └────┬─────┘
+  ┌────▼─────┐
+  │ EMBEDDING │ ──▶ [0.2, 0.8, ...] vectors
+  └────┬─────┘
+  ┌────▼──────────────┐
+  │ TRANSFORMER BLOCKS │ ──▶ keep LAST vector only
+  │ (96 in GPT-3!)    │
+  └────┬──────────────┘
+  ┌────▼──────────┐
+  │ LINEAR+SOFTMAX │ ──▶ "well" (86%) 🏆
+  └───────────────┘</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-5">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 6 of 7</div>
+            <h1 class="page-title">Model Training</h1>
+            <div class="page-meta">Topic 5 — architecture is set, now how does it LEARN?</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you're teaching a toddler to finish sentences. You say "The cat sat on the..." and the toddler guesses "banana!" Wrong! The answer is "mat." So you correct them. Next time they guess "chair." Closer! Eventually, after MILLIONS of tries, they get really good at it. 🧒</p>
+<p class="story-para">That's literally how AI models learn. It's a loop that runs over a MILLION times:</p>
+<p class="story-para">1️⃣ Show the model some text and let it guess the next word (Forward Pass)
+2️⃣ Check how wrong it was — give it a grade called "loss" (high = bad, low = good)
+3️⃣ An Optimizer robot looks at the grade and tweaks BILLIONS of tiny knobs called weights to do better next time (Backward Pass)
+4️⃣ Repeat! 🔄</p>
+<p class="story-para">The crazy part? The model is never explicitly TAUGHT anything. It just sees "machine learning because" millions of times and figures out that "it" comes next 24% of the time, "of" 18%, and "banana" basically never. It discovers patterns on its own! 🧠</p>
+<p class="story-para">The cost is insane. Meta's Llama 3 has 405 BILLION knobs, needs 16,000 GPUs, runs for WEEKS, and costs millions of dollars. Those GPUs need 7+ terabytes of memory just to hold everything during training! 💸</p>
+<p class="story-para">But when it's done? The model can finish any sentence you throw at it. That loop — guess, grade, adjust, repeat — is the entire secret.</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Training is an infinite loop repeated 1M+ times: Forward pass (guess next token) → Calculate loss (how wrong?) → Backward pass (optimizer adjusts all weights) → Repeat. The model learns implicit knowledge — statistical patterns from millions of examples. Scale: Llama 3 = 405B parameters, 16,000 H100 GPUs, weeks of training, 7+ TB memory. Cross-entropy loss is the grading system (3.0 = bad, 0.14 = good).</p>
+
+                <div class="diagram-box">
+                    <pre>  THE TRAINING LOOP (1M+ times)
+
+  ┌──────────────────────────┐
+  │ 1️⃣ FORWARD PASS            │
+  │    Text ──▶ Guess token   │
+  └────────────┬─────────────┘
+  ┌────────────▼─────────────┐
+  │ 2️⃣ LOSS (how wrong?)      │
+  │    3.0 = 📛  0.14 = ✅    │
+  └────────────┬─────────────┘
+  ┌────────────▼─────────────┐
+  │ 3️⃣ BACKWARD PASS           │
+  │    Optimizer tweaks 405B  │
+  │    weights to do better   │
+  └────────────┬─────────────┘
+               │
+        🔄 REPEAT 1M+ times</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-6">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 7 of 7</div>
+            <h1 class="page-title">Post Training SFT</h1>
+            <div class="page-meta">Topic 6 — model is trained, now make it actually useful</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Remember that genius who never learned manners? The one who read the entire internet but can't hold a conversation? That's a base model after pre-training. It can finish any sentence, but ask it "What's the capital of France?" and it might just keep rambling instead of answering. 🤷</p>
+<p class="story-para">SFT — Supervised Fine-Tuning — is like sending that genius to finishing school. You give it 14,000 to 100,000 examples of perfect conversations: "Question: What's 2+2? Answer: 4." Over and over, until it learns the FORMAT of being helpful. 📝</p>
+<p class="story-para">Here's the wild part — the training algorithm is IDENTICAL to pre-training! Same math, same optimizer, same loop. The ONLY thing that changes is the DATA. Instead of messy internet text, you feed it carefully curated question-answer pairs written by experts. Quality over quantity! ✨</p>
+<p class="story-para">After SFT, the model can answer questions. But it's still not safe — it might help you do dangerous things if you ask nicely. That's where step 2 comes in: Reinforcement Learning (RL) teaches it to be safe and honest. 🛡️</p>
+<p class="story-para">Think of it like Pega: Pre-training = installing the platform. SFT = configuring it for your business. RL = user testing to catch edge cases. Same platform, just refined step by step!</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">SFT transforms a base model (genius with no manners) into a question-answering assistant. Feed it 14K-100K expert-curated instruction-response pairs. The training algorithm is IDENTICAL to pre-training — only the data format changes. Pre-training: trillions of tokens, $100M. SFT: thousands of examples, much cheaper. Result: model follows instructions. Then RL makes it safe/honest. Popular datasets: InstructGPT (14.5K), Alpaca (52K), Dolly, Flan.</p>
+
+                <div class="diagram-box">
+                    <pre>  BASE MODEL (genius, no manners)
+       │
+  ┌────▼──────────────────┐
+  │ SFT: Supervised        │
+  │ Fine-Tuning            │
+  │                        │
+  │ Data: 14K-100K pairs   │
+  │ "Q: ..." → "A: ..."   │
+  │ Same algorithm!        │
+  └────┬──────────────────┘
+       │
+  ┌────▼──────────────────┐
+  │ RL: Reinforcement      │
+  │ Learning (safe+honest) │
+  └────┬──────────────────┘
+       ▼
+  🤖 Helpful + Safe Assistant</pre>
+                </div>
+            </div>
+        </div>
+        
+
+            <!-- Key Terms -->
+            <div class="page" id="terms">
+                <div class="page-breadcrumb">Reference</div>
+                <h1 class="page-title">Key Terms</h1>
+                <div class="page-meta">38 terms across all topics</div>
+
+                <input type="text" class="search-input" placeholder="Search terms..." oninput="filterTerms(this.value)">
+                
+        <div class="term-row" data-search="neural network a math formula that learns patterns from data">
+            <div class="term-name">Neural Network</div>
+            <div class="term-def">A math formula that learns patterns from data</div>
+            <div class="term-source">The 4-Step Learning Path</div>
+        </div>
+        
+        <div class="term-row" data-search="transformer the brain architecture behind every modern ai (invented 2017)">
+            <div class="term-name">Transformer</div>
+            <div class="term-def">The brain architecture behind every modern AI (invented 2017)</div>
+            <div class="term-source">The 4-Step Learning Path</div>
+        </div>
+        
+        <div class="term-row" data-search="pre-training teaching ai from scratch using the internet ($100m+)">
+            <div class="term-name">Pre-training</div>
+            <div class="term-def">Teaching AI from scratch using the internet ($100M+)</div>
+            <div class="term-source">The 4-Step Learning Path</div>
+        </div>
+        
+        <div class="term-row" data-search="fine-tuning teaching it your specific job (much cheaper)">
+            <div class="term-name">Fine-tuning</div>
+            <div class="term-def">Teaching it YOUR specific job (much cheaper)</div>
+            <div class="term-source">The 4-Step Learning Path</div>
+        </div>
+        
+        <div class="term-row" data-search="rag giving the ai a reference book to look things up (no retraining needed)">
+            <div class="term-name">RAG</div>
+            <div class="term-def">Giving the AI a reference book to look things up (no retraining needed)</div>
+            <div class="term-source">The 4-Step Learning Path</div>
+        </div>
+        
+        <div class="term-row" data-search="common crawl free public dataset that crawls the internet every 1-2 months">
+            <div class="term-name">Common Crawl</div>
+            <div class="term-def">Free public dataset that crawls the internet every 1-2 months</div>
+            <div class="term-source">How LLMs Are Built + Data Prep</div>
+        </div>
+        
+        <div class="term-row" data-search="fineweb hugging face's cleaned dataset (44 tb, 15 trillion tokens)">
+            <div class="term-name">FineWeb</div>
+            <div class="term-def">Hugging Face's cleaned dataset (44 TB, 15 trillion tokens)</div>
+            <div class="term-source">How LLMs Are Built + Data Prep</div>
+        </div>
+        
+        <div class="term-row" data-search="pii removal stripping out personal info (names, emails, phone numbers)">
+            <div class="term-name">PII removal</div>
+            <div class="term-def">Stripping out personal info (names, emails, phone numbers)</div>
+            <div class="term-source">How LLMs Are Built + Data Prep</div>
+        </div>
+        
+        <div class="term-row" data-search="base model the "genius with no manners" after pre-training">
+            <div class="term-name">Base model</div>
+            <div class="term-def">The "genius with no manners" after pre-training</div>
+            <div class="term-source">How LLMs Are Built + Data Prep</div>
+        </div>
+        
+        <div class="term-row" data-search="post-training teaching the genius to be helpful and safe">
+            <div class="term-name">Post-training</div>
+            <div class="term-def">Teaching the genius to be helpful and safe</div>
+            <div class="term-source">How LLMs Are Built + Data Prep</div>
+        </div>
+        
+        <div class="term-row" data-search="tokenizer converts text ↔ numbers">
+            <div class="term-name">Tokenizer</div>
+            <div class="term-def">Converts text ↔ numbers</div>
+            <div class="term-source">Tokenization</div>
+        </div>
+        
+        <div class="term-row" data-search="vocabulary the dictionary of all known word-pieces and their ids">
+            <div class="term-name">Vocabulary</div>
+            <div class="term-def">The dictionary of all known word-pieces and their IDs</div>
+            <div class="term-source">Tokenization</div>
+        </div>
+        
+        <div class="term-row" data-search="bpe (byte pair encoding) algorithm: start with characters, merge most frequent pairs, repeat">
+            <div class="term-name">BPE (Byte Pair Encoding)</div>
+            <div class="term-def">Algorithm: start with characters, merge most frequent pairs, repeat</div>
+            <div class="term-source">Tokenization</div>
+        </div>
+        
+        <div class="term-row" data-search="sub-word tokenization bigger than characters, smaller than words (the sweet spot)">
+            <div class="term-name">Sub-word tokenization</div>
+            <div class="term-def">Bigger than characters, smaller than words (the sweet spot)</div>
+            <div class="term-source">Tokenization</div>
+        </div>
+        
+        <div class="term-row" data-search="token ids the numbers that represent each piece of text">
+            <div class="term-name">Token IDs</div>
+            <div class="term-def">The numbers that represent each piece of text</div>
+            <div class="term-source">Tokenization</div>
+        </div>
+        
+        <div class="term-row" data-search="attention mechanism lets each word "look at" every other word to understand context">
+            <div class="term-name">Attention Mechanism</div>
+            <div class="term-def">Lets each word "look at" every other word to understand context</div>
+            <div class="term-source">Transformers</div>
+        </div>
+        
+        <div class="term-row" data-search="self-attention words in the same sentence attending to each other">
+            <div class="term-name">Self-Attention</div>
+            <div class="term-def">Words in the same sentence attending to each other</div>
+            <div class="term-source">Transformers</div>
+        </div>
+        
+        <div class="term-row" data-search="encoder reads and understands input (used in bert)">
+            <div class="term-name">Encoder</div>
+            <div class="term-def">Reads and understands input (used in BERT)</div>
+            <div class="term-source">Transformers</div>
+        </div>
+        
+        <div class="term-row" data-search="decoder generates output one token at a time (used in gpt, claude, llama)">
+            <div class="term-name">Decoder</div>
+            <div class="term-def">Generates output one token at a time (used in GPT, Claude, Llama)</div>
+            <div class="term-source">Transformers</div>
+        </div>
+        
+        <div class="term-row" data-search=""attention is all you need" the 2017 paper that started it all (google brain)">
+            <div class="term-name">"Attention Is All You Need"</div>
+            <div class="term-def">The 2017 paper that started it all (Google Brain)</div>
+            <div class="term-source">Transformers</div>
+        </div>
+        
+        <div class="term-row" data-search="jay alammar wrote the famous "illustrated transformer" guide">
+            <div class="term-name">Jay Alammar</div>
+            <div class="term-def">Wrote the famous "Illustrated Transformer" guide</div>
+            <div class="term-source">Transformers</div>
+        </div>
+        
+        <div class="term-row" data-search="embedding layer turns token ids into vectors (rich number-lists the model can work with)">
+            <div class="term-name">Embedding Layer</div>
+            <div class="term-def">Turns token IDs into vectors (rich number-lists the model can work with)</div>
+            <div class="term-source">Model Architecture</div>
+        </div>
+        
+        <div class="term-row" data-search="transformer block a stack of layers (attention + linear + more) that process vectors">
+            <div class="term-name">Transformer Block</div>
+            <div class="term-def">A stack of layers (attention + linear + more) that process vectors</div>
+            <div class="term-source">Model Architecture</div>
+        </div>
+        
+        <div class="term-row" data-search="decoder-only transformer only the decoder half — used by all modern llms (gpt, claude, llama)">
+            <div class="term-name">Decoder-only Transformer</div>
+            <div class="term-def">Only the decoder half — used by ALL modern LLMs (GPT, Claude, Llama)</div>
+            <div class="term-source">Model Architecture</div>
+        </div>
+        
+        <div class="term-row" data-search="softmax the operation that turns numbers into probabilities (all sum to 1)">
+            <div class="term-name">Softmax</div>
+            <div class="term-def">The operation that turns numbers into probabilities (all sum to 1)</div>
+            <div class="term-source">Model Architecture</div>
+        </div>
+        
+        <div class="term-row" data-search="lm head (linear + softmax) final stage that picks the next token">
+            <div class="term-name">LM Head (Linear + Softmax)</div>
+            <div class="term-def">Final stage that picks the next token</div>
+            <div class="term-source">Model Architecture</div>
+        </div>
+        
+        <div class="term-row" data-search="hyperparameters settings that control model size (layers, dimension)">
+            <div class="term-name">Hyperparameters</div>
+            <div class="term-def">Settings that control model size (layers, dimension)</div>
+            <div class="term-source">Model Architecture</div>
+        </div>
+        
+        <div class="term-row" data-search="forward pass model reads text and guesses the next word">
+            <div class="term-name">Forward Pass</div>
+            <div class="term-def">Model reads text and guesses the next word</div>
+            <div class="term-source">Model Training</div>
+        </div>
+        
+        <div class="term-row" data-search="loss (cross-entropy) how wrong the guess was (3.0 = bad, 0.14 = good)">
+            <div class="term-name">Loss (Cross-Entropy)</div>
+            <div class="term-def">How wrong the guess was (3.0 = bad, 0.14 = good)</div>
+            <div class="term-source">Model Training</div>
+        </div>
+        
+        <div class="term-row" data-search="backward pass (backpropagation) optimizer calculates how to fix each weight">
+            <div class="term-name">Backward Pass (Backpropagation)</div>
+            <div class="term-def">Optimizer calculates how to fix each weight</div>
+            <div class="term-source">Model Training</div>
+        </div>
+        
+        <div class="term-row" data-search="optimizer (adam) the robot that adjusts billions of weights based on loss">
+            <div class="term-name">Optimizer (Adam)</div>
+            <div class="term-def">The robot that adjusts billions of weights based on loss</div>
+            <div class="term-source">Model Training</div>
+        </div>
+        
+        <div class="term-row" data-search="weights/parameters the billions of tiny knobs that determine what the model knows">
+            <div class="term-name">Weights/Parameters</div>
+            <div class="term-def">The billions of tiny knobs that determine what the model knows</div>
+            <div class="term-source">Model Training</div>
+        </div>
+        
+        <div class="term-row" data-search="implicit knowledge model discovers patterns from statistics, not explicit teaching">
+            <div class="term-name">Implicit Knowledge</div>
+            <div class="term-def">Model discovers patterns from statistics, not explicit teaching</div>
+            <div class="term-source">Model Training</div>
+        </div>
+        
+        <div class="term-row" data-search="sft (supervised fine-tuning) teaching the base model to follow instructions using q&a pairs">
+            <div class="term-name">SFT (Supervised Fine-Tuning)</div>
+            <div class="term-def">Teaching the base model to follow instructions using Q&A pairs</div>
+            <div class="term-source">Post Training (SFT)</div>
+        </div>
+        
+        <div class="term-row" data-search="base model pre-trained model that knows language but can't chat properly">
+            <div class="term-name">Base Model</div>
+            <div class="term-def">Pre-trained model that knows language but can't chat properly</div>
+            <div class="term-source">Post Training (SFT)</div>
+        </div>
+        
+        <div class="term-row" data-search="instruction-response pairs "q: what is 2+2? a: 4" format training data">
+            <div class="term-name">Instruction-Response Pairs</div>
+            <div class="term-def">"Q: What is 2+2? A: 4" format training data</div>
+            <div class="term-source">Post Training (SFT)</div>
+        </div>
+        
+        <div class="term-row" data-search="rl (reinforcement learning) second stage: teaches model to be safe and honest">
+            <div class="term-name">RL (Reinforcement Learning)</div>
+            <div class="term-def">Second stage: teaches model to be safe and honest</div>
+            <div class="term-source">Post Training (SFT)</div>
+        </div>
+        
+        <div class="term-row" data-search="data quality > quantity 14k perfect examples beat millions of mediocre ones">
+            <div class="term-name">Data Quality > Quantity</div>
+            <div class="term-def">14K perfect examples beat millions of mediocre ones</div>
+            <div class="term-source">Post Training (SFT)</div>
+        </div>
+        
+            </div>
+
+            <!-- 2-Min Script -->
+            <div class="page" id="script">
+                <div class="page-breadcrumb">Interview Prep</div>
+                <h1 class="page-title">Explain It All in 2 Minutes</h1>
+                <div class="page-meta">Read this out loud. If you can say it naturally, you own every concept.</div>
+
+                <div class="script-box">
+                    <p class="script-para">So you want to know how ChatGPT works? Here's the whole story:</p>
+<p class="script-para">First, they vacuumed up the entire internet — 2.7 billion web pages — and cleaned it. Then they built a translator called a tokenizer that converts words into numbers, because computers can't read text.</p>
+<p class="script-para">Those numbers go through 4 stages: the tokenizer chops text into IDs, an embedding layer turns IDs into rich vectors, transformer blocks process those vectors through dozens of smart filters, and a softmax function picks the most likely next word out of 50,000 options.</p>
+<p class="script-para">To teach it, they run a loop a million times: guess the next word, check how wrong it was, adjust billions of tiny knobs, repeat. This costs $100 million and takes months on thousands of GPUs.</p>
+<p class="script-para">After all that, the model is a genius who can't hold a conversation. So they show it 14,000 perfect Q&amp;A examples (that's fine-tuning), and then use reinforcement learning to make it safe.</p>
+<p class="script-para">And that's it — that's ChatGPT, Claude, Llama. Same recipe. Some just use bigger LEGO towers than others.</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function showSection(id) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Show target
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-link').forEach(a => a.classList.remove('active'));
+            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+            // Also highlight matching sidebar link by href
+            document.querySelectorAll('.sidebar-link').forEach(a => {
+                if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+            });
+            // Scroll content to top
+            document.querySelector('.content').scrollTop = 0;
+        }
+
+        function navigateTo(sectionId) {
+            // Used by pipeline steps to jump to a story page
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(sectionId);
+            if (target) target.classList.add('active');
+            // Update sidebar
+            document.querySelectorAll('.sidebar-link').forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + sectionId) a.classList.add('active');
+            });
+            document.querySelector('.content').scrollTop = 0;
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        function shareDashboard(e) {
+            e.preventDefault();
+            // Try native share first (works on mobile + some desktops)
+            if (navigator.share) {
+                const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+                const file = new File([blob], 'ai_learning_dashboard.html', {type: 'text/html'});
+                navigator.share({
+                    title: 'AI Learning Dashboard',
+                    text: 'Check out my AI learning journey — stories, pipeline, and key terms!',
+                    files: [file]
+                }).catch(() => fallbackShare());
+            } else {
+                fallbackShare();
+            }
+        }
+
+        function fallbackShare() {
+            // Download the HTML file so they can share it
+            const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ai_learning_dashboard.html';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('📥 Downloaded! Send this file to anyone — it works standalone.');
+        }
+
+        function filterTerms(query) {
+            const rows = document.querySelectorAll('.term-row');
+            const q = query.toLowerCase();
+            rows.forEach(row => {
+                const text = row.getAttribute('data-search');
+                row.classList.toggle('hidden', q !== '' && !text.includes(q));
+            });
+        }
+    </script>
+</body>
+</html>
