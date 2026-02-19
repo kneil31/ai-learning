@@ -836,40 +836,35 @@
 
             <div class="content-block kid-block">
                 <div class="block-label">📖 Explain It Like I'm 10</div>
-                <p class="story-para">Imagine you're teaching a toddler to finish sentences. You say "The cat sat on the..." and the toddler guesses "banana!" Wrong! The answer is "mat." So you correct them. Next time they guess "chair." Closer! Eventually, after MILLIONS of tries, they get really good at it. 🧒</p>
-<p class="story-para">That's literally how AI models learn. It's a loop that runs over a MILLION times:</p>
-<p class="story-para">1️⃣ Show the model some text and let it guess the next word (Forward Pass)
-2️⃣ Check how wrong it was — give it a grade called "loss" (high = bad, low = good)
-3️⃣ An Optimizer robot looks at the grade and tweaks BILLIONS of tiny knobs called weights to do better next time (Backward Pass)
-4️⃣ Repeat! 🔄</p>
-<p class="story-para">The crazy part? The model is never explicitly TAUGHT anything. It just sees "machine learning because" millions of times and figures out that "it" comes next 24% of the time, "of" 18%, and "banana" basically never. It discovers patterns on its own! 🧠</p>
-<p class="story-para">The cost is insane. Meta's Llama 3 has 405 BILLION knobs, needs 16,000 GPUs, runs for WEEKS, and costs millions of dollars. Those GPUs need 7+ terabytes of memory just to hold everything during training! 💸</p>
-<p class="story-para">But when it's done? The model can finish any sentence you throw at it. That loop — guess, grade, adjust, repeat — is the entire secret.</p>
+                <p class="story-para">Imagine you build a robot that finishes your sentences. You say "peanut butter and..." and it should say "jelly!" But when you first turn it on, it says "elephant!" because its brain is full of random nonsense. 🤖</p>
+<p class="story-para">So here's how you teach it. You grab a sentence from a book — "The cat sat on the..." — and you KNOW the answer is "mat." You let the robot guess. It says "pizza!" with 15% confidence. Then you use a GRADE MACHINE (that's the loss function) — it compares "pizza" with "mat" and gives a grade: 3.0. In this game, high is BAD — like golf! ⛳</p>
+<p class="story-para">Then a HELPER ROBOT (that's the optimizer) looks at the grade, goes into the robot's brain, and turns billions of tiny knobs so that "mat" gets a little more likely and "pizza" gets a little less likely next time. 🔧</p>
+<p class="story-para">One round doesn't fix it. But you do this a MILLION times with different sentences. Slowly, the robot stops saying "elephant" and starts saying "jelly." Not because anyone TOLD it peanut butter goes with jelly — it figured it out from seeing the pattern thousands of times! That's implicit knowledge. 🧠</p>
+<p class="story-para">The code for this? About 10 lines. But running it on 405 billion knobs? That needs 16,000 of the world's best computers running for weeks, costing millions of dollars. Simple recipe, enormous kitchen! 🏗️</p>
 
             </div>
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">Training is an infinite loop repeated 1M+ times: Forward pass (guess next token) → Calculate loss (how wrong?) → Backward pass (optimizer adjusts all weights) → Repeat. The model learns implicit knowledge — statistical patterns from millions of examples. Scale: Llama 3 = 405B parameters, 16,000 H100 GPUs, weeks of training, 7+ TB memory. Cross-entropy loss is the grading system (3.0 = bad, 0.14 = good).</p>
+                <p class="tech-para">Training is a 2-step dance repeated a million times. Step 1: feed text into the LLM, get probabilities, grade them with cross-entropy loss — just one number, high means bad guess. Step 2: the optimizer takes that grade, goes backward through every layer, and nudges every weight so the next guess is slightly better. After a million rounds across the internet, the model discovers patterns nobody taught it — Einstein connects to physicist, machine learning connects to algorithms, not bananas. That's implicit knowledge. The code is 10 lines. Running it on Llama 3's 405 billion parameters takes 16,000 H100 GPUs, 7+ TB of memory, and millions of dollars. Simple recipe, massive kitchen.</p>
 
                 <div class="diagram-box">
-                    <pre>  THE TRAINING LOOP (1M+ times)
-
-  ┌──────────────────────────┐
-  │ 1️⃣ FORWARD PASS            │
-  │    Text ──▶ Guess token   │
-  └────────────┬─────────────┘
-  ┌────────────▼─────────────┐
-  │ 2️⃣ LOSS (how wrong?)      │
-  │    3.0 = 📛  0.14 = ✅    │
-  └────────────┬─────────────┘
-  ┌────────────▼─────────────┐
-  │ 3️⃣ BACKWARD PASS           │
-  │    Optimizer tweaks 405B  │
-  │    weights to do better   │
-  └────────────┬─────────────┘
-               │
-        🔄 REPEAT 1M+ times</pre>
+                    <pre>  🌐 Internet Text (cleaned, tokenized)
+       │
+       ▼  Sample: "Einstein was a German-born ___"
+  ┌────────────────────────────────────┐
+  │ STEP 1: FORWARD PASS + LOSS        │
+  │ Input → LLM → probabilities        │
+  │ Compare with correct ("physicist") │
+  │ Loss = 3.0 (high = bad) 📛         │
+  └──────────────┬─────────────────────┘
+  ┌──────────────▼─────────────────────┐
+  │ STEP 2: OPTIMIZER (backward pass)  │
+  │ Takes loss → adjusts ALL weights   │
+  │ "physicist" prob: 0.05 → 0.06     │
+  └──────────────┬─────────────────────┘
+       ▼  🔄 REPEAT 1,000,000+ times
+       🏆 Implicit knowledge acquired!</pre>
                 </div>
             </div>
         </div>
@@ -1254,4 +1249,3 @@
     </script>
 </body>
 </html>
-<!-- deployed -->
