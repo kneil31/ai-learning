@@ -455,128 +455,68 @@
             transform: translateY(0);
         }
 
-        /* LEGO Brick Wall */
-        .lego-wall {
-            background: #1a1410;
+        /* Pixel Art Reveal */
+        .pixel-grid {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 3px;
+            max-width: 480px;
+            margin: 24px auto;
+            padding: 16px;
+            background: #141414;
             border-radius: 12px;
-            padding: 20px 12px 16px;
-            margin-top: 20px;
-            border: 2px solid #2a2018;
+            border: 1px solid #2a2a2a;
         }
 
-        .brick-row {
-            display: flex;
-            gap: 4px;
-            margin-bottom: 4px;
-        }
-        .brick-row-offset {
-            padding-left: 75px;
-        }
-
-        .lego-brick {
-            flex: 1;
-            min-width: 0;
-            background: var(--brick-color);
+        .pixel-cell {
+            aspect-ratio: 1;
             border-radius: 3px;
-            padding: 14px 8px 10px;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 72px;
-            transition: transform 0.15s, box-shadow 0.15s;
-            box-shadow:
-                0 2px 0 rgba(0,0,0,0.4),
-                inset 0 1px 0 rgba(255,255,255,0.12),
-                inset 0 -1px 0 rgba(0,0,0,0.15);
+            background: #222;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .lego-brick:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                0 5px 16px rgba(0,0,0,0.5),
-                0 0 20px color-mix(in srgb, var(--brick-color) 35%, transparent),
-                inset 0 1px 0 rgba(255,255,255,0.12);
+
+        .pixel-cell.revealed {
+            background: var(--pixel-color);
+            box-shadow: 0 0 10px color-mix(in srgb, var(--pixel-color) 40%, transparent);
+            cursor: pointer;
+        }
+
+        .pixel-cell.revealed:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 20px color-mix(in srgb, var(--pixel-color) 60%, transparent);
             z-index: 2;
         }
 
-        /* LEGO studs — two bumps on top */
-        .brick-studs {
-            position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
+        /* Progress */
+        .pixel-progress {
+            max-width: 480px;
+            margin: 0 auto 8px;
         }
-        .brick-studs::before, .brick-studs::after {
-            content: '';
-            width: 14px;
-            height: 5px;
-            border-radius: 7px 7px 0 0;
-            background: color-mix(in srgb, var(--brick-color) 80%, white);
-            box-shadow: 0 -1px 2px rgba(0,0,0,0.25);
-        }
-
-        .brick-number {
-            font-size: 22px;
-            font-weight: 800;
-            color: rgba(255,255,255,0.2);
-            line-height: 1;
-            margin-bottom: 2px;
-        }
-        .brick-topic {
-            font-size: 10px;
-            font-weight: 600;
-            color: #fff;
-            line-height: 1.3;
-        }
-        .brick-week {
-            font-size: 8px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 3px;
-        }
-
-        /* Mortar line at bottom of wall */
-        .mortar-line {
-            height: 3px;
-            background: #2a2018;
-            border-radius: 2px;
-            margin-top: 4px;
-        }
-
-        /* Wall legend */
-        .wall-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 8px;
-        }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .legend-swatch {
-            width: 12px;
-            height: 12px;
+        .pixel-progress-bar {
+            height: 6px;
+            background: #222;
             border-radius: 3px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.3);
+            overflow: hidden;
         }
-        .legend-label {
-            font-size: 13px;
-            color: #9ca3af;
+        .pixel-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a855f7, #3b82f6, #22d3ee);
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        .pixel-progress-text {
+            font-size: 12px;
+            color: #525252;
+            margin-top: 6px;
+            text-align: center;
         }
 
-        .wall-footer {
+        .pixel-footer {
             text-align: center;
             margin-top: 24px;
             color: #525252;
             font-size: 13px;
+            font-style: italic;
         }
 
         /* Responsive */
@@ -754,87 +694,216 @@
         <div class="page" id="lego">
             <div class="page-breadcrumb">Visual Map</div>
             <h1 class="page-title">The Build</h1>
-            <div class="page-meta">7 bricks laid — wall grows with every session</div>
+            <div class="page-meta">7 / 90 pixels revealed</div>
 
-            <div class="wall-legend">
-                
-            <div class="legend-item">
-                <span class="legend-swatch" style="background: #8b5cf6;"></span>
-                <span class="legend-label">Week 1: How LLMs Are Built (7/7)</span>
-            </div>
-        
-            <div class="legend-item">
-                <span class="legend-swatch" style="background: #3b82f6;"></span>
-                <span class="legend-label">Week 2: RAG & Retrieval (0/?)</span>
-            </div>
-        
+            <div class="pixel-progress">
+                <div class="pixel-progress-bar">
+                    <div class="pixel-progress-fill" style="width: 7%;"></div>
+                </div>
+                <div class="pixel-progress-text">7% complete — 83 to go</div>
             </div>
 
-            <div class="lego-wall">
-                <div class="brick-row ">
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-0')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">1</div>
-                    <div class="brick-topic">4-Step LLM Learning Path</div>
-                    <div class="brick-week">W1</div>
-                </div>
-            
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-1')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">2</div>
-                    <div class="brick-topic">How LLMs Are Built + Data Prep</div>
-                    <div class="brick-week">W1</div>
-                </div>
-            
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-2')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">3</div>
-                    <div class="brick-topic">Tokenization</div>
-                    <div class="brick-week">W1</div>
-                </div>
-            
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-3')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">4</div>
-                    <div class="brick-topic">Transformers</div>
-                    <div class="brick-week">W1</div>
-                </div>
-            </div>
-<div class="brick-row brick-row-offset">
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-4')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">5</div>
-                    <div class="brick-topic">Model Architecture</div>
-                    <div class="brick-week">W1</div>
-                </div>
-            
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-5')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">6</div>
-                    <div class="brick-topic">Model Training</div>
-                    <div class="brick-week">W1</div>
-                </div>
-            
-                <div class="lego-brick" style="--brick-color: #8b5cf6;"
-                     onclick="navigateTo('topic-6')" title="Week 1">
-                    <div class="brick-studs"></div>
-                    <div class="brick-number">7</div>
-                    <div class="brick-topic">Post Training SFT</div>
-                    <div class="brick-week">W1</div>
-                </div>
+            <div class="pixel-grid">
+                <div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-4')" title="Model Architecture"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #22d3ee;" onclick="navigateTo('topic-5')" title="Model Training"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-6')" title="Post Training SFT"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #22d3ee;" onclick="navigateTo('topic-0')" title="4-Step LLM Learning Path"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-3')" title="Transformers"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-1')" title="How LLMs Are Built + Data Prep"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-2')" title="Tokenization"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+<div class="pixel-cell"></div>
+
             </div>
 
-                <div class="mortar-line"></div>
-            </div>
-
-            <div class="wall-footer">
-                <p>Each brick is a topic you've learned. Click any brick to read the story.</p>
+            <div class="pixel-footer">
+                <p>Every topic reveals a pixel. What's the image? Keep learning to find out.</p>
             </div>
         </div>
     
