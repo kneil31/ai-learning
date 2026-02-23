@@ -1606,7 +1606,11 @@
                 '🔗 Read the full story (with diagrams): ' + dashboardUrl + '\n\n' +
                 '— From Ram\'s AI Learning Journey'
             );
-            window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+            const mailtoLink = 'mailto:?subject=' + subject + '&body=' + body;
+            const a = document.createElement('a');
+            a.href = mailtoLink;
+            a.target = '_blank';
+            a.click();
         }
 
         function showSection(id) {
