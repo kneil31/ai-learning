@@ -952,21 +952,38 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">There are exactly 4 steps to go from zero to AI engineer, and ORDER MATTERS. Step 1: ML fundamentals (neural networks, gradient descent). Step 2: Transformers and attention. Step 3: Pre-training ($100M+), fine-tuning (cheap), and RAG (no retraining). Step 4: Applications and AI agents. Skip a step and the house falls down.</p>
+                <p class="tech-para">Here's the thing most people get wrong when learning AI — they jump straight to the flashy stuff. They want to build AI agents and chatbots on day one, without understanding how any of it works underneath. It's like trying to customize a car engine when you've never learned what a piston does. The 4-step learning path exists because each step is the foundation for the next, and skipping ahead means everything feels like unexplainable magic.</p>
+<p class="tech-para">Step 1 is ML fundamentals — neural networks, gradient descent, how a machine actually 'learns' from data. This is the part most people skip because it feels academic. But without it, you can't debug anything. When your model isn't working, you won't know if the problem is in your data, your architecture, or your training loop. Andrew Ng's free courses cover this in about 2 weeks, and it pays dividends forever.</p>
+<p class="tech-para">Step 2 is Transformers — the architecture that changed everything in 2017. Before Transformers, AI models read text one word at a time (RNNs) and forgot the beginning of a sentence by the time they reached the end. Transformers read everything at once using a mechanism called 'attention.' Jay Alammar's 'Illustrated Transformer' blog is considered the single best resource for understanding this — it turns dense math into visual intuition.</p>
+<p class="tech-para">Step 3 is where the money is — literally. Pre-training means teaching a model from scratch on the entire internet, and it costs $10M to $100M+. Fine-tuning takes that pre-trained model and specializes it for your specific task, for a fraction of the cost. And RAG (Retrieval-Augmented Generation) is the clever shortcut — instead of retraining the model, you give it a search engine to look things up in real time. Most production AI systems today use RAG because retraining is too expensive and too slow.</p>
+<p class="tech-para">Step 4 is applications — AI agents that can browse the web, call APIs, write code, and actually DO things in the real world. This is where the industry is headed in 2025-2026, but it only works when you understand everything underneath. An agent that calls a tool is just a Transformer generating a special token that triggers a function call — if you didn't learn Steps 1-3, that sentence means nothing to you.</p>
+<p class="tech-para">The most surprising part? Every resource for all 4 steps is free. Andrew Ng (Coursera), Jay Alammar (blog), Hugging Face (courses and models), and dozens of open-source projects. The barrier to becoming an AI engineer isn't money — it's discipline. You have to resist the temptation to skip ahead.</p>
 
                 <div class="diagram-box">
-                    <pre>  🏗️ THE 4-STEP PATH
-
-  Step 1: ML FUNDAMENTALS     🧱 Foundation
-       │
-  Step 2: TRANSFORMERS        🏎️ Engine
-       │
+                    <pre>  THE 4-STEP AI ENGINEER PATH
+  ══════════════════════════════════════
+  Step 1: ML FUNDAMENTALS           🧱
+  │  Neural networks, gradient descent
+  │  Skip this = can't debug anything
+  │  Resources: Andrew Ng (free)
+  ├──────────────────────────────────
+  Step 2: TRANSFORMERS              🏎️
+  │  Attention mechanism (2017)
+  │  How ALL modern LLMs work
+  │  Resources: Jay Alammar (free)
+  ├──────────────────────────────────
   Step 3: PRE-TRAIN / FINE-TUNE / RAG
-       │  $100M    $cheap    $free
-       │
-  Step 4: AI AGENTS &amp; APPS    🤖 The Product
-
-  ⚠️ Skip a step = house falls down</pre>
+  │  Pre-train: $10M-$100M+ (from scratch)
+  │  Fine-tune: $cheap (specialize it)
+  │  RAG: $free (give it a search engine)
+  ├──────────────────────────────────
+  Step 4: AI AGENTS &amp; APPS          🤖
+  │  Tools, APIs, real-world actions
+  │  Only works WITH Steps 1-3
+  ══════════════════════════════════════
+  ⚠️  SKIP A STEP = HOUSE FALLS DOWN
+  ✅  ALL resources are FREE
+  🎯  Barrier isn't money — it's discipline</pre>
                 </div>
             </div>
 
@@ -992,25 +1009,45 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">Every LLM starts with the internet. Crawl 2.7B pages (Common Crawl, 200-400 TB raw). Clean it — remove HTML, duplicates, PII, toxic content (FineWeb = 44 TB clean, 15 trillion tokens). Tokenize text into numbers. Pretrain ($10M-$100M+, months, thousands of GPUs). Result: a genius with no manners. Post-train to make it helpful and safe. Deploy.</p>
+                <p class="tech-para">Most people think building an LLM starts with some brilliant algorithm. It doesn't. It starts with a vacuum cleaner. Specifically, a web crawler that visits 2.7 billion web pages and downloads everything it finds — every Wikipedia article, every Reddit thread, every blog post, every news story. The result is a staggering 200 to 400 terabytes of raw text. An organization called Common Crawl has been doing this since 2008, and their dataset is freely available to anyone. This is the raw material that every major LLM is built from.</p>
+<p class="tech-para">But here's what most people don't realize — that raw data is absolutely filthy. It's full of HTML tags, JavaScript code, duplicate pages (the same article copied across 50 websites), people's personal information (names, emails, phone numbers), and toxic content. You can't just feed this into a model. Data cleaning is roughly 90% of the work in building an LLM, and it's the least glamorous part. Teams like Hugging Face spent months building FineWeb — a cleaned version of Common Crawl that went from 200+ TB of mess down to 44 terabytes of high-quality text, roughly 15 trillion tokens. The cleaning pipeline includes deduplication, PII removal, language filtering, quality scoring, and toxic content filtering.</p>
+<p class="tech-para">Once the data is clean, it gets tokenized — converted from human-readable text into numbers that the model can process. Then comes pre-training: you feed those trillions of tokens into the model architecture and let it learn patterns. This is where the enormous cost comes in. GPT-3 cost roughly $10 million to train. GPT-4 is estimated at over $100 million. You're running thousands of specialized GPUs (like NVIDIA's H100s) for weeks or months straight, burning through electricity and compute.</p>
+<p class="tech-para">After pre-training, you have something remarkable but also useless for conversation — a 'base model.' It can finish any sentence brilliantly because it's seen the entire internet, but ask it 'What's the capital of France?' and instead of answering, it might generate ten more questions (because on the internet, questions are often followed by more questions, not answers). It's a genius who never learned manners.</p>
+<p class="tech-para">That's why every LLM goes through post-training — first Supervised Fine-Tuning (SFT) to teach it the format of helpful conversations, then Reinforcement Learning (RL) to make it safe and honest. The entire pipeline from crawling to deployment can take 6-12 months and cost tens of millions of dollars. And yet, the resulting model — the thing that seems like magic when you chat with it — is just statistics learned from the internet.</p>
 
                 <div class="diagram-box">
-                    <pre>  🌐 Internet (2.7B pages)
+                    <pre>  HOW EVERY LLM IS BUILT
+  ══════════════════════════════════════
+  🌐 THE INTERNET (all human knowledge)
        │
-  ┌────▼──────┐
-  │  CRAWL     │ ──▶ 200-400 TB raw
-  └────┬──────┘
-  ┌────▼──────┐
-  │  CLEAN     │ ──▶ 44 TB (FineWeb)
-  └────┬──────┘
-  ┌────▼──────┐
-  │  PRETRAIN  │ ──▶ 💸 $10M-$100M+
-  └────┬──────┘
-  ┌────▼──────┐
-  │ POST-TRAIN │ ──▶ Genius → Helpful 🎓
-  └────┬──────┘
+  ┌────▼────────────────────────────┐
+  │ CRAWL (Common Crawl)            │
+  │ 2.7 billion pages               │
+  │ Result: 200-400 TB raw text     │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ CLEAN (90% of the work!)        │
+  │ Remove: HTML, duplicates, PII   │
+  │ Remove: toxic content, low-qual │
+  │ Result: 44 TB clean (FineWeb)   │
+  │         = 15 trillion tokens    │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ PRE-TRAIN (the expensive part)  │
+  │ Thousands of GPUs, weeks/months │
+  │ Cost: $10M (GPT-3) → $100M+    │
+  │ Result: genius with no manners  │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ POST-TRAIN (teach it manners)   │
+  │ SFT → helpful, RL → safe       │
+  │ Much cheaper + faster           │
+  └────┬────────────────────────────┘
        ▼
-  🤖 Ready to chat!</pre>
+  🤖 Ready to chat!
+  ══════════════════════════════════════
+  📊 SCALE: 200TB raw → 44TB clean → 1 model
+  💡 Data cleaning = 90% of the work</pre>
                 </div>
             </div>
 
@@ -1036,22 +1073,44 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">Computers only understand numbers. The tokenizer converts text ↔ numbers using a vocabulary (50K-200K entries). Word-level = too big (500K+). Character-level = too long (6.5x). Sub-word (BPE) = perfect balance. BPE algorithm: start with characters, count pairs, merge most frequent, repeat until target vocab size. GPT-3.5 uses ~100K tokens, GPT-4o uses ~200K. Same text = different token IDs across models.</p>
+                <p class="tech-para">Here's a fundamental problem that most people never think about — computers don't understand text. Not even a little bit. They only understand numbers. So before any AI model can process the sentence 'Tell me a joke,' that sentence needs to be converted into a sequence of numbers. That's what a tokenizer does, and the way it does it matters more than you'd expect.</p>
+<p class="tech-para">The obvious approach is word-level tokenization — give every word its own number. 'Tell' = 41, 'me' = 553, 'joke' = 22691. Simple, right? The problem is vocabulary size. The English internet contains over 500,000 unique words (including misspellings, slang, technical terms, names). Your vocabulary table becomes enormous, and every new word the model encounters is 'unknown.' The opposite extreme — character-level tokenization — uses a tiny vocabulary (just 26 letters plus punctuation), but now 'Hello' is 5 tokens instead of 1. Sequences become 6.5x longer, which means 6.5x more computation, 6.5x more memory, and the model struggles to learn word-level meaning from individual characters.</p>
+<p class="tech-para">The breakthrough was sub-word tokenization — specifically an algorithm called BPE (Byte Pair Encoding). BPE starts with individual characters and repeatedly merges the most frequent pair into a new token. First pass: 'h' and 'e' appear together constantly, so merge them into 'he.' Next pass: 'he' and 'l' merge into 'hel.' Keep going until you reach your target vocabulary size — typically 50,000 to 200,000 tokens. The result is elegant: common words like 'the' stay as single tokens, while rare words like 'unhappiness' get split into 'un' + 'happiness.' The model gets the efficiency of word-level for common text and the flexibility of character-level for rare words.</p>
+<p class="tech-para">One thing that surprises people is that every model has its OWN tokenizer with its OWN vocabulary. GPT-3.5 uses roughly 100,000 tokens. GPT-4o expanded to about 200,000 tokens. The same sentence produces completely different token IDs across different models — 'Hello' might be token 15339 in GPT-3 and token 9906 in Llama. This is why you can't just swap models in a pipeline without also swapping the tokenizer.</p>
+<p class="tech-para">You can actually see this in action — type a common phrase like 'the cat sat' and it's just 3 tokens. Type gibberish like 'xqzplm' and it explodes into 5-6 tiny tokens because the tokenizer has never seen that character combination before. The tokenizer is the unsung hero of the entire LLM pipeline — invisible when it works, catastrophic when it doesn't.</p>
 
                 <div class="diagram-box">
-                    <pre>  "Tell me a joke"
+                    <pre>  HOW TEXT BECOMES NUMBERS
+  ══════════════════════════════════════
+  Input: "Tell me a joke"
        │
-  ┌────▼───────────┐
-  │ TEXT SPLITTING   │ ──▶ [Tell] [me] [a] [joke]
-  └────┬───────────┘
-  ┌────▼───────────┐
-  │ VOCAB LOOKUP    │ ──▶ [41, 553, 264, 22691]
-  └────┬───────────┘
+  ┌────▼────────────────────────────┐
+  │ STEP 1: SPLIT into sub-words    │
+  │ [Tell] [me] [a] [joke]          │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ STEP 2: LOOKUP in vocabulary    │
+  │ Tell→41, me→553, a→264         │
+  │ joke→22691                      │
+  │ Output: [41, 553, 264, 22691]   │
+  └────┬────────────────────────────┘
        ▼
-  Numbers the model can eat! 🍽️
-
-  BPE builds vocab:
-  letters → merge pairs → merge more → 50K-200K ✅</pre>
+  Numbers the model can process! 🍽️
+  ══════════════════════════════════════
+  WHY SUB-WORDS? (THE 3 OPTIONS)
+  ❌ Word-level  → vocab 500K+ (too big)
+     Every new word = "unknown"
+  ❌ Char-level  → vocab 26 (too small)
+     "Hello" = 5 tokens, 6.5x slower
+  ✅ Sub-word (BPE) → vocab 50K-200K ⭐
+     Common words stay whole
+     Rare words get split smartly
+  ══════════════════════════════════════
+  BPE ALGORITHM (how vocab is built):
+  Start: [h] [u] [g]  (individual chars)
+  Merge: [hu] [g]     (most frequent pair)
+  Merge: [hug]         (repeat until done)
+  🎯 Target: 50K-200K tokens</pre>
                 </div>
             </div>
 
@@ -1076,25 +1135,39 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">In 2017, Google Brain published "Attention Is All You Need" — originally for machine translation (French → English). The Transformer reads all words at once using attention (each word looks at every other word to understand context). It had two halves: Encoder (reads input) and Decoder (generates output). Researchers discovered: keep only the decoder = text generation powerhouse. GPT, Claude, Llama = ALL decoder-only transformers. Jay Alammar's "Illustrated Transformer" is the best guide.</p>
+                <p class="tech-para">Before 2017, AI language models had a serious problem — they read text one word at a time, in order, like looking through a keyhole. These were called RNNs (Recurrent Neural Networks), and they had a fatal flaw: by the time they reached word 50 in a sentence, they'd largely forgotten word 1. Imagine reading a novel but only remembering the last paragraph. Long documents, complex references, subtle context — all lost. Researchers tried patches (LSTMs, GRUs), but the fundamental bottleneck remained: sequential processing meant you couldn't parallelize training, and the 'memory' degraded over distance.</p>
+<p class="tech-para">In 2017, a team at Google published a paper titled 'Attention Is All You Need' — arguably the most important AI paper ever written. Their key insight was radical: throw away the sequential processing entirely. Instead, let every word in a sentence look at every OTHER word simultaneously. This mechanism is called 'self-attention.' Consider the sentence: 'The cat sat on the mat because IT was tired.' What does 'it' refer to? The cat or the mat? Humans resolve this instantly. Self-attention does the same thing — 'it' computes a relevance score with every other word, discovers that 'cat' has the highest score, and strengthens that connection. This happens for ALL words at ALL positions at the same time. That's the magic.</p>
+<p class="tech-para">The original Transformer architecture had two halves — an Encoder (which reads and understands the input) and a Decoder (which generates the output). It was designed for machine translation: feed French into the encoder, get English out of the decoder. But researchers quickly discovered something unexpected. If you throw away the encoder and keep only the decoder, you get a model that's extraordinarily good at generating text — one token at a time, predicting what comes next based on everything before it. This 'decoder-only' architecture became the foundation of a revolution.</p>
+<p class="tech-para">GPT-1 (2018) proved the concept with 117 million parameters. GPT-2 (2019) scaled to 1.5 billion. GPT-3 (2020) exploded to 175 billion — and suddenly, the model could write essays, code, and poetry. The architecture hadn't changed. The math was identical. They just made it bigger and fed it more data. That's the shocking simplicity of the Transformer — it's the same building block, stacked and scaled.</p>
+<p class="tech-para">Today, every major AI model you interact with — ChatGPT, Claude, Llama, Gemini, Mistral — is a decoder-only Transformer. The 2017 paper didn't just introduce a new technique; it obsoleted an entire generation of AI architectures. Jay Alammar's 'Illustrated Transformer' blog post remains the best visual explanation of how attention works under the hood, and it's free to read.</p>
 
                 <div class="diagram-box">
-                    <pre>  2017: "Attention Is All You Need" (Google)
-
-  ORIGINAL TRANSFORMER:
-  ┌──────────┬──────────┐
-  │ ENCODER  │ DECODER  │  ← Translation
-  │ (read)   │ (write)  │
-  └──────────┴──────────┘
-
-  MODERN LLMs:
-  ┌──────────┐
-  │ DECODER  │  ← Text generation
-  │  ONLY    │
-  └──────────┘
-  GPT, Claude, Llama = ALL this ☝️
-
-  🔑 Attention = words "look at" each other</pre>
+                    <pre>  THE TRANSFORMER REVOLUTION
+  ══════════════════════════════════════
+  BEFORE (RNNs): Read one word at a time
+  ┌─┐→┌─┐→┌─┐→┌─┐→┌─┐→ ... → ┌─┐
+  │w1│ │w2│ │w3│ │w4│ │w5│       │w50│
+  └─┘ └─┘ └─┘ └─┘ └─┘       └─┘
+  ❌ By word 50, word 1 is forgotten
+  ❌ Sequential = can't parallelize
+  ══════════════════════════════════════
+  AFTER (2017): "Attention Is All You Need"
+  Every word looks at EVERY other word:
+  ┌────────────────────────────┐
+  │  w1 ←→ w2 ←→ w3 ←→ ... wN │
+  │  ALL connected at once!     │
+  │  "it" → strongest link to   │
+  │         "cat" (not "mat")   │
+  └────────────────────────────┘
+  ✅ Parallel processing
+  ✅ Long-range context preserved
+  ══════════════════════════════════════
+  THE SPLIT:
+  Original: [ENCODER|DECODER] → translation
+  Modern:   [DECODER ONLY]    → generation
+  ══════════════════════════════════════
+  GPT, Claude, Llama, Gemini = ALL
+  decoder-only Transformers ☝️</pre>
                 </div>
             </div>
 
@@ -1120,24 +1193,45 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">Text flows through 4 stages — like a Pega case flow. First the Tokenizer chops text into IDs. Then the Embedding Layer turns IDs into vectors (learned during training). Those vectors flow through stacked Transformer Blocks (12 in GPT-2, 96 in GPT-3). Only the LAST vector survives — it hits Linear + Softmax, producing 50,000 probabilities. Highest wins. Same architecture for GPT-2 (1.5B), GPT-3 (175B), Llama-3 (405B) — different hyperparameters (layers + dimension).</p>
+                <p class="tech-para">If you open the hood of any modern AI chatbot — ChatGPT, Claude, Llama, Gemini — you'll find the exact same 4-stage pipeline. Not similar. Identical in structure. The only difference between a small model and a massive one is the size of each stage. Understanding this pipeline is like understanding the assembly line in a factory — once you see it, every model makes sense.</p>
+<p class="tech-para">Stage 1 is the Tokenizer, which chops text into token IDs (covered in the tokenization topic). Stage 2 is where it gets interesting — the Embedding Layer. This takes each token ID (just a plain number like 42) and converts it into a dense vector — a list of hundreds or thousands of decimal numbers. Think of it as turning a name tag into a full personality profile. Token 42 ('I') becomes something like [0.2, -0.8, 0.5, 1.1, ...] — a 768-dimensional vector in GPT-2, or a 12,288-dimensional vector in GPT-3. These embedding vectors aren't hardcoded; they're learned during training. The model discovers that similar words should have similar vectors — 'king' and 'queen' end up near each other in this high-dimensional space.</p>
+<p class="tech-para">Stage 3 is the Transformer Blocks — the actual 'brain' of the model. Each block contains the self-attention mechanism (from the Transformer paper) plus a feed-forward neural network. GPT-2 has 12 blocks stacked on top of each other. GPT-3 has 96. Llama 3 has 126. Same type of block, just more of them — like building a taller LEGO tower. Every block refines the vectors further, adding more context and understanding. By the time the vectors exit the final block, they've been enriched with deep contextual meaning.</p>
+<p class="tech-para">Stage 4 is the head — Linear projection followed by Softmax. Here's the critical detail most people miss: only the LAST token's vector matters. The model takes that single vector, projects it across the entire vocabulary (roughly 50,000 words), and Softmax converts those raw scores into probabilities that sum to 1.0. 'Well' might get 0.86 (86%), 'happy' gets 0.11, 'banana' gets 0.0001. The highest probability wins — or more precisely, a sampling algorithm picks from the top candidates.</p>
+<p class="tech-para">What makes this truly elegant is that GPT-2 (1.5 billion parameters), GPT-3 (175 billion), and Llama 3 (405 billion) all use this EXACT same 4-stage pipeline. The only things that change are the hyperparameters — number of layers, vector dimension, vocabulary size. The architecture is identical. It's like the difference between a 2-story house and a 96-story skyscraper — same blueprint, just scaled up.</p>
 
                 <div class="diagram-box">
-                    <pre> "I hope you are"
+                    <pre>  THE 4-STAGE LLM PIPELINE
+  ══════════════════════════════════════
+  Input: "I hope you are ___"
        │
-  ┌────▼─────┐
-  │ TOKENIZER │ ──▶ [42, 891, 67, 55]
-  └────┬─────┘
-  ┌────▼─────┐
-  │ EMBEDDING │ ──▶ [0.2, 0.8, ...] vectors
-  └────┬─────┘
-  ┌────▼──────────────┐
-  │ TRANSFORMER BLOCKS │ ──▶ keep LAST vector only
-  │ (96 in GPT-3!)    │
-  └────┬──────────────┘
-  ┌────▼──────────┐
-  │ LINEAR+SOFTMAX │ ──▶ "well" (86%) 🏆
-  └───────────────┘</pre>
+  ┌────▼────────────────────────────┐
+  │ STAGE 1: TOKENIZER              │
+  │ Text → IDs: [42, 891, 67, 55]  │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ STAGE 2: EMBEDDING LAYER        │
+  │ IDs → vectors (learned!)        │
+  │ 42 → [0.2, -0.8, 0.5, ...]    │
+  │ Like: name tag → personality    │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ STAGE 3: TRANSFORMER BLOCKS     │
+  │ Attention + Feed-Forward         │
+  │ GPT-2: 12 blocks (1.5B params)  │
+  │ GPT-3: 96 blocks (175B params)  │
+  │ Llama: 126 blocks (405B params) │
+  │ Same block type, just MORE      │
+  └────┬────────────────────────────┘
+       │ ⚡ Only LAST vector survives
+  ┌────▼────────────────────────────┐
+  │ STAGE 4: LINEAR + SOFTMAX       │
+  │ Last vector → 50K probabilities │
+  │ "well": 86%  "happy": 11%      │
+  │ "banana": 0.01%  → pick one!   │
+  └────────────────────────────────┘
+  ══════════════════════════════════════
+  🔑 Same pipeline for ALL models
+     Only the SIZE changes</pre>
                 </div>
             </div>
 
@@ -1162,25 +1256,44 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">Training is a 2-step dance repeated a million times. Step 1: feed text into the LLM, get probabilities, grade them with cross-entropy loss — just one number, high means bad guess. Step 2: the optimizer takes that grade, goes backward through every layer, and nudges every weight so the next guess is slightly better. After a million rounds across the internet, the model discovers patterns nobody taught it — Einstein connects to physicist, machine learning connects to algorithms, not bananas. That's implicit knowledge. The code is 10 lines. Running it on Llama 3's 405 billion parameters takes 16,000 H100 GPUs, 7+ TB of memory, and millions of dollars. Simple recipe, massive kitchen.</p>
+                <p class="tech-para">Here's what surprises most people about training — the algorithm is shockingly simple. It's a 2-step loop. Step 1 (the forward pass): feed a sentence into the model with the last word hidden, let the model guess what that word should be, and compute a single number called the 'loss' using cross-entropy. Loss is like a golf score — high is bad. If the correct answer is 'physicist' and the model guesses it with only 5% confidence, the loss is high. If the model guesses it with 90% confidence, the loss is nearly zero.</p>
+<p class="tech-para">Step 2 (the backward pass): the optimizer takes that loss number and works backward through every single layer of the model, computing exactly how much each weight contributed to the error. Then it nudges each weight by a tiny amount in the direction that would reduce the loss. This is called gradient descent — literally descending the slope of the error landscape. The model has billions of these weights (405 billion in Llama 3), and every single one gets adjusted, every single round.</p>
+<p class="tech-para">Repeat this loop a million times with different sentences from the internet, and something remarkable happens. The model starts discovering patterns that nobody explicitly taught it. It learns that 'Einstein' connects to 'physicist,' that 'machine learning' connects to 'algorithms,' that 'peanut butter' connects to 'jelly' — not because anyone programmed these associations, but because the statistical patterns in the training data made these connections reduce the loss. This is called 'implicit knowledge,' and it's why LLMs can seem to 'understand' things — they don't understand in the human sense, they've internalized statistical relationships across the entire internet.</p>
+<p class="tech-para">The code for this training loop is about 10 lines of Python. The math is undergraduate calculus. There's nothing exotic about it. What IS exotic is the scale. Training Llama 3 (405 billion parameters) required 16,000 NVIDIA H100 GPUs, over 7 terabytes of GPU memory, and cost millions of dollars in compute. Meta's training cluster consumed enough electricity to power a small town. The training ran for weeks, processing trillions of tokens.</p>
+<p class="tech-para">One critical detail that trips people up: training happens ONCE. It's not an ongoing process. You gather your data, you run the training loop for weeks, and then you stop. The model's weights are frozen. When you chat with ChatGPT, it's not learning from your conversation — it's running inference on frozen weights. The next version (GPT-5, Claude 4) will be a completely separate training run from scratch, with new data and new compute. Training is a one-time investment that produces a static artifact.</p>
 
                 <div class="diagram-box">
-                    <pre>  🌐 Internet Text (cleaned, tokenized)
+                    <pre>  HOW AN LLM LEARNS
+  ══════════════════════════════════════
+  Input: "Einstein was a German-born ___"
+  Correct answer: "physicist"
        │
-       ▼  Sample: "Einstein was a German-born ___"
-  ┌────────────────────────────────────┐
-  │ STEP 1: FORWARD PASS + LOSS        │
-  │ Input → LLM → probabilities        │
-  │ Compare with correct ("physicist") │
-  │ Loss = 3.0 (high = bad) 📛         │
-  └──────────────┬─────────────────────┘
-  ┌──────────────▼─────────────────────┐
-  │ STEP 2: OPTIMIZER (backward pass)  │
-  │ Takes loss → adjusts ALL weights   │
-  │ "physicist" prob: 0.05 → 0.06     │
-  └──────────────┬─────────────────────┘
-       ▼  🔄 REPEAT 1,000,000+ times
-       🏆 Implicit knowledge acquired!</pre>
+  ┌────▼────────────────────────────┐
+  │ STEP 1: FORWARD PASS            │
+  │ Feed text → model guesses       │
+  │ "physicist" confidence: 5%      │
+  │ Loss = 3.0 (high = bad!) ⛳     │
+  └────┬────────────────────────────┘
+  ┌────▼────────────────────────────┐
+  │ STEP 2: BACKWARD PASS           │
+  │ Optimizer traces error backward │
+  │ Nudges EVERY weight (billions!) │
+  │ "physicist": 5% → 6% (better)  │
+  └────┬────────────────────────────┘
+       │
+  🔄 REPEAT 1,000,000+ TIMES
+       │
+       ▼
+  🧠 IMPLICIT KNOWLEDGE EMERGES
+  ══════════════════════════════════════
+  THE SCALE:
+  Code: ~10 lines of Python
+  Llama 3: 405B weights, 16K H100 GPUs
+  Cost: millions of $$$, weeks of runtime
+  ══════════════════════════════════════
+  ⚠️ Training happens ONCE, then stops
+  ChatGPT isn't learning from your chat —
+  it's running frozen weights</pre>
                 </div>
             </div>
 
@@ -1262,26 +1375,46 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">SFT transforms a base model (genius with no manners) into a question-answering assistant. Feed it 14K-100K expert-curated instruction-response pairs. The training algorithm is IDENTICAL to pre-training — only the data format changes. Pre-training: trillions of tokens, $100M. SFT: thousands of examples, much cheaper. Result: model follows instructions. Then RL makes it safe/honest. Popular datasets: InstructGPT (14.5K), Alpaca (52K), Dolly, Flan.</p>
+                <p class="tech-para">After pre-training, you have a model that's absorbed the entire internet — but it's essentially useless as an assistant. Ask a base model 'What's the capital of France?' and instead of answering 'Paris,' it might generate 'What's the capital of Germany? What's the capital of Spain?' — because on the internet, lists of questions are common, so generating more questions is a statistically reasonable next-token prediction. The base model is a text completion engine, not a conversation partner. It has all the knowledge but none of the behavior.</p>
+<p class="tech-para">Supervised Fine-Tuning (SFT) fixes this by showing the model thousands of examples of the exact behavior you want. You create a dataset of instruction-response pairs: 'Summarize this article' → [perfect summary]. 'Write a Python function that...' → [clean code]. 'Explain quantum physics simply' → [clear explanation]. InstructGPT used 14,500 of these pairs. Stanford's Alpaca used 52,000. Dolly used 15,000. The surprising discovery was that you don't need millions — a few thousand high-quality examples are enough to fundamentally shift the model's behavior.</p>
+<p class="tech-para">Here's the part that blows people's minds — the training algorithm for SFT is IDENTICAL to pre-training. Same forward pass, same cross-entropy loss function, same optimizer, same backward pass. Nothing changes in the math. The ONLY difference is the data format. Pre-training uses raw internet text (trillions of tokens, months of compute, $100M+). SFT uses curated Q&amp;A pairs (thousands of examples, hours of compute, much cheaper). Same algorithm, radically different data, completely different behavior. This is one of the most elegant insights in modern AI — you don't need a new algorithm to teach new behavior, you just need the right examples.</p>
+<p class="tech-para">But SFT alone isn't enough. An SFT-trained model will follow instructions, but it has no concept of safety. Ask it to write malware, and it'll try its best — because the SFT data taught it to be helpful, not to be cautious. That's where Reinforcement Learning from Human Feedback (RLHF) comes in. Human raters rank multiple model responses from best to worst, a 'reward model' learns those preferences, and then the LLM is fine-tuned to maximize the reward signal. This teaches the model to refuse harmful requests, avoid hallucination, and be honest about uncertainty.</p>
+<p class="tech-para">The full post-training pipeline is: Base Model → SFT (learns to follow instructions) → RLHF (learns to be safe and honest) → Production Model. Think of it in Pega terms: pre-training is installing the platform, SFT is configuring it for your business process, and RLHF is UAT testing to catch edge cases. Same platform at every stage — just progressively refined with better data and feedback.</p>
 
                 <div class="diagram-box">
-                    <pre>  BASE MODEL (genius, no manners)
-       │
-  ┌────▼──────────────────┐
-  │ SFT: Supervised        │
-  │ Fine-Tuning            │
-  │                        │
-  │ Data: 14K-100K pairs   │
-  │ "Q: ..." → "A: ..."   │
-  │ Same algorithm!        │
-  └────┬──────────────────┘
-       │
-  ┌────▼──────────────────┐
-  │ RL: Reinforcement      │
-  │ Learning (safe+honest) │
-  └────┬──────────────────┘
-       ▼
-  🤖 Helpful + Safe Assistant</pre>
+                    <pre>  FROM GENIUS TO HELPFUL ASSISTANT
+  ══════════════════════════════════════
+  BASE MODEL (after pre-training)
+  │ Knows everything, helps with nothing
+  │ "What's the capital of France?"
+  │  → "What's the capital of Germany?" ❌
+  ├──────────────────────────────────────
+  │              ▼
+  │  ┌──────────────────────────────┐
+  │  │ STEP 1: SFT                  │
+  │  │ 14K-100K instruction pairs   │
+  │  │ Same algorithm as pre-train! │
+  │  │ Only the DATA changes        │
+  │  │ Hours (not months), cheap    │
+  │  └──────────┬───────────────────┘
+  │             ▼
+  │  Model follows instructions ✅
+  │  But no safety guardrails ⚠️
+  ├──────────────────────────────────────
+  │              ▼
+  │  ┌──────────────────────────────┐
+  │  │ STEP 2: RLHF                 │
+  │  │ Humans rank responses        │
+  │  │ Reward model learns prefs    │
+  │  │ LLM optimizes for reward     │
+  │  └──────────┬───────────────────┘
+  │             ▼
+  │  Model is safe + honest ✅🛡️
+  ══════════════════════════════════════
+  📊 Pre-train: trillions tokens, $100M
+     SFT: thousands examples, $cheap
+     RLHF: human feedback, $moderate
+  🎯 Same algorithm — different data!</pre>
                 </div>
             </div>
 
