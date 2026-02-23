@@ -1205,26 +1205,39 @@
 
             <div class="content-block tech-block">
                 <div class="block-label">🎬 60-Second Technical Version</div>
-                <p class="tech-para">Text generation is autoregressive — a for loop that predicts one token at a time. The trained model outputs 50,000 probabilities, and a sampling algorithm picks one. Greedy search always picks the highest — fast but causes repetition (the GPT-2 'cute dog' loop). Beam search tracks K paths simultaneously — better but still deterministic. The breakthrough is Top-P sampling: keep tokens until cumulative probability exceeds threshold P, then randomly sample from those. When the model is confident, it naturally considers fewer tokens. When uncertain, it considers more. Temperature adjusts the probability distribution — low (0.1) sharpens it for code, high (0.7-1.0) flattens it for creative writing.</p>
+                <p class="tech-para">Here's something most people don't realize — after all that expensive training ($100M+, months of GPU time), the model doesn't actually 'know' what to say. It knows probabilities. You type 'Albert' and the model runs a forward pass through its billions of parameters and outputs a probability distribution over its entire vocabulary — roughly 50,000 possible next tokens. 'Einstein' might get 42%, 'John' gets 15%, 'was' gets 8%, and so on. The question is: how do you pick from that list?</p>
+<p class="tech-para">The naive approach is Greedy Search — always pick the highest probability token. Simple, fast, but fatally flawed. It causes repetitive loops because the model keeps choosing the same 'safe' high-probability words. OpenAI demonstrated this with GPT-2: ask it about a cute dog and it literally gets stuck repeating the same sentence. Beam Search improved on this by tracking K parallel paths (like exploring K branches of a decision tree simultaneously), but it's still deterministic — same input always produces the same output, which makes the text feel robotic.</p>
+<p class="tech-para">The real breakthrough was moving from deterministic to stochastic (random) sampling. Top-K Sampling picks randomly from the K most likely tokens — but K is fixed, which is a problem. Sometimes the model is very confident (one token has 90% probability) and you want to focus. Other times it's unsure and you want to explore. Top-P (Nucleus) Sampling solved this elegantly: instead of a fixed K, you keep adding tokens from highest to lowest probability until their cumulative probability exceeds a threshold P (usually 0.9). This means K is DYNAMIC — when confident, only 1-2 tokens qualify. When uncertain, maybe 20 tokens qualify. The model naturally adapts its creativity based on context.</p>
+<p class="tech-para">Finally, Temperature acts as a creativity dial on TOP of the sampling algorithm. Low temperature (0.1-0.3) sharpens the probability distribution — the rich get richer, making output precise and focused (ideal for code generation). High temperature (0.7-1.0) flattens it — giving underdog tokens a fighting chance, making output more creative and surprising (ideal for storytelling, poetry). Every time you adjust that 'temperature' slider in ChatGPT or Claude, this is exactly what's happening.</p>
+<p class="tech-para">The entire generation process is surprisingly simple in code — it's a for loop. Feed in the prompt, get probabilities, sample one token, append it to the input, repeat. Stop when the model outputs a special &lt;EOS&gt; (End of Sequence) token, or when you hit a maximum length. That's it. Every AI response you've ever read was generated exactly this way — one token at a time, in a loop.</p>
 
                 <div class="diagram-box">
-                    <pre>  Input: "Albert"
+                    <pre>  HOW EVERY AI RESPONSE IS GENERATED
+  ════════════════════════════════════
+  Input: "Albert"        (your prompt)
        ▼
-  ┌─────────┐    ┌──────────────┐    ┌────────┐
-  │   LLM   │───▶│ 50K probs    │───▶│ SAMPLE │
-  │(forward) │    │ Einstein:42% │    │  algo  │
-  └─────────┘    │ John: 15%    │    └───┬────┘
-       ▲         │ was: 8%      │        │
-       │         └──────────────┘        ▼
-       │                          "Einstein"
-       └──────── append ◀────────────────┘
-  STOP: &lt;EOS&gt; token OR max length
-  ─────────────────────────────────────────
-  Greedy (repeat!) → Beam (boring)
-    → Multinomial (too random!)
-      → Top-K (fixed K)
-        → Top-P ⭐ (dynamic K = WINNER)
-  🌡️ Temp: low=code, high=creative</pre>
+  ┌─────────┐    ┌──────────────┐    ┌──────────┐
+  │   LLM   │───▶│ 50K probs    │───▶│ SAMPLING │
+  │(forward  │    │ Einstein:42% │    │ALGORITHM │
+  │  pass)   │    │ John: 15%    │    └────┬─────┘
+  └─────────┘    │ was: 8%      │         │
+       ▲         │ the: 5%      │         ▼
+       │         └──────────────┘   "Einstein"
+       │                                  │
+       └───── append to input ◄───────────┘
+       🔄 REPEAT until &lt;EOS&gt; or max length
+  ════════════════════════════════════════
+  THE EVOLUTION OF SAMPLING:
+  ❌ Greedy    → always pick #1 → repetition loops
+  ❌ Beam(K=5) → track 5 paths  → still deterministic
+  ⚠️ Top-K     → random from top K → but K is fixed
+  ✅ Top-P ⭐  → dynamic K based on confidence!
+     Confident (90% on one token) → K=1, focused
+     Uncertain (spread across 20)  → K=20, explore
+  ════════════════════════════════════════
+  🌡️ TEMPERATURE (the creativity dial):
+     Low (0.1)  → sharp probs → precise (code)
+     High (0.9) → flat probs  → creative (poetry)</pre>
                 </div>
             </div>
 
