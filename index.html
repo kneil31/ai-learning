@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
     <title>AI Learning — Ram's Journey</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1756,6 +1759,7 @@
             const a = document.createElement('a');
             a.href = mailtoLink;
             a.target = '_blank';
+            a.rel = 'noreferrer noopener';
             a.click();
         }
 
