@@ -545,7 +545,8 @@
 <a href="#topic-3" class="sidebar-link" onclick="showSection('topic-3')">4. Transformers</a>
 <a href="#topic-4" class="sidebar-link" onclick="showSection('topic-4')">5. Model Architecture</a>
 <a href="#topic-5" class="sidebar-link" onclick="showSection('topic-5')">6. Model Training</a>
-<a href="#topic-6" class="sidebar-link" onclick="showSection('topic-6')">7. Post Training SFT</a>
+<a href="#topic-6" class="sidebar-link" onclick="showSection('topic-6')">7. Text Generation</a>
+<a href="#topic-7" class="sidebar-link" onclick="showSection('topic-7')">8. Post Training SFT</a>
 <div class="sidebar-divider"></div>
 <a href="#terms" class="sidebar-link" onclick="showSection('terms')">📚 Key Terms</a>
 <a href="#script" class="sidebar-link" onclick="showSection('script')">🎤 2-Min Script</a>
@@ -555,8 +556,8 @@
             <a href="#" class="sidebar-link share-btn" onclick="shareDashboard(event)">📤 Share This Page</a>
 
             <div class="sidebar-footer">
-                Updated Feb 20, 2026<br>
-                7 topics • 38 terms
+                Updated Feb 23, 2026<br>
+                8 topics • 47 terms
             </div>
         </div>
 
@@ -583,7 +584,7 @@
                 </div>
                 <div class="week-progress-text">7/7 topics</div>
                 <div class="week-topics">
-                    <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-6')">Post Training SFT</a>
+                    <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-7')">Post Training SFT</a>
                 </div>
             </div>
         
@@ -665,7 +666,7 @@
                     </div>
                     <div class="pipe-connector"></div>
         
-                    <div class="pipe-step" onclick="navigateTo('topic-6')" >
+                    <div class="pipe-step" onclick="navigateTo('topic-7')" >
                         <div class="pipe-icon" style="background: #ec4899;">🎓</div>
                         <div class="pipe-content">
                             <div class="pipe-label">STEP 6</div>
@@ -694,13 +695,13 @@
         <div class="page" id="lego">
             <div class="page-breadcrumb">Visual Map</div>
             <h1 class="page-title">The Build</h1>
-            <div class="page-meta">7 / 90 pixels revealed</div>
+            <div class="page-meta">8 / 90 pixels revealed</div>
 
             <div class="pixel-progress">
                 <div class="pixel-progress-bar">
-                    <div class="pixel-progress-fill" style="width: 7%;"></div>
+                    <div class="pixel-progress-fill" style="width: 8%;"></div>
                 </div>
-                <div class="pixel-progress-text">7% complete — 83 to go</div>
+                <div class="pixel-progress-text">8% complete — 82 to go</div>
             </div>
 
             <div class="pixel-grid">
@@ -714,7 +715,7 @@
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
-<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #22d3ee;" onclick="navigateTo('topic-7')" title="Post Training SFT"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
@@ -756,7 +757,7 @@
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
-<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-6')" title="Post Training SFT"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-6')" title="Text Generation"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
@@ -912,7 +913,7 @@
             
         <div class="page" id="topic-0">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 1 of 7</div>
+            <div class="page-breadcrumb">Chapter 1 of 8</div>
             <h1 class="page-title">4-Step LLM Learning Path</h1>
             <div class="page-meta">Starting point — the roadmap</div>
 
@@ -951,7 +952,7 @@
         
         <div class="page" id="topic-1">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 2 of 7</div>
+            <div class="page-breadcrumb">Chapter 2 of 8</div>
             <h1 class="page-title">How LLMs Are Built + Data Prep</h1>
             <div class="page-meta">Topic 1 — zoom into Step 3 of the roadmap</div>
 
@@ -993,7 +994,7 @@
         
         <div class="page" id="topic-2">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 3 of 7</div>
+            <div class="page-breadcrumb">Chapter 3 of 8</div>
             <h1 class="page-title">Tokenization</h1>
             <div class="page-meta">Topic 2 — data is clean, now convert text → numbers</div>
 
@@ -1032,7 +1033,7 @@
         
         <div class="page" id="topic-3">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 4 of 7</div>
+            <div class="page-breadcrumb">Chapter 4 of 8</div>
             <h1 class="page-title">Transformers</h1>
             <div class="page-meta">Topic 3 — tokens exist, now what brain design processes them?</div>
 
@@ -1073,7 +1074,7 @@
         
         <div class="page" id="topic-4">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 5 of 7</div>
+            <div class="page-breadcrumb">Chapter 5 of 8</div>
             <h1 class="page-title">Model Architecture</h1>
             <div class="page-meta">Topics 3 + 4 — combine tokens + transformers into the full pipeline</div>
 
@@ -1114,7 +1115,7 @@
         
         <div class="page" id="topic-5">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 6 of 7</div>
+            <div class="page-breadcrumb">Chapter 6 of 8</div>
             <h1 class="page-title">Model Training</h1>
             <div class="page-meta">Topic 5 — architecture is set, now how does it LEARN?</div>
 
@@ -1155,9 +1156,51 @@
         
         <div class="page" id="topic-6">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 7 of 7</div>
+            <div class="page-breadcrumb">Chapter 7 of 8</div>
+            <h1 class="page-title">Text Generation</h1>
+            <div class="page-meta">Topic 6 — model is trained, now how does it PRODUCE text?</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you have a super smart robot that knows every word in every book ever written. You ask it to finish your sentence: "Once upon a..." But the robot doesn't just KNOW the answer — it has a list of 50,000 possible next words, each with a score of how likely it is. 🤖</p>
+<p class="story-para">So how does it pick? The lazy way (Greedy Search) is to always pick the word with the highest score. "time" wins at 40%! Easy! But here's the problem — the robot gets stuck in a loop. Like a kid who tells the same joke over and over: "and then... and then... and then..." It picks the same popular words FOREVER. 🔄</p>
+<p class="story-para">So smart scientists said: "What if we let the robot be a LITTLE random?" That's Top-P Sampling. Instead of picking just the #1 word, you grab all the top words until their scores add up to 90%. If the robot is SURE the next word is "time" (89% confident), it only looks at that one word. But if it's unsure — maybe "time" is 30%, "a" is 25%, "the" is 20% — it grabs ALL of those and randomly picks from them. The robot adapts! Confident = focused. Unsure = explore! 🎯</p>
+<p class="story-para">And there's a temperature knob. Turn it DOWN for homework (be precise!). Turn it UP for storytelling (be wild!). That's why when you ask ChatGPT to write code, it's careful and exact. But when you ask it to write a poem, it surprises you every time. 🌡️</p>
+<p class="story-para">The whole thing is just a for loop: pick a word, add it to the sentence, pick the next word, repeat. Stop when the robot says "THE END" or you hit a word limit. That's it — that's how every AI writes! ✨</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Text generation is autoregressive — a for loop that predicts one token at a time. The trained model outputs 50,000 probabilities, and a sampling algorithm picks one. Greedy search always picks the highest — fast but causes repetition (the GPT-2 'cute dog' loop). Beam search tracks K paths simultaneously — better but still deterministic. The breakthrough is Top-P sampling: keep tokens until cumulative probability exceeds threshold P, then randomly sample from those. When the model is confident, it naturally considers fewer tokens. When uncertain, it considers more. Temperature adjusts the probability distribution — low (0.1) sharpens it for code, high (0.7-1.0) flattens it for creative writing.</p>
+
+                <div class="diagram-box">
+                    <pre>  Input: "Albert"
+       ▼
+  ┌─────────┐    ┌──────────────┐    ┌────────┐
+  │   LLM   │───▶│ 50K probs    │───▶│ SAMPLE │
+  │(forward) │    │ Einstein:42% │    │  algo  │
+  └─────────┘    │ John: 15%    │    └───┬────┘
+       ▲         │ was: 8%      │        │
+       │         └──────────────┘        ▼
+       │                          "Einstein"
+       └──────── append ◀────────────────┘
+  STOP: &lt;EOS&gt; token OR max length
+  ─────────────────────────────────────────
+  Greedy (repeat!) → Beam (boring)
+    → Multinomial (too random!)
+      → Top-K (fixed K)
+        → Top-P ⭐ (dynamic K = WINNER)
+  🌡️ Temp: low=code, high=creative</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-7">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 8 of 8</div>
             <h1 class="page-title">Post Training SFT</h1>
-            <div class="page-meta">Topic 6 — model is trained, now make it actually useful</div>
+            <div class="page-meta">Topic 7 — model generates text, now make it actually useful</div>
 
             <div class="content-block kid-block">
                 <div class="block-label">📖 Explain It Like I'm 10</div>
@@ -1200,7 +1243,7 @@
             <div class="page" id="terms">
                 <div class="page-breadcrumb">Reference</div>
                 <h1 class="page-title">Key Terms</h1>
-                <div class="page-meta">38 terms across all topics</div>
+                <div class="page-meta">47 terms across all topics</div>
 
                 <input type="text" class="search-input" placeholder="Search terms..." oninput="filterTerms(this.value)">
                 
@@ -1402,6 +1445,60 @@
             <div class="term-source">Model Training</div>
         </div>
         
+        <div class="term-row" data-search="autoregressive generation predicting one token at a time, feeding it back as input">
+            <div class="term-name">Autoregressive Generation</div>
+            <div class="term-def">Predicting one token at a time, feeding it back as input</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="greedy search always pick highest probability token (simple but repetitive)">
+            <div class="term-name">Greedy Search</div>
+            <div class="term-def">Always pick highest probability token (simple but repetitive)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="beam search track top-k paths simultaneously (better but still deterministic)">
+            <div class="term-name">Beam Search</div>
+            <div class="term-def">Track top-K paths simultaneously (better but still deterministic)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="multinomial sampling sample randomly according to probabilities (too risky)">
+            <div class="term-name">Multinomial Sampling</div>
+            <div class="term-def">Sample randomly according to probabilities (too risky)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="top-k sampling keep top-k tokens, sample from those (fixed k is the problem)">
+            <div class="term-name">Top-K Sampling</div>
+            <div class="term-def">Keep top-K tokens, sample from those (fixed K is the problem)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="top-p sampling (nucleus) keep tokens until cumulative probability > p, then sample (dynamic k — used in practice)">
+            <div class="term-name">Top-P Sampling (Nucleus)</div>
+            <div class="term-def">Keep tokens until cumulative probability > P, then sample (dynamic K — USED IN PRACTICE)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="temperature hyperparameter that sharpens (low) or smooths (high) probabilities">
+            <div class="term-name">Temperature</div>
+            <div class="term-def">Hyperparameter that sharpens (low) or smooths (high) probabilities</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="deterministic same input → same output always (greedy, beam)">
+            <div class="term-name">Deterministic</div>
+            <div class="term-def">Same input → same output always (Greedy, Beam)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
+        <div class="term-row" data-search="stochastic same input → different outputs each time (top-k, top-p)">
+            <div class="term-name">Stochastic</div>
+            <div class="term-def">Same input → different outputs each time (Top-K, Top-P)</div>
+            <div class="term-source">Text Generation</div>
+        </div>
+        
         <div class="term-row" data-search="sft (supervised fine-tuning) teaching the base model to follow instructions using q&a pairs">
             <div class="term-name">SFT (Supervised Fine-Tuning)</div>
             <div class="term-def">Teaching the base model to follow instructions using Q&A pairs</div>
@@ -1445,6 +1542,7 @@
 <p class="script-para">First, they vacuumed up the entire internet — 2.7 billion web pages — and cleaned it. Then they built a translator called a tokenizer that converts words into numbers, because computers can't read text.</p>
 <p class="script-para">Those numbers go through 4 stages: the tokenizer chops text into IDs, an embedding layer turns IDs into rich vectors, transformer blocks process those vectors through dozens of smart filters, and a softmax function picks the most likely next word out of 50,000 options.</p>
 <p class="script-para">To teach it, they run a loop a million times: guess the next word, check how wrong it was, adjust billions of tiny knobs, repeat. This costs $100 million and takes months on thousands of GPUs.</p>
+<p class="script-para">But a trained model only gives you probabilities — it doesn't actually write text yet. Text generation is a for loop: pick one token using Top-P sampling (keep the most likely words until they add up to 90%, randomly pick from those), add it to the sentence, repeat. Temperature controls creativity — low for code, high for stories.</p>
 <p class="script-para">After all that, the model is a genius who can't hold a conversation. So they show it 14,000 perfect Q&amp;A examples (that's fine-tuning), and then use reinforcement learning to make it safe.</p>
 <p class="script-para">And that's it — that's ChatGPT, Claude, Llama. Same recipe. Some just use bigger LEGO towers than others.</p>
 
