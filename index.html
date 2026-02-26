@@ -571,6 +571,7 @@
 <a href="#topic-5" class="sidebar-link" onclick="showSection('topic-5')">6. Model Training</a>
 <a href="#topic-6" class="sidebar-link" onclick="showSection('topic-6')">7. Text Generation</a>
 <a href="#topic-7" class="sidebar-link" onclick="showSection('topic-7')">8. Post Training SFT</a>
+<a href="#topic-8" class="sidebar-link" onclick="showSection('topic-8')">9. Reinforcement Learning</a>
 <div class="sidebar-divider"></div>
 <a href="#terms" class="sidebar-link" onclick="showSection('terms')">📚 Key Terms</a>
 <a href="#script" class="sidebar-link" onclick="showSection('script')">🎤 2-Min Script</a>
@@ -580,8 +581,8 @@
             <a href="#" class="sidebar-link share-btn" onclick="shareDashboard(event)">📤 Share This Page</a>
 
             <div class="sidebar-footer">
-                Updated Feb 24, 2026<br>
-                8 topics • 47 terms
+                Updated Feb 26, 2026<br>
+                9 topics • 56 terms
             </div>
         </div>
 
@@ -719,13 +720,13 @@
         <div class="page" id="lego">
             <div class="page-breadcrumb">Visual Map</div>
             <h1 class="page-title">The Build</h1>
-            <div class="page-meta">8 / 90 pixels revealed</div>
+            <div class="page-meta">9 / 90 pixels revealed</div>
 
             <div class="pixel-progress">
                 <div class="pixel-progress-bar">
-                    <div class="pixel-progress-fill" style="width: 8%;"></div>
+                    <div class="pixel-progress-fill" style="width: 10%;"></div>
                 </div>
-                <div class="pixel-progress-text">8% complete — 82 to go</div>
+                <div class="pixel-progress-text">10% complete — 81 to go</div>
             </div>
 
             <div class="pixel-grid">
@@ -909,7 +910,7 @@
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
-<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #22d3ee;" onclick="navigateTo('topic-8')" title="Reinforcement Learning"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-2')" title="Tokenization"></div>
 <div class="pixel-cell"></div>
@@ -937,7 +938,7 @@
             
         <div class="page" id="topic-0">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 1 of 8</div>
+            <div class="page-breadcrumb">Chapter 1 of 9</div>
             <h1 class="page-title">4-Step LLM Learning Path</h1>
             <div class="page-meta">Starting point — the roadmap</div>
 
@@ -995,7 +996,7 @@
         
         <div class="page" id="topic-1">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 2 of 8</div>
+            <div class="page-breadcrumb">Chapter 2 of 9</div>
             <h1 class="page-title">How LLMs Are Built + Data Prep</h1>
             <div class="page-meta">Topic 1 — zoom into Step 3 of the roadmap</div>
 
@@ -1059,7 +1060,7 @@
         
         <div class="page" id="topic-2">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 3 of 8</div>
+            <div class="page-breadcrumb">Chapter 3 of 9</div>
             <h1 class="page-title">Tokenization</h1>
             <div class="page-meta">Topic 2 — data is clean, now convert text → numbers</div>
 
@@ -1122,7 +1123,7 @@
         
         <div class="page" id="topic-3">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 4 of 8</div>
+            <div class="page-breadcrumb">Chapter 4 of 9</div>
             <h1 class="page-title">Transformers</h1>
             <div class="page-meta">Topic 3 — tokens exist, now what brain design processes them?</div>
 
@@ -1179,7 +1180,7 @@
         
         <div class="page" id="topic-4">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 5 of 8</div>
+            <div class="page-breadcrumb">Chapter 5 of 9</div>
             <h1 class="page-title">Model Architecture</h1>
             <div class="page-meta">Topics 3 + 4 — combine tokens + transformers into the full pipeline</div>
 
@@ -1243,7 +1244,7 @@
         
         <div class="page" id="topic-5">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 6 of 8</div>
+            <div class="page-breadcrumb">Chapter 6 of 9</div>
             <h1 class="page-title">Model Training</h1>
             <div class="page-meta">Topic 5 — architecture is set, now how does it LEARN?</div>
 
@@ -1305,7 +1306,7 @@
         
         <div class="page" id="topic-6">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 7 of 8</div>
+            <div class="page-breadcrumb">Chapter 7 of 9</div>
             <h1 class="page-title">Text Generation</h1>
             <div class="page-meta">Topic 6 — model is trained, now how does it PRODUCE text?</div>
 
@@ -1362,7 +1363,7 @@
         
         <div class="page" id="topic-7">
             <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-            <div class="page-breadcrumb">Chapter 8 of 8</div>
+            <div class="page-breadcrumb">Chapter 8 of 9</div>
             <h1 class="page-title">Post Training SFT</h1>
             <div class="page-meta">Topic 7 — model generates text, now make it actually useful</div>
 
@@ -1424,12 +1425,88 @@
             <a class="share-story-btn" href="#" onclick="shareStory(7); return false;">📧 Share This Story</a>
         </div>
         
+        <div class="page" id="topic-8">
+            <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+            <div class="page-breadcrumb">Chapter 9 of 9</div>
+            <h1 class="page-title">Reinforcement Learning</h1>
+            <div class="page-meta">Topic 8 — SFT model answers questions, now make it GOOD at answering</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you taught a robot to answer homework questions (that was SFT). It answers, but it's lazy — ask "how do I learn math?" and it says "read a book." Technically correct, but not helpful! 😤</p>
+<p class="story-para">So you give the robot a practice drill. You ask it the same question 7 times and it gives 7 different answers. Some are great ("start with addition, then multiplication, then practice with fun games!") and some are terrible ("just give up" 😅). You mark the good ones with ✅ and bad ones with ❌, then tell the robot: "Make more answers like the green ones!"</p>
+<p class="story-para">But here's the tricky part — for math homework, you can just CHECK if 2+2=4. Easy! ✅ That's a verifiable task. But what about "write me a poem"? There's no right answer! 🤔 So you hire a bunch of teachers to RANK the poems: "this one's best, this one's okay, this one stinks." Then you build a robot teacher (the reward model) that learns from those rankings. Now the robot teacher can score poems WITHOUT needing humans every time!</p>
+<p class="story-para">The secret sauce? An algorithm called PPO that takes all those scores and adjusts the robot's brain so it writes better answers next time. Practice → score → adjust → repeat. That's reinforcement learning — turning a lazy C-student robot into an A-student! 🏆</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Here's something most people don't realize: after supervised fine-tuning, your LLM can answer questions — but it gives you the equivalent of a one-sentence text message when you asked for directions. "Take Andrew Ng's course." Thanks, but not helpful. Reinforcement learning exists because correctness isn't enough — you need quality.</p>
+<p class="tech-para">The mechanism is elegant: it's a practice algorithm. You feed a prompt to the SFT model and let it generate seven different responses. Some are detailed and helpful, others are lazy or even harmful ("shame on you, try meditation" — good advice, terrible delivery). The trick is scoring them: which responses should the model produce MORE of?</p>
+<p class="tech-para">This is where the world splits into two categories. Verifiable tasks — math, coding — have checkable answers. Is 2+2=4? Run the code, does it pass? A Python script labels each response correct or incorrect, and an algorithm called PPO (Proximal Policy Optimization) — or the newer GRPO — updates the model parameters to reinforce correct answers. Simple, automatic, done.</p>
+<p class="tech-para">Unverifiable tasks — writing, brainstorming, naming your startup — have no right answer. So you need RLHF: Reinforcement Learning from Human Feedback, a two-step process. First, hire human annotators to rank responses: "Paris" beats "It's in Europe" beats "Eiffel Tower." Convert those rankings into winning/losing pairs. Train a separate reward model using margin ranking loss — a loss function that pushes the winning response's score UP and the losing response's score DOWN, maximizing the gap. Now this reward model is your proxy for humans — it scores any response automatically. Step two: same PPO loop. Model practices, reward model scores, PPO reinforces high-scoring responses.</p>
+<p class="tech-para">The proof is in the demo: Llama 3.1 405B Base just rambles with more questions when asked "how to learn ML?" The post-trained version delivers a formatted, step-by-step guide with bold headers. Four stages — pre-training (trillions of tokens, months), SFT (10K-100K pairs, days), reward model (human-ranked comparisons, margin ranking loss), and RL (PPO reinforcement, days) — transform a trillion-parameter text completer into ChatGPT.</p>
+
+                <div class="diagram-box">
+                    <pre>═══════════════════════════════════════════════════
+  REINFORCEMENT LEARNING — The Practice Algorithm
+═══════════════════════════════════════════════════
+
+  SFT Model ("I answer... barely")
+       │
+       ▼
+  Generate 7 responses to same prompt
+       │
+       ├── VERIFIABLE? (math/code)
+       │     │
+       │     ▼
+       │   Auto-check (Python/logic)
+       │     │
+       │     ▼
+       │   Labels: ✅ correct / ❌ wrong
+       │
+       ├── UNVERIFIABLE? (writing/brainstorming)
+       │     │
+       │     ▼
+       │   RLHF Step 1: Train Reward Model
+       │     👤 Humans rank → win/lose pairs
+       │     📐 Margin ranking loss (maximize gap)
+       │     │
+       │     ▼
+       │   Reward Model scores responses (0.1-0.9)
+       │
+       └──────────┐
+                   ▼
+        ┌─────────────────────┐
+        │  PPO / GRPO          │
+        │  Reinforce ✅ HIGH   │
+        │  Discourage ❌ LOW   │
+        │  Update SFT params   │
+        └─────────┬───────────┘
+                  ▼
+        ┌─────────────────────┐
+        │  🏆 FINAL MODEL      │
+        │  Detailed, helpful,  │
+        │  safe, polite        │
+        │  = ChatGPT 🚀       │
+        └─────────────────────┘
+═══════════════════════════════════════════════════
+  4 STAGES: Pre-train → SFT → Reward Model → RL
+  KEY TERMS: PPO, GRPO, RLHF, margin ranking loss
+═══════════════════════════════════════════════════</pre>
+                </div>
+            </div>
+
+            <a class="share-story-btn" href="#" onclick="shareStory(8); return false;">📧 Share This Story</a>
+        </div>
+        
 
             <!-- Key Terms -->
             <div class="page" id="terms">
                 <div class="page-breadcrumb">Reference</div>
                 <h1 class="page-title">Key Terms</h1>
-                <div class="page-meta">47 terms across all topics</div>
+                <div class="page-meta">56 terms across all topics</div>
 
                 <input type="text" class="search-input" placeholder="Search terms..." oninput="filterTerms(this.value)">
                 
@@ -1715,6 +1792,60 @@
             <div class="term-source">Post Training (SFT)</div>
         </div>
         
+        <div class="term-row" data-search="reinforcement learning (rl) practice algorithm: model generates multiple responses, gets scored, reinforces high-scoring ones">
+            <div class="term-name">Reinforcement Learning (RL)</div>
+            <div class="term-def">Practice algorithm: model generates multiple responses, gets scored, reinforces high-scoring ones</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="verifiable tasks math, coding — can be auto-checked (python script verifies answer)">
+            <div class="term-name">Verifiable Tasks</div>
+            <div class="term-def">Math, coding — can be auto-checked (Python script verifies answer)</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="unverifiable tasks writing, brainstorming — subjective, need human judgment">
+            <div class="term-name">Unverifiable Tasks</div>
+            <div class="term-def">Writing, brainstorming — subjective, need human judgment</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="rlhf reinforcement learning from human feedback (for unverifiable tasks)">
+            <div class="term-name">RLHF</div>
+            <div class="term-def">Reinforcement Learning from Human Feedback (for unverifiable tasks)</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="reward model separate model trained to score responses as a proxy for humans">
+            <div class="term-name">Reward Model</div>
+            <div class="term-def">Separate model trained to score responses as a proxy for humans</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="margin ranking loss loss function that maximizes gap between winning and losing response scores">
+            <div class="term-name">Margin Ranking Loss</div>
+            <div class="term-def">Loss function that maximizes gap between winning and losing response scores</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="ppo (proximal policy optimization) rl algorithm that updates model parameters to reinforce good responses">
+            <div class="term-name">PPO (Proximal Policy Optimization)</div>
+            <div class="term-def">RL algorithm that updates model parameters to reinforce good responses</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="grpo newer alternative to ppo">
+            <div class="term-name">GRPO</div>
+            <div class="term-def">Newer alternative to PPO</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
+        <div class="term-row" data-search="winning/losing pairs training data for reward model: human-ranked response pairs">
+            <div class="term-name">Winning/Losing Pairs</div>
+            <div class="term-def">Training data for reward model: human-ranked response pairs</div>
+            <div class="term-source">Reinforcement Learning (RL)</div>
+        </div>
+        
             </div>
 
             <!-- 2-Min Script -->
@@ -1729,8 +1860,9 @@
 <p class="script-para">Those numbers go through 4 stages: the tokenizer chops text into IDs, an embedding layer turns IDs into rich vectors, transformer blocks process those vectors through dozens of smart filters, and a softmax function picks the most likely next word out of 50,000 options.</p>
 <p class="script-para">To teach it, they run a loop a million times: guess the next word, check how wrong it was, adjust billions of tiny knobs, repeat. This costs $100 million and takes months on thousands of GPUs.</p>
 <p class="script-para">But a trained model only gives you probabilities — it doesn't actually write text yet. Text generation is a for loop: pick one token using Top-P sampling (keep the most likely words until they add up to 90%, randomly pick from those), add it to the sentence, repeat. Temperature controls creativity — low for code, high for stories.</p>
-<p class="script-para">After all that, the model is a genius who can't hold a conversation. So they show it 14,000 perfect Q&amp;A examples (that's fine-tuning), and then use reinforcement learning to make it safe.</p>
-<p class="script-para">And that's it — that's ChatGPT, Claude, Llama. Same recipe. Some just use bigger LEGO towers than others.</p>
+<p class="script-para">After all that, the model is a genius who can't hold a conversation. So they show it 14,000 perfect Q&amp;A examples (that's SFT — supervised fine-tuning), and it learns to answer questions.</p>
+<p class="script-para">But it's still not great — answers are correct but lazy and sometimes unsafe. So they run reinforcement learning: let the model practice by generating multiple responses, score them (automatically for math/code, or using a reward model trained on human rankings for everything else), and PPO reinforces the high-scoring ones. The result? Detailed, helpful, safe, polite responses.</p>
+<p class="script-para">And that's it — that's ChatGPT, Claude, Llama. Same recipe: vacuum internet → clean → tokenize → train → generate → SFT → RL. Some just use bigger LEGO towers than others.</p>
 
                 </div>
             </div>
@@ -1741,7 +1873,7 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        const storyShareData = [{"topic": "4-Step LLM Learning Path", "kid_story": "Imagine you want to build a house. Would you start by putting up the roof? No way! You'd start with the foundation, then walls, then the roof, and finally the furniture inside. \ud83c\udfd7\ufe0f\n\nLearning AI works EXACTLY the same way. There are 4 steps, and you MUST do them in order:\n\nStep 1 is learning the basics \u2014 what is a neural network? How does a machine learn from data? This is your foundation. Skip this, and everything else feels like magic you can't explain. \ud83e\uddf1\n\nStep 2 is learning about Transformers \u2014"}, {"topic": "How LLMs Are Built + Data Prep", "kid_story": "Imagine you want to teach a robot to speak every language in the world. Where do you start? The INTERNET! \ud83c\udf10\n\nFirst, you send out a web crawler \u2014 a little spider bot that visits 2.7 BILLION web pages and copies everything it finds. That's 200-400 terabytes of raw messy text. Think of it like vacuuming the entire internet into a giant bag. \ud83d\udd77\ufe0f\n\nBut that bag is FILTHY \u2014 it's got HTML code, duplicate pages, people's private info, and toxic content. So you run it through a cleaning machine. Common Cra"}, {"topic": "Tokenization", "kid_story": "Here's a problem: computers don't understand words. They ONLY understand numbers. So how do you get a computer to read \"Tell me a joke\"? You need a translator! That translator is called a Tokenizer. \ud83d\udd22\n\nThe tokenizer has a dictionary \u2014 a vocabulary \u2014 with every word-piece it knows and a number for each one. \"Tell\" = 41, \"me\" = 553, \"a\" = 264, \"joke\" = 22691. Now the computer can work with it!\n\nBut how big should the dictionary be? If you use WHOLE WORDS, your dictionary needs 500,000+ entries (ev"}, {"topic": "Transformers", "kid_story": "In 2017, a team at Google published a paper called \"Attention Is All You Need\" and changed EVERYTHING. Before this, AI read text one word at a time, like reading through a tiny keyhole \u2014 slow and forgetful. \ud83d\udd11\n\nThe Transformer reads ALL words at once! And it has a superpower called \"attention\" \u2014 it figures out which words are important to each other. Read this: \"The cat sat on the mat because IT was tired.\" What does \"it\" mean? The cat or the mat? YOU know it's the cat. The Transformer figures th"}, {"topic": "Model Architecture", "kid_story": "Imagine you're playing a word-guessing game with a really smart robot. You say \"I hope you are\" and the robot has to guess what comes next. \ud83e\udd16\n\nBut here's the thing \u2014 the robot can't read words! It only understands numbers. So first, a helper called the Tokenizer chops your words into secret number codes. \"I\" becomes 42, \"hope\" becomes 891, and so on.\n\nBut plain numbers aren't enough. The robot needs RICHER numbers \u2014 like a whole list of clues for each word. So the Embedding Layer turns each numb"}, {"topic": "Model Training", "kid_story": "Imagine you build a robot that finishes your sentences. You say \"peanut butter and...\" and it should say \"jelly!\" But when you first turn it on, it says \"elephant!\" because its brain is full of random nonsense. \ud83e\udd16\n\nSo here's how you teach it. You grab a sentence from a book \u2014 \"The cat sat on the...\" \u2014 and you KNOW the answer is \"mat.\" You let the robot guess. It says \"pizza!\" with 15% confidence. Then you use a GRADE MACHINE (that's the loss function) \u2014 it compares \"pizza\" with \"mat\" and gives a "}, {"topic": "Text Generation", "kid_story": "Imagine you have a super smart robot that knows every word in every book ever written. You ask it to finish your sentence: \"Once upon a...\" But the robot doesn't just KNOW the answer \u2014 it has a list of 50,000 possible next words, each with a score of how likely it is. \ud83e\udd16\n\nSo how does it pick? The lazy way (Greedy Search) is to always pick the word with the highest score. \"time\" wins at 40%! Easy! But here's the problem \u2014 the robot gets stuck in a loop. Like a kid who tells the same joke over and "}, {"topic": "Post Training SFT", "kid_story": "Remember that genius who never learned manners? The one who read the entire internet but can't hold a conversation? That's a base model after pre-training. It can finish any sentence, but ask it \"What's the capital of France?\" and it might just keep rambling instead of answering. \ud83e\udd37\n\nSFT \u2014 Supervised Fine-Tuning \u2014 is like sending that genius to finishing school. You give it 14,000 to 100,000 examples of perfect conversations: \"Question: What's 2+2? Answer: 4.\" Over and over, until it learns the F"}];
+        const storyShareData = [{"topic": "4-Step LLM Learning Path", "kid_story": "Imagine you want to build a house. Would you start by putting up the roof? No way! You'd start with the foundation, then walls, then the roof, and finally the furniture inside. \ud83c\udfd7\ufe0f\n\nLearning AI works EXACTLY the same way. There are 4 steps, and you MUST do them in order:\n\nStep 1 is learning the basics \u2014 what is a neural network? How does a machine learn from data? This is your foundation. Skip this, and everything else feels like magic you can't explain. \ud83e\uddf1\n\nStep 2 is learning about Transformers \u2014"}, {"topic": "How LLMs Are Built + Data Prep", "kid_story": "Imagine you want to teach a robot to speak every language in the world. Where do you start? The INTERNET! \ud83c\udf10\n\nFirst, you send out a web crawler \u2014 a little spider bot that visits 2.7 BILLION web pages and copies everything it finds. That's 200-400 terabytes of raw messy text. Think of it like vacuuming the entire internet into a giant bag. \ud83d\udd77\ufe0f\n\nBut that bag is FILTHY \u2014 it's got HTML code, duplicate pages, people's private info, and toxic content. So you run it through a cleaning machine. Common Cra"}, {"topic": "Tokenization", "kid_story": "Here's a problem: computers don't understand words. They ONLY understand numbers. So how do you get a computer to read \"Tell me a joke\"? You need a translator! That translator is called a Tokenizer. \ud83d\udd22\n\nThe tokenizer has a dictionary \u2014 a vocabulary \u2014 with every word-piece it knows and a number for each one. \"Tell\" = 41, \"me\" = 553, \"a\" = 264, \"joke\" = 22691. Now the computer can work with it!\n\nBut how big should the dictionary be? If you use WHOLE WORDS, your dictionary needs 500,000+ entries (ev"}, {"topic": "Transformers", "kid_story": "In 2017, a team at Google published a paper called \"Attention Is All You Need\" and changed EVERYTHING. Before this, AI read text one word at a time, like reading through a tiny keyhole \u2014 slow and forgetful. \ud83d\udd11\n\nThe Transformer reads ALL words at once! And it has a superpower called \"attention\" \u2014 it figures out which words are important to each other. Read this: \"The cat sat on the mat because IT was tired.\" What does \"it\" mean? The cat or the mat? YOU know it's the cat. The Transformer figures th"}, {"topic": "Model Architecture", "kid_story": "Imagine you're playing a word-guessing game with a really smart robot. You say \"I hope you are\" and the robot has to guess what comes next. \ud83e\udd16\n\nBut here's the thing \u2014 the robot can't read words! It only understands numbers. So first, a helper called the Tokenizer chops your words into secret number codes. \"I\" becomes 42, \"hope\" becomes 891, and so on.\n\nBut plain numbers aren't enough. The robot needs RICHER numbers \u2014 like a whole list of clues for each word. So the Embedding Layer turns each numb"}, {"topic": "Model Training", "kid_story": "Imagine you build a robot that finishes your sentences. You say \"peanut butter and...\" and it should say \"jelly!\" But when you first turn it on, it says \"elephant!\" because its brain is full of random nonsense. \ud83e\udd16\n\nSo here's how you teach it. You grab a sentence from a book \u2014 \"The cat sat on the...\" \u2014 and you KNOW the answer is \"mat.\" You let the robot guess. It says \"pizza!\" with 15% confidence. Then you use a GRADE MACHINE (that's the loss function) \u2014 it compares \"pizza\" with \"mat\" and gives a "}, {"topic": "Text Generation", "kid_story": "Imagine you have a super smart robot that knows every word in every book ever written. You ask it to finish your sentence: \"Once upon a...\" But the robot doesn't just KNOW the answer \u2014 it has a list of 50,000 possible next words, each with a score of how likely it is. \ud83e\udd16\n\nSo how does it pick? The lazy way (Greedy Search) is to always pick the word with the highest score. \"time\" wins at 40%! Easy! But here's the problem \u2014 the robot gets stuck in a loop. Like a kid who tells the same joke over and "}, {"topic": "Post Training SFT", "kid_story": "Remember that genius who never learned manners? The one who read the entire internet but can't hold a conversation? That's a base model after pre-training. It can finish any sentence, but ask it \"What's the capital of France?\" and it might just keep rambling instead of answering. \ud83e\udd37\n\nSFT \u2014 Supervised Fine-Tuning \u2014 is like sending that genius to finishing school. You give it 14,000 to 100,000 examples of perfect conversations: \"Question: What's 2+2? Answer: 4.\" Over and over, until it learns the F"}, {"topic": "Reinforcement Learning", "kid_story": "Imagine you taught a robot to answer homework questions (that was SFT). It answers, but it's lazy \u2014 ask \"how do I learn math?\" and it says \"read a book.\" Technically correct, but not helpful! \ud83d\ude24\n\nSo you give the robot a practice drill. You ask it the same question 7 times and it gives 7 different answers. Some are great (\"start with addition, then multiplication, then practice with fun games!\") and some are terrible (\"just give up\" \ud83d\ude05). You mark the good ones with \u2705 and bad ones with \u274c, then tell "}];
 
         function shareStory(index) {
             const story = storyShareData[index];
