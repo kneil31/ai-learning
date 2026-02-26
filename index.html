@@ -302,6 +302,50 @@
             color: #3d3d3d;
         }
 
+        /* Week Mastered — Gold Trophy */
+        .week-tile.week-mastered {
+            background: linear-gradient(135deg, #1a1508 0%, #2d2006 50%, #1a1508 100%);
+            border-color: #d4a017;
+            box-shadow: 0 0 20px rgba(212, 160, 23, 0.15);
+            opacity: 1;
+        }
+        .week-tile.week-mastered .week-status {
+            background: rgba(212, 160, 23, 0.2);
+            color: #f5d251;
+            font-weight: 700;
+        }
+        .week-tile.week-mastered .week-number {
+            color: #f5d251;
+        }
+        .week-exam-info {
+            font-size: 12px;
+            color: #d4a017;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        /* Week Review Required */
+        .week-tile.week-review .week-status {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+
+        /* Week Unlocked — Pulse glow */
+        .week-tile.week-unlocked {
+            opacity: 1;
+            border-color: #3b82f6;
+            animation: unlockPulse 2s ease-in-out 3;
+        }
+        .week-tile.week-unlocked .week-status {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            font-weight: 700;
+        }
+        @keyframes unlockPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.1); }
+            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); }
+        }
+
         /* Section Divider */
         .section-divider {
             text-align: center;
@@ -599,18 +643,19 @@
                 <!-- Week Tiles -->
                 <div class="week-grid">
                     
-            <div class="week-tile week-active" style="--accent: #8b5cf6;">
+            <div class="week-tile week-review" style="--accent: #8b5cf6;">
                 <div class="week-header">
                     <div class="week-number">WEEK 1</div>
-                    <div class="week-status">In Progress</div>
+                    <div class="week-status">📋 Review Required</div>
                 </div>
                 <div class="week-title">How LLMs Are Built</div>
+                
                 <div class="week-progress-bar">
                     <div class="week-progress-fill" style="width: 100%; background: #8b5cf6;"></div>
                 </div>
-                <div class="week-progress-text">7/7 topics</div>
+                <div class="week-progress-text">10/10 topics</div>
                 <div class="week-topics">
-                    <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-7')">Post Training SFT</a>
+                    <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-6')">Text Generation</a><a class="week-topic" onclick="navigateTo('topic-7')">Post Training SFT</a><a class="week-topic" onclick="navigateTo('topic-8')">Reinforcement Learning</a><a class="week-topic" onclick="navigateTo('topic-9')">Evaluation of LLMs</a>
                 </div>
             </div>
         
@@ -620,6 +665,7 @@
                     <div class="week-status">Coming Soon</div>
                 </div>
                 <div class="week-title">RAG & Retrieval</div>
+                
                 <div class="week-progress-bar">
                     <div class="week-progress-fill" style="width: 0%; background: #3b82f6;"></div>
                 </div>
