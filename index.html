@@ -682,7 +682,7 @@
             <a href="#" class="sidebar-link share-btn" onclick="shareDashboard(event)">📤 Share This Page</a>
 
             <div class="sidebar-footer">
-                Updated Mar 04, 2026<br>
+                Updated Mar 05, 2026<br>
                 10 topics • 67 terms
             </div>
         </div>
@@ -1671,7 +1671,7 @@
                 <div class="block-label">📖 Explain It Like I'm 10</div>
                 <p class="story-para">Imagine your school is having a bake-off and you need to judge whose cookies are best! 🍪</p>
 <p class="story-para">First, you try judging in your kitchen BEFORE the bake sale — that's offline evaluation. You have three ways: You could count ingredients exactly (perplexity — "did they follow the recipe perfectly?") but that's boring because perfect-recipe cookies can still taste terrible! 😝 So instead you give them REAL tests — "make chocolate chip cookies, make brownies, make a cake" — and see how each one turns out. That's benchmarks like PIQA and HellaSwag. Or you could hire a fancy chef to taste everything, but chefs are biased — one loves chocolate, another hates it! 🧑‍🍳</p>
-<p class="story-para">Then comes the bake sale — cookies are OUT and real people are eating them. That's online evaluation! People give thumbs up 👍 or thumbs down 👎 while eating (that's human feedback in ChatGPT). But the COOLEST way? LM Arena — like a BLIND taste test! 🎭 Someone puts TWO cookies in front of you, you don't know who baked them, you pick your favorite, and THEN they reveal who made it! Berkeley students built this for AI, and 2.9 MILLION people have voted!</p>
+<p class="story-para">Then comes the bake sale — cookies are OUT and real people are eating them. That's online evaluation! People give thumbs up 👍 or thumbs down 👎 while eating (that's human feedback in ChatGPT). But the COOLEST way? LM Arena — like a BLIND taste test! 🎭 Someone puts TWO cookies in front of you, you don't know who baked them, you pick your favorite, and THEN they reveal who made it! UC Berkeley researchers built this for AI, and 2.9 MILLION people have voted!</p>
 <p class="story-para">Oh, and the bakery itself? There's a GUARD at the door checking if your ORDER is okay 🚪 (no "make me poison cookies!"), then a HELPER who fixes your messy handwriting on the order 📝, then the BAKER makes the cookies 🍪, and ANOTHER guard checks the cookies BEFORE you eat them! Two guards — one checks what goes IN, one checks what comes OUT! 🛡️🛡️</p>
 
             </div>
@@ -6024,7 +6024,7 @@ Output: "we can take an equation and generate an equation with the
 <p class="script-para">But a trained model only gives you probabilities — it doesn't actually write text yet. Text generation is a for loop: pick one token using Top-P sampling (keep the most likely words until they add up to 90%, randomly pick from those), add it to the sentence, repeat. Temperature controls creativity — low for code, high for stories.</p>
 <p class="script-para">After all that, the model is a genius who can't hold a conversation. So they show it 14,000 perfect Q&amp;A examples (that's SFT — supervised fine-tuning), and it learns to answer questions.</p>
 <p class="script-para">But it's still not great — answers are correct but lazy and sometimes unsafe. So they run reinforcement learning: let the model practice by generating multiple responses, score them (automatically for math/code, or using a reward model trained on human rankings for everything else), and PPO reinforces the high-scoring ones. The result? Detailed, helpful, safe, polite responses.</p>
-<p class="script-para">But how do you know if the model is any good? Evaluation comes in two flavors: offline (before deployment) and online (after). Offline uses benchmarks like PIQA for common sense and HumanEval for coding — standardized tests with right answers. Online uses real users: thumbs up/down in ChatGPT, or LM Arena where Berkeley grads built a blind taste test — two anonymous models respond, you vote, identities revealed, ELO rankings updated. 2.9 million votes across 211+ models.</p>
+<p class="script-para">But how do you know if the model is any good? Evaluation comes in two flavors: offline (before deployment) and online (after). Offline uses benchmarks like PIQA for common sense and HumanEval for coding — standardized tests with right answers. Online uses real users: thumbs up/down in ChatGPT, or LM Arena where UC Berkeley researchers (LMSYS group) built a blind taste test — two anonymous models respond, you vote, identities revealed, ELO rankings updated. 2.9 million votes across 211+ models.</p>
 <p class="script-para">And the model itself? It's just one piece. The full system has safety filters checking both input AND output, a prompt enhancer fixing your typos and grammar, the response generator using Top-P sampling, and session management that appends your entire chat history to every new prompt — that's how it 'remembers' your conversation.</p>
 <p class="script-para">And that's it — that's ChatGPT, Claude, Llama. Same recipe: vacuum internet → clean → tokenize → train → generate → SFT → RL → evaluate → wrap in safety + session management. Some just use bigger LEGO towers than others.</p>
 
