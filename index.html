@@ -673,6 +673,7 @@
 <a href="#topic-7" class="sidebar-link" onclick="showSection('topic-7')">8. Post Training SFT</a>
 <a href="#topic-8" class="sidebar-link" onclick="showSection('topic-8')">9. Reinforcement Learning</a>
 <a href="#topic-9" class="sidebar-link" onclick="showSection('topic-9')">10. Evaluation of LLMs</a>
+<a href="#topic-10" class="sidebar-link" onclick="showSection('topic-10')">11. LLM Adaptation & Fine-Tuning</a>
 <div class="sidebar-divider"></div>
 <a href="#terms" class="sidebar-link" onclick="showSection('terms')">📚 Key Terms</a>
 <a href="#script" class="sidebar-link" onclick="showSection('script')">🎤 2-Min Script</a>
@@ -682,8 +683,8 @@
             <a href="#" class="sidebar-link share-btn" onclick="shareDashboard(event)">📤 Share This Page</a>
 
             <div class="sidebar-footer">
-                Updated Mar 05, 2026<br>
-                10 topics • 67 terms
+                Updated Mar 09, 2026<br>
+                11 topics • 76 terms
             </div>
         </div>
 
@@ -823,13 +824,13 @@
         <div class="page" id="lego">
             <div class="page-breadcrumb">Visual Map</div>
             <h1 class="page-title">The Build</h1>
-            <div class="page-meta">10 / 90 pixels revealed</div>
+            <div class="page-meta">11 / 90 pixels revealed</div>
 
             <div class="pixel-progress">
                 <div class="pixel-progress-bar">
-                    <div class="pixel-progress-fill" style="width: 11%;"></div>
+                    <div class="pixel-progress-fill" style="width: 12%;"></div>
                 </div>
-                <div class="pixel-progress-text">11% complete — 80 to go</div>
+                <div class="pixel-progress-text">12% complete — 79 to go</div>
             </div>
 
             <div class="pixel-grid">
@@ -950,7 +951,7 @@
 <div class="pixel-cell"></div>
 <div class="pixel-cell revealed" style="--pixel-color: #a855f7;" onclick="navigateTo('topic-3')" title="Transformers"></div>
 <div class="pixel-cell"></div>
-<div class="pixel-cell"></div>
+<div class="pixel-cell revealed" style="--pixel-color: #22d3ee;" onclick="navigateTo('topic-10')" title="LLM Adaptation &amp; Fine-Tuning"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
 <div class="pixel-cell"></div>
@@ -1044,7 +1045,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-0'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 1 of 10</div>
+            <div class="page-breadcrumb">Chapter 1 of 11</div>
             <h1 class="page-title">4-Step LLM Learning Path</h1>
             <div class="page-meta">Starting point — the roadmap</div>
 
@@ -1108,7 +1109,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-1'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 2 of 10</div>
+            <div class="page-breadcrumb">Chapter 2 of 11</div>
             <h1 class="page-title">How LLMs Are Built + Data Prep</h1>
             <div class="page-meta">Topic 1 — zoom into Step 3 of the roadmap</div>
 
@@ -1178,7 +1179,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-2'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 3 of 10</div>
+            <div class="page-breadcrumb">Chapter 3 of 11</div>
             <h1 class="page-title">Tokenization</h1>
             <div class="page-meta">Topic 2 — data is clean, now convert text → numbers</div>
 
@@ -1247,7 +1248,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 
             </div>
-            <div class="page-breadcrumb">Chapter 4 of 10</div>
+            <div class="page-breadcrumb">Chapter 4 of 11</div>
             <h1 class="page-title">Transformers</h1>
             <div class="page-meta">Topic 3 — tokens exist, now what brain design processes them?</div>
 
@@ -1310,7 +1311,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-4'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 5 of 10</div>
+            <div class="page-breadcrumb">Chapter 5 of 11</div>
             <h1 class="page-title">Model Architecture</h1>
             <div class="page-meta">Topics 3 + 4 — combine tokens + transformers into the full pipeline</div>
 
@@ -1380,7 +1381,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-5'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 6 of 10</div>
+            <div class="page-breadcrumb">Chapter 6 of 11</div>
             <h1 class="page-title">Model Training</h1>
             <div class="page-meta">Topic 5 — architecture is set, now how does it LEARN?</div>
 
@@ -1448,7 +1449,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-6'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 7 of 10</div>
+            <div class="page-breadcrumb">Chapter 7 of 11</div>
             <h1 class="page-title">Text Generation</h1>
             <div class="page-meta">Topic 6 — model is trained, now how does it PRODUCE text?</div>
 
@@ -1511,7 +1512,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-7'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 8 of 10</div>
+            <div class="page-breadcrumb">Chapter 8 of 11</div>
             <h1 class="page-title">Post Training SFT</h1>
             <div class="page-meta">Topic 7 — model generates text, now make it actually useful</div>
 
@@ -1581,7 +1582,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-8'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 9 of 10</div>
+            <div class="page-breadcrumb">Chapter 9 of 11</div>
             <h1 class="page-title">Reinforcement Learning</h1>
             <div class="page-meta">Topic 8 — SFT model answers questions, now make it GOOD at answering</div>
 
@@ -1663,7 +1664,7 @@
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-9'); return false;">📊 Visual Guide</a>
             </div>
-            <div class="page-breadcrumb">Chapter 10 of 10</div>
+            <div class="page-breadcrumb">Chapter 10 of 11</div>
             <h1 class="page-title">Evaluation of LLMs</h1>
             <div class="page-meta">Topic 9 — model is trained, now how do we know if it's any good?</div>
 
@@ -1728,6 +1729,92 @@
             <div class="story-bottom-bar">
                 <a class="guide-btn" href="#" onclick="navigateTo('guide-9'); return false;">📊 Visual Guide</a>
                 <a class="share-story-btn" href="#" onclick="shareStory(9); return false;">📧 Share This Story</a>
+            </div>
+        </div>
+        
+        <div class="page" id="topic-10">
+            <div class="story-top-bar">
+                <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
+                
+            </div>
+            <div class="page-breadcrumb">Chapter 11 of 11</div>
+            <h1 class="page-title">LLM Adaptation & Fine-Tuning</h1>
+            <div class="page-meta">Week 2 begins — from general-purpose to specialized LLMs</div>
+
+            <div class="content-block kid-block">
+                <div class="block-label">📖 Explain It Like I'm 10</div>
+                <p class="story-para">Imagine you have a super smart friend who read every book in the library. You can ask them math questions, writing help, or coding problems and they nail it every time! 🧒</p>
+<p class="story-para">But then you open a retail store and ask your friend: "What's our refund policy?" They look confused and just make something up! 😱 They never read YOUR store's rule book — they only know general stuff from the library.</p>
+<p class="story-para">So how do you teach your friend about YOUR store? There are 3 ways:</p>
+<p class="story-para">Way 1: FINE-TUNING — You sit your friend down and make them study your entire rule book cover to cover. Now they KNOW your policies by heart! 📖 But there's a catch — if your friend has a HUGE brain (billions of brain cells), updating ALL of them takes forever and costs a fortune! 💸</p>
+<p class="story-para">So smart people invented a shortcut: instead of retraining your friend's ENTIRE brain, you just stick some tiny Post-it notes on their brain! 📝 These Post-it notes (called Adapters or LoRA) are tiny — only 0.1% of the brain — but they're enough to teach the new stuff. The original brain stays frozen, and only the Post-it notes learn!</p>
+<p class="story-para">LoRA is especially cool — it takes each brain connection and adds a tiny side-road next to it. The main highway stays the same, but the little side-road learns the new stuff. Only 3 MILLION Post-it notes instead of 3 BILLION brain cells! That's 1,000x cheaper! 🎯</p>
+<p class="story-para">Way 2: PROMPT ENGINEERING — Just give really good instructions each time (coming next!)
+Way 3: RAG — Give them a cheat sheet to look stuff up (coming soon!) 📚</p>
+
+            </div>
+
+            <div class="content-block tech-block">
+                <div class="block-label">🎬 60-Second Technical Version</div>
+                <p class="tech-para">Here's something that trips up most beginners: they assume ChatGPT can answer anything. It can't. Ask it about your company's refund policy, your internal docs, or your proprietary data — and it will confidently hallucinate an answer. It has never seen your data. General-purpose LLMs are trained on the public internet, not your internal knowledge base. This is the adaptation problem, and Week 2 is all about solving it.</p>
+<p class="tech-para">There are three techniques to adapt an LLM: fine-tuning, prompt engineering, and RAG (Retrieval-Augmented Generation). Fine-tuning is the most obvious — you continue training the model on your own documents. Feed it your PDFs, your knowledge base, your internal wikis. After training, the model's weights physically encode your domain knowledge. Ask "What's the refund policy?" and it answers from its learned weights, not from hallucination. But here's the problem: modern LLMs have billions of parameters. Updating all of them requires enormous compute — thousands of GPU hours. For a 3-billion parameter model, that means adjusting 3 billion numbers.</p>
+<p class="tech-para">This is where Parameter-Efficient Fine-Tuning (PEFT) changes the game. Instead of updating all 3 billion parameters, you freeze the original model and inject tiny trainable layers. Adapters (2019) were first — freeze the original weights (shown in gray), inject small trainable layers between existing ones (shown in red), and train only those. The original model stays untouched.</p>
+<p class="tech-para">Then came LoRA (Low-Rank Adaptation), which is even cleverer. For every linear layer in the model, LoRA adds two small matrices (A and B) as a side branch. The original weight matrix W stays frozen. Input X flows through both branches: the original path computes WX, the LoRA path computes ABX, and they add together. The key insight: these LoRA matrices are tiny. For a Qwen 2.5 3B model, LoRA adds only 3 million trainable parameters — that's 0.1% of the original 3 billion. You get 99.9% of the model for free and only train the last 0.1%. After training, you save just the LoRA weights, load them at inference, and your specialized model is ready.</p>
+<p class="tech-para">The punchline? Fine-tuning used to mean retraining everything — weeks of compute, millions of dollars. LoRA made it something you can do on a single GPU in hours. That democratization is why every startup can now build specialized AI products.</p>
+
+                <div class="diagram-box">
+                    <pre>═══════════════════════════════════════════════════════
+       WHY ADAPTATION? GENERAL vs SPECIALIZED
+═══════════════════════════════════════════════════════
+
+  General LLM (trained on internet)
+  ┌─────────────────────────────────────────────┐
+  │ "What is 2+2?"          → ✅ Correct (4)     │
+  │ "Help me write email"   → ✅ Great            │
+  │ "What's YOUR refund     → ❌ HALLUCINATION!   │
+  │  policy?"                  (never saw YOUR    │
+  │                             internal docs)    │
+  └─────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════
+       3 WAYS TO ADAPT AN LLM
+═══════════════════════════════════════════════════════
+
+  1. FINE-TUNING     → Train on your docs (weights learn)
+  2. PROMPT ENG.     → Better instructions (no training)
+  3. RAG             → Give it a search engine (look up)
+
+═══════════════════════════════════════════════════════
+       FINE-TUNING — TWO OPTIONS
+═══════════════════════════════════════════════════════
+
+  Option A: Update ALL parameters (expensive!)
+  [████████████████████] 3B params ← ALL updated
+
+  Option B: PEFT — freeze original, train tiny new ones
+  [░░░░░░░░░░░░░░░░░░░] 3B frozen
+  [██]                   3M trainable (0.1%!)
+
+  LoRA: Side-branch on every linear layer
+  ┌─────────────────────────┐
+  │ Input X                 │
+  │   ├──▶ W·X (frozen) ──┐ │
+  │   └──▶ A·B·X (LoRA) ──┤ │
+  │                  ADD ──▶ Output
+  └─────────────────────────┘
+  Only A and B matrices are trained!
+
+═══════════════════════════════════════════════════════
+  🏆 LoRA: 0.1% params trained, 99.9% frozen
+     3M instead of 3B = 1000x cheaper
+     Single GPU, hours instead of weeks
+═══════════════════════════════════════════════════════</pre>
+                </div>
+            </div>
+
+            <div class="story-bottom-bar">
+                
+                <a class="share-story-btn" href="#" onclick="shareStory(10); return false;">📧 Share This Story</a>
             </div>
         </div>
         
@@ -5602,7 +5689,7 @@ Output: "we can take an equation and generate an equation with the
             <div class="page" id="terms">
                 <div class="page-breadcrumb">Reference</div>
                 <h1 class="page-title">Key Terms</h1>
-                <div class="page-meta">67 terms across all topics</div>
+                <div class="page-meta">76 terms across all topics</div>
 
                 <input type="text" class="search-input" placeholder="Search terms..." oninput="filterTerms(this.value)">
                 
@@ -6008,6 +6095,60 @@ Output: "we can take an equation and generate an equation with the
             <div class="term-source">Evaluation of LLMs + System Design</div>
         </div>
         
+        <div class="term-row" data-search="llm adaptation making a general-purpose llm work for a specific domain (retail, legal, medical)">
+            <div class="term-name">LLM Adaptation</div>
+            <div class="term-def">Making a general-purpose LLM work for a specific domain (retail, legal, medical)</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="hallucination when an llm confidently generates incorrect or made-up information">
+            <div class="term-name">Hallucination</div>
+            <div class="term-def">When an LLM confidently generates incorrect or made-up information</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="fine-tuning continue training the llm on your own domain data (weights physically change)">
+            <div class="term-name">Fine-Tuning</div>
+            <div class="term-def">Continue training the LLM on your own domain data (weights physically change)</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="full parameter update update all parameters during fine-tuning (expensive, billions of params)">
+            <div class="term-name">Full Parameter Update</div>
+            <div class="term-def">Update ALL parameters during fine-tuning (expensive, billions of params)</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="peft (parameter-efficient fine-tuning) techniques to fine-tune by updating only a small subset of parameters">
+            <div class="term-name">PEFT (Parameter-Efficient Fine-Tuning)</div>
+            <div class="term-def">Techniques to fine-tune by updating only a small subset of parameters</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="adapters (2019) freeze original weights, inject small trainable layers between existing ones">
+            <div class="term-name">Adapters (2019)</div>
+            <div class="term-def">Freeze original weights, inject small trainable layers between existing ones</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="lora (low-rank adaptation) add two small matrices (a, b) as side branch to each linear layer; only train those">
+            <div class="term-name">LoRA (Low-Rank Adaptation)</div>
+            <div class="term-def">Add two small matrices (A, B) as side branch to each linear layer; only train those</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="prompt engineering adapting llm behavior through better instructions (no training needed)">
+            <div class="term-name">Prompt Engineering</div>
+            <div class="term-def">Adapting LLM behavior through better instructions (no training needed)</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
+        <div class="term-row" data-search="rag (retrieval-augmented generation) give the llm a search engine to look up answers from your docs">
+            <div class="term-name">RAG (Retrieval-Augmented Generation)</div>
+            <div class="term-def">Give the LLM a search engine to look up answers from your docs</div>
+            <div class="term-source">LLM Adaptation & Fine-Tuning (Week 2)</div>
+        </div>
+        
             </div>
 
             <!-- 2-Min Script -->
@@ -6037,7 +6178,7 @@ Output: "we can take an equation and generate an equation with the
     <div class="toast" id="toast"></div>
 
     <script>
-        const storyShareData = [{"topic": "4-Step LLM Learning Path", "kid_story": "Imagine you want to build a house. Would you start by putting up the roof? No way! You'd start with the foundation, then walls, then the roof, and finally the furniture inside. \ud83c\udfd7\ufe0f\n\nLearning AI works EXACTLY the same way. There are 4 steps, and you MUST do them in order:\n\nStep 1 is learning the basics \u2014 what is a neural network? How does a machine learn from data? This is your foundation. Skip this, and everything else feels like magic you can't explain. \ud83e\uddf1\n\nStep 2 is learning about Transformers \u2014"}, {"topic": "How LLMs Are Built + Data Prep", "kid_story": "Imagine you want to teach a robot to speak every language in the world. Where do you start? The INTERNET! \ud83c\udf10\n\nFirst, you send out a web crawler \u2014 a little spider bot that visits 2.7 BILLION web pages and copies everything it finds. That's 200-400 terabytes of raw messy text. Think of it like vacuuming the entire internet into a giant bag. \ud83d\udd77\ufe0f\n\nBut that bag is FILTHY \u2014 it's got HTML code, duplicate pages, people's private info, and toxic content. So you run it through a cleaning machine. Common Cra"}, {"topic": "Tokenization", "kid_story": "Here's a problem: computers don't understand words. They ONLY understand numbers. So how do you get a computer to read \"Tell me a joke\"? You need a translator! That translator is called a Tokenizer. \ud83d\udd22\n\nThe tokenizer has a dictionary \u2014 a vocabulary \u2014 with every word-piece it knows and a number for each one. \"Tell\" = 41, \"me\" = 553, \"a\" = 264, \"joke\" = 22691. Now the computer can work with it!\n\nBut how big should the dictionary be? If you use WHOLE WORDS, your dictionary needs 500,000+ entries (ev"}, {"topic": "Transformers", "kid_story": "In 2017, a team at Google published a paper called \"Attention Is All You Need\" and changed EVERYTHING. Before this, AI read text one word at a time, like reading through a tiny keyhole \u2014 slow and forgetful. \ud83d\udd11\n\nThe Transformer reads ALL words at once! And it has a superpower called \"attention\" \u2014 it figures out which words are important to each other. Read this: \"The cat sat on the mat because IT was tired.\" What does \"it\" mean? The cat or the mat? YOU know it's the cat. The Transformer figures th"}, {"topic": "Model Architecture", "kid_story": "Imagine you're playing a word-guessing game with a really smart robot. You say \"I hope you are\" and the robot has to guess what comes next. \ud83e\udd16\n\nBut here's the thing \u2014 the robot can't read words! It only understands numbers. So first, a helper called the Tokenizer chops your words into secret number codes. \"I\" becomes 42, \"hope\" becomes 891, and so on.\n\nBut plain numbers aren't enough. The robot needs RICHER numbers \u2014 like a whole list of clues for each word. So the Embedding Layer turns each numb"}, {"topic": "Model Training", "kid_story": "Imagine you build a robot that finishes your sentences. You say \"peanut butter and...\" and it should say \"jelly!\" But when you first turn it on, it says \"elephant!\" because its brain is full of random nonsense. \ud83e\udd16\n\nSo here's how you teach it. You grab a sentence from a book \u2014 \"The cat sat on the...\" \u2014 and you KNOW the answer is \"mat.\" You let the robot guess. It says \"pizza!\" with 15% confidence. Then you use a GRADE MACHINE (that's the loss function) \u2014 it compares \"pizza\" with \"mat\" and gives a "}, {"topic": "Text Generation", "kid_story": "Imagine you have a super smart robot that knows every word in every book ever written. You ask it to finish your sentence: \"Once upon a...\" But the robot doesn't just KNOW the answer \u2014 it has a list of 50,000 possible next words, each with a score of how likely it is. \ud83e\udd16\n\nSo how does it pick? The lazy way (Greedy Search) is to always pick the word with the highest score. \"time\" wins at 40%! Easy! But here's the problem \u2014 the robot gets stuck in a loop. Like a kid who tells the same joke over and "}, {"topic": "Post Training SFT", "kid_story": "Remember that genius who never learned manners? The one who read the entire internet but can't hold a conversation? That's a base model after pre-training. It can finish any sentence, but ask it \"What's the capital of France?\" and it might just keep rambling instead of answering. \ud83e\udd37\n\nSFT \u2014 Supervised Fine-Tuning \u2014 is like sending that genius to finishing school. You give it 14,000 to 100,000 examples of perfect conversations: \"Question: What's 2+2? Answer: 4.\" Over and over, until it learns the F"}, {"topic": "Reinforcement Learning", "kid_story": "Imagine you taught a robot to answer homework questions (that was SFT). It answers, but it's lazy \u2014 ask \"how do I learn math?\" and it says \"read a book.\" Technically correct, but not helpful! \ud83d\ude24\n\nSo you give the robot a practice drill. You ask it the same question 7 times and it gives 7 different answers. Some are great (\"start with addition, then multiplication, then practice with fun games!\") and some are terrible (\"just give up\" \ud83d\ude05). You mark the good ones with \u2705 and bad ones with \u274c, then tell "}, {"topic": "Evaluation of LLMs", "kid_story": "Imagine your school is having a bake-off and you need to judge whose cookies are best! \ud83c\udf6a\n\nFirst, you try judging in your kitchen BEFORE the bake sale \u2014 that's offline evaluation. You have three ways: You could count ingredients exactly (perplexity \u2014 \"did they follow the recipe perfectly?\") but that's boring because perfect-recipe cookies can still taste terrible! \ud83d\ude1d So instead you give them REAL tests \u2014 \"make chocolate chip cookies, make brownies, make a cake\" \u2014 and see how each one turns out. Th"}];
+        const storyShareData = [{"topic": "4-Step LLM Learning Path", "kid_story": "Imagine you want to build a house. Would you start by putting up the roof? No way! You'd start with the foundation, then walls, then the roof, and finally the furniture inside. \ud83c\udfd7\ufe0f\n\nLearning AI works EXACTLY the same way. There are 4 steps, and you MUST do them in order:\n\nStep 1 is learning the basics \u2014 what is a neural network? How does a machine learn from data? This is your foundation. Skip this, and everything else feels like magic you can't explain. \ud83e\uddf1\n\nStep 2 is learning about Transformers \u2014"}, {"topic": "How LLMs Are Built + Data Prep", "kid_story": "Imagine you want to teach a robot to speak every language in the world. Where do you start? The INTERNET! \ud83c\udf10\n\nFirst, you send out a web crawler \u2014 a little spider bot that visits 2.7 BILLION web pages and copies everything it finds. That's 200-400 terabytes of raw messy text. Think of it like vacuuming the entire internet into a giant bag. \ud83d\udd77\ufe0f\n\nBut that bag is FILTHY \u2014 it's got HTML code, duplicate pages, people's private info, and toxic content. So you run it through a cleaning machine. Common Cra"}, {"topic": "Tokenization", "kid_story": "Here's a problem: computers don't understand words. They ONLY understand numbers. So how do you get a computer to read \"Tell me a joke\"? You need a translator! That translator is called a Tokenizer. \ud83d\udd22\n\nThe tokenizer has a dictionary \u2014 a vocabulary \u2014 with every word-piece it knows and a number for each one. \"Tell\" = 41, \"me\" = 553, \"a\" = 264, \"joke\" = 22691. Now the computer can work with it!\n\nBut how big should the dictionary be? If you use WHOLE WORDS, your dictionary needs 500,000+ entries (ev"}, {"topic": "Transformers", "kid_story": "In 2017, a team at Google published a paper called \"Attention Is All You Need\" and changed EVERYTHING. Before this, AI read text one word at a time, like reading through a tiny keyhole \u2014 slow and forgetful. \ud83d\udd11\n\nThe Transformer reads ALL words at once! And it has a superpower called \"attention\" \u2014 it figures out which words are important to each other. Read this: \"The cat sat on the mat because IT was tired.\" What does \"it\" mean? The cat or the mat? YOU know it's the cat. The Transformer figures th"}, {"topic": "Model Architecture", "kid_story": "Imagine you're playing a word-guessing game with a really smart robot. You say \"I hope you are\" and the robot has to guess what comes next. \ud83e\udd16\n\nBut here's the thing \u2014 the robot can't read words! It only understands numbers. So first, a helper called the Tokenizer chops your words into secret number codes. \"I\" becomes 42, \"hope\" becomes 891, and so on.\n\nBut plain numbers aren't enough. The robot needs RICHER numbers \u2014 like a whole list of clues for each word. So the Embedding Layer turns each numb"}, {"topic": "Model Training", "kid_story": "Imagine you build a robot that finishes your sentences. You say \"peanut butter and...\" and it should say \"jelly!\" But when you first turn it on, it says \"elephant!\" because its brain is full of random nonsense. \ud83e\udd16\n\nSo here's how you teach it. You grab a sentence from a book \u2014 \"The cat sat on the...\" \u2014 and you KNOW the answer is \"mat.\" You let the robot guess. It says \"pizza!\" with 15% confidence. Then you use a GRADE MACHINE (that's the loss function) \u2014 it compares \"pizza\" with \"mat\" and gives a "}, {"topic": "Text Generation", "kid_story": "Imagine you have a super smart robot that knows every word in every book ever written. You ask it to finish your sentence: \"Once upon a...\" But the robot doesn't just KNOW the answer \u2014 it has a list of 50,000 possible next words, each with a score of how likely it is. \ud83e\udd16\n\nSo how does it pick? The lazy way (Greedy Search) is to always pick the word with the highest score. \"time\" wins at 40%! Easy! But here's the problem \u2014 the robot gets stuck in a loop. Like a kid who tells the same joke over and "}, {"topic": "Post Training SFT", "kid_story": "Remember that genius who never learned manners? The one who read the entire internet but can't hold a conversation? That's a base model after pre-training. It can finish any sentence, but ask it \"What's the capital of France?\" and it might just keep rambling instead of answering. \ud83e\udd37\n\nSFT \u2014 Supervised Fine-Tuning \u2014 is like sending that genius to finishing school. You give it 14,000 to 100,000 examples of perfect conversations: \"Question: What's 2+2? Answer: 4.\" Over and over, until it learns the F"}, {"topic": "Reinforcement Learning", "kid_story": "Imagine you taught a robot to answer homework questions (that was SFT). It answers, but it's lazy \u2014 ask \"how do I learn math?\" and it says \"read a book.\" Technically correct, but not helpful! \ud83d\ude24\n\nSo you give the robot a practice drill. You ask it the same question 7 times and it gives 7 different answers. Some are great (\"start with addition, then multiplication, then practice with fun games!\") and some are terrible (\"just give up\" \ud83d\ude05). You mark the good ones with \u2705 and bad ones with \u274c, then tell "}, {"topic": "Evaluation of LLMs", "kid_story": "Imagine your school is having a bake-off and you need to judge whose cookies are best! \ud83c\udf6a\n\nFirst, you try judging in your kitchen BEFORE the bake sale \u2014 that's offline evaluation. You have three ways: You could count ingredients exactly (perplexity \u2014 \"did they follow the recipe perfectly?\") but that's boring because perfect-recipe cookies can still taste terrible! \ud83d\ude1d So instead you give them REAL tests \u2014 \"make chocolate chip cookies, make brownies, make a cake\" \u2014 and see how each one turns out. Th"}, {"topic": "LLM Adaptation & Fine-Tuning", "kid_story": "Imagine you have a super smart friend who read every book in the library. You can ask them math questions, writing help, or coding problems and they nail it every time! \ud83e\uddd2\n\nBut then you open a retail store and ask your friend: \"What's our refund policy?\" They look confused and just make something up! \ud83d\ude31 They never read YOUR store's rule book \u2014 they only know general stuff from the library.\n\nSo how do you teach your friend about YOUR store? There are 3 ways:\n\nWay 1: FINE-TUNING \u2014 You sit your frien"}];
 
         function shareStory(index) {
             const story = storyShareData[index];
