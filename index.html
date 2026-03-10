@@ -902,7 +902,7 @@
                 <div class="week-topics">
                     <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-6')">Text Generation</a><a class="week-topic" onclick="navigateTo('topic-7')">Post Training SFT</a><a class="week-topic" onclick="navigateTo('topic-8')">Reinforcement Learning</a><a class="week-topic" onclick="navigateTo('topic-9')">Evaluation of LLMs</a>
                 </div>
-                <button class='week-quiz-btn' onclick="navigateTo('quiz')">📋 Take the Quiz</button>
+                <button class='week-quiz-btn' type='button' onclick="document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('quiz').classList.add('active');document.querySelector('.content').scrollTop=0;">📋 Take the Quiz</button>
             </div>
         
             <div class="week-tile week-coming" style="--accent: #3b82f6;">
