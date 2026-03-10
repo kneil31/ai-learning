@@ -356,6 +356,27 @@
             color: #3d3d3d;
         }
 
+        .week-quiz-btn {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #1a1a2e;
+            color: #a78bfa;
+            border: 1px solid #8b5cf6;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+        .week-quiz-btn:hover {
+            background: #2d1b69;
+            color: #e0d4ff;
+            box-shadow: 0 2px 12px rgba(139, 92, 246, 0.25);
+        }
+
         /* Week Mastered — Gold Trophy */
         .week-tile.week-mastered {
             background: linear-gradient(135deg, #1a1508 0%, #2d2006 50%, #1a1508 100%);
@@ -641,6 +662,170 @@
             font-style: italic;
         }
 
+        /* Quiz */
+        .quiz-question {
+            background: #202020;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .quiz-q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .quiz-q-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8b5cf6;
+            letter-spacing: 0.5px;
+        }
+        .quiz-q-topic {
+            font-size: 11px;
+            color: #525252;
+            padding: 2px 8px;
+            background: #1a1a2e;
+            border-radius: 4px;
+        }
+        .quiz-q-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #e0e0e0;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .quiz-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            background: #191919;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .quiz-option:hover {
+            background: #1a1a2e;
+            border-color: #8b5cf6;
+            color: #e0e0e0;
+        }
+        .quiz-option.selected {
+            background: #1a1a2e;
+            border-color: #8b5cf6;
+            color: #e0e0e0;
+            box-shadow: 0 0 0 1px #8b5cf6;
+        }
+        .quiz-option.correct {
+            background: #052e16;
+            border-color: #16a34a;
+            color: #86efac;
+            box-shadow: 0 0 0 1px #16a34a;
+        }
+        .quiz-option.wrong {
+            background: #2d0a0a;
+            border-color: #dc2626;
+            color: #fca5a5;
+            box-shadow: 0 0 0 1px #dc2626;
+        }
+        .quiz-option:disabled {
+            cursor: default;
+        }
+        .quiz-option:disabled:hover {
+            background: inherit;
+            border-color: inherit;
+            color: inherit;
+        }
+        .quiz-explanation {
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            border-left: 3px solid #8b5cf6;
+        }
+        .quiz-explanation-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #c4b5fd;
+        }
+        .quiz-submit {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 24px;
+            background: #7c3aed;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .quiz-submit:hover:not(:disabled) {
+            background: #6d28d9;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        }
+        .quiz-submit:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .quiz-retry {
+            margin-top: 20px;
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        .quiz-retry:hover {
+            background: #3d3d3d;
+            box-shadow: none;
+        }
+        .quiz-score {
+            text-align: center;
+            padding: 28px;
+            margin: 24px 0;
+            background: #202020;
+            border-radius: 12px;
+            border: 1px solid #2d2d2d;
+        }
+        .quiz-score-number {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+        .quiz-score-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .quiz-score-status {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+        .quiz-result-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #8b5cf6;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .quiz-result-link:hover {
+            color: #a78bfa;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .sidebar { display: none; }
@@ -677,13 +862,14 @@
 <div class="sidebar-divider"></div>
 <a href="#terms" class="sidebar-link" onclick="showSection('terms')">📚 Key Terms</a>
 <a href="#script" class="sidebar-link" onclick="showSection('script')">🎤 2-Min Script</a>
+<a href="#quiz" class="sidebar-link" onclick="showSection('quiz')">📋 Week 1 Quiz</a>
 
 
             <div class="sidebar-divider"></div>
             <a href="#" class="sidebar-link share-btn" onclick="shareDashboard(event)">📤 Share This Page</a>
 
             <div class="sidebar-footer">
-                Updated Mar 09, 2026<br>
+                Updated Mar 10, 2026<br>
                 11 topics • 76 terms
             </div>
         </div>
@@ -714,6 +900,7 @@
                 <div class="week-topics">
                     <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-6')">Text Generation</a><a class="week-topic" onclick="navigateTo('topic-7')">Post Training SFT</a><a class="week-topic" onclick="navigateTo('topic-8')">Reinforcement Learning</a><a class="week-topic" onclick="navigateTo('topic-9')">Evaluation of LLMs</a>
                 </div>
+                <a class='week-quiz-btn' onclick="navigateTo('quiz')">📋 Take the Quiz</a>
             </div>
         
             <div class="week-tile week-coming" style="--accent: #3b82f6;">
@@ -730,6 +917,7 @@
                 <div class="week-topics">
                     <span class="week-topic locked">Topics coming soon...</span>
                 </div>
+                
             </div>
         
                 </div>
@@ -6172,6 +6360,209 @@ Output: "we can take an equation and generate an equation with the
                 </div>
             </div>
 
+            <!-- Week 1 Quiz -->
+            
+        <div class="page" id="quiz">
+            <div class="page-breadcrumb">Week 1</div>
+            <h1 class="page-title">Week 1 Quiz</h1>
+            <div class="page-meta">10 questions — one per topic. How well do you know the LLM pipeline?</div>
+
+            <div id="quiz-questions">
+                
+            <div class="quiz-question" id="quiz-q0">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q1</span>
+                    <span class="quiz-q-topic">4-Step LLM Learning Path</span>
+                </div>
+                <div class="quiz-q-text">What are the 4 steps in the AI learning path, in order?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(0, 0)" id="q0-opt0">A. Transformers → Neural Networks → RAG → Agents</button>
+<button class="quiz-option" onclick="selectAnswer(0, 1)" id="q0-opt1">B. Fundamentals → Transformers → Pre-training/Fine-tuning/RAG → AI Apps &amp; Agents</button>
+<button class="quiz-option" onclick="selectAnswer(0, 2)" id="q0-opt2">C. Data Prep → Training → Evaluation → Deployment</button>
+<button class="quiz-option" onclick="selectAnswer(0, 3)" id="q0-opt3">D. Python → PyTorch → LLMs → Production</button>
+
+                </div>
+                <div class="quiz-explanation" id="q0-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">The 4 steps are: (1) ML Fundamentals, (2) Transformers, (3) Pre-training/Fine-tuning/RAG, (4) AI Apps &amp; Agents. Order matters — skip a step and the house falls down.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q1">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q2</span>
+                    <span class="quiz-q-topic">How LLMs Are Built + Data Prep</span>
+                </div>
+                <div class="quiz-q-text">What is Common Crawl?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(1, 0)" id="q1-opt0">A. A Python library for web scraping</button>
+<button class="quiz-option" onclick="selectAnswer(1, 1)" id="q1-opt1">B. A free public dataset that crawls the internet every 1-2 months</button>
+<button class="quiz-option" onclick="selectAnswer(1, 2)" id="q1-opt2">C. An AI model that cleans training data</button>
+<button class="quiz-option" onclick="selectAnswer(1, 3)" id="q1-opt3">D. A Hugging Face tool for tokenization</button>
+
+                </div>
+                <div class="quiz-explanation" id="q1-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">Common Crawl is a free public dataset that crawls 2.7 billion web pages every 1-2 months. Hugging Face's FineWeb cleans it down to 44 TB / 15 trillion tokens.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q2">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q3</span>
+                    <span class="quiz-q-topic">Tokenization</span>
+                </div>
+                <div class="quiz-q-text">What does BPE stand for?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(2, 0)" id="q2-opt0">A. Binary Pair Embedding</button>
+<button class="quiz-option" onclick="selectAnswer(2, 1)" id="q2-opt1">B. Byte Paid Encoding</button>
+<button class="quiz-option" onclick="selectAnswer(2, 2)" id="q2-opt2">C. Byte Pair Encoding</button>
+<button class="quiz-option" onclick="selectAnswer(2, 3)" id="q2-opt3">D. Basic Pattern Extraction</button>
+
+                </div>
+                <div class="quiz-explanation" id="q2-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">BPE = Byte Pair Encoding. It starts with individual characters, finds the most frequent pair, merges them into one token, and repeats. This gives a vocabulary of 50K-200K sub-word pieces.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q3">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q4</span>
+                    <span class="quiz-q-topic">Transformers</span>
+                </div>
+                <div class="quiz-q-text">What did the 2017 paper 'Attention Is All You Need' replace?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(3, 0)" id="q3-opt0">A. Convolutional Neural Networks (CNNs)</button>
+<button class="quiz-option" onclick="selectAnswer(3, 1)" id="q3-opt1">B. Recurrent Neural Networks (RNNs)</button>
+<button class="quiz-option" onclick="selectAnswer(3, 2)" id="q3-opt2">C. Encoder-only architectures</button>
+<button class="quiz-option" onclick="selectAnswer(3, 3)" id="q3-opt3">D. Reinforcement Learning algorithms</button>
+
+                </div>
+                <div class="quiz-explanation" id="q3-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">The Transformer replaced RNNs, which read text one word at a time (slow and forgetful). Transformers read ALL words at once using attention — each word can 'look at' every other word.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q4">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q5</span>
+                    <span class="quiz-q-topic">Model Architecture</span>
+                </div>
+                <div class="quiz-q-text">What are the 4 stages of the LLM pipeline (text in → next token out)?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(4, 0)" id="q4-opt0">A. Input → Hidden Layer → Output → Softmax</button>
+<button class="quiz-option" onclick="selectAnswer(4, 1)" id="q4-opt1">B. Tokenizer → Embedding → Transformer Blocks → Linear + Softmax</button>
+<button class="quiz-option" onclick="selectAnswer(4, 2)" id="q4-opt2">C. Encoder → Attention → Decoder → Output</button>
+<button class="quiz-option" onclick="selectAnswer(4, 3)" id="q4-opt3">D. Preprocessing → CNN → RNN → Classification</button>
+
+                </div>
+                <div class="quiz-explanation" id="q4-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">Text flows through 4 stages: Tokenizer (text→IDs) → Embedding (IDs→vectors) → Transformer Blocks (process vectors) → Linear+Softmax (pick next token from 50K options).</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q5">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q6</span>
+                    <span class="quiz-q-topic">Model Training</span>
+                </div>
+                <div class="quiz-q-text">What is the training loop (in order)?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(5, 0)" id="q5-opt0">A. Forward Pass → Loss → Backward Pass → Optimizer adjusts weights</button>
+<button class="quiz-option" onclick="selectAnswer(5, 1)" id="q5-opt1">B. Data Loading → Tokenization → Embedding → Output</button>
+<button class="quiz-option" onclick="selectAnswer(5, 2)" id="q5-opt2">C. Pre-training → Fine-tuning → RLHF → Deployment</button>
+<button class="quiz-option" onclick="selectAnswer(5, 3)" id="q5-opt3">D. Loss → Forward Pass → Optimizer → Backward Pass</button>
+
+                </div>
+                <div class="quiz-explanation" id="q5-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">The training loop is FLBO: Forward pass (guess next word) → Loss (grade the guess) → Backward pass (calculate how to fix each weight) → Optimizer (actually adjust billions of weights). Repeat 1M+ times.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q6">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q7</span>
+                    <span class="quiz-q-topic">Text Generation</span>
+                </div>
+                <div class="quiz-q-text">What sampling method do modern LLMs (ChatGPT, Claude) actually use for text generation?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(6, 0)" id="q6-opt0">A. Greedy Search — always pick highest probability</button>
+<button class="quiz-option" onclick="selectAnswer(6, 1)" id="q6-opt1">B. Beam Search — track top-K paths simultaneously</button>
+<button class="quiz-option" onclick="selectAnswer(6, 2)" id="q6-opt2">C. Top-P (Nucleus) Sampling — keep tokens until cumulative probability &gt; P, then sample</button>
+<button class="quiz-option" onclick="selectAnswer(6, 3)" id="q6-opt3">D. Random Sampling — pick any token according to raw probabilities</button>
+
+                </div>
+                <div class="quiz-explanation" id="q6-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">Top-P (Nucleus) Sampling is used in practice. It keeps the most likely tokens until their cumulative probability hits a threshold (e.g., 90%), then randomly picks from those. The K is dynamic — that's the key advantage over Top-K.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q7">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q8</span>
+                    <span class="quiz-q-topic">Post Training SFT</span>
+                </div>
+                <div class="quiz-q-text">What does SFT (Supervised Fine-Tuning) use as training data?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(7, 0)" id="q7-opt0">A. Raw internet text (Common Crawl)</button>
+<button class="quiz-option" onclick="selectAnswer(7, 1)" id="q7-opt1">B. Expert-curated instruction-response (Q&amp;A) pairs</button>
+<button class="quiz-option" onclick="selectAnswer(7, 2)" id="q7-opt2">C. Human preference rankings of model outputs</button>
+<button class="quiz-option" onclick="selectAnswer(7, 3)" id="q7-opt3">D. Automatically generated code examples</button>
+
+                </div>
+                <div class="quiz-explanation" id="q7-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">SFT uses 14K-100K expert-curated Q&amp;A pairs (e.g., InstructGPT ~13K, Alpaca 52K). The training math is identical to pre-training — only the DATA changes from messy internet to perfect conversations.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q8">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q9</span>
+                    <span class="quiz-q-topic">Reinforcement Learning</span>
+                </div>
+                <div class="quiz-q-text">What is PPO's job in Reinforcement Learning?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(8, 0)" id="q8-opt0">A. Score model responses as good or bad</button>
+<button class="quiz-option" onclick="selectAnswer(8, 1)" id="q8-opt1">B. Collect human preference rankings</button>
+<button class="quiz-option" onclick="selectAnswer(8, 2)" id="q8-opt2">C. Update model parameters to reinforce high-scoring responses</button>
+<button class="quiz-option" onclick="selectAnswer(8, 3)" id="q8-opt3">D. Generate multiple candidate responses</button>
+
+                </div>
+                <div class="quiz-explanation" id="q8-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">PPO (Proximal Policy Optimization) updates the model's parameters to reinforce good responses. The reward model scores responses; PPO uses those scores to adjust weights so the model produces more high-scoring answers.</div>
+                </div>
+            </div>
+        
+            <div class="quiz-question" id="quiz-q9">
+                <div class="quiz-q-header">
+                    <span class="quiz-q-number">Q10</span>
+                    <span class="quiz-q-topic">Evaluation of LLMs</span>
+                </div>
+                <div class="quiz-q-text">What is LM Arena (lmarena.ai)?</div>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="selectAnswer(9, 0)" id="q9-opt0">A. A benchmark suite that tests models on math and coding</button>
+<button class="quiz-option" onclick="selectAnswer(9, 1)" id="q9-opt1">B. A crowdsourcing platform where users blind-compare two anonymous models and vote</button>
+<button class="quiz-option" onclick="selectAnswer(9, 2)" id="q9-opt2">C. A training platform where models compete against each other</button>
+<button class="quiz-option" onclick="selectAnswer(9, 3)" id="q9-opt3">D. An API marketplace for deploying LLMs</button>
+
+                </div>
+                <div class="quiz-explanation" id="q9-explanation" style="display:none;">
+                    <div class="quiz-explanation-text">LM Arena is a crowdsourcing platform by UC Berkeley researchers (LMSYS group). Two anonymous models respond to the same prompt, users vote for the better one, then identities are revealed. 2.9M+ votes across 211+ models, with ELO rankings.</div>
+                </div>
+            </div>
+        
+            </div>
+
+            <button class="quiz-submit" id="quiz-submit-btn" onclick="submitQuiz()" disabled>
+                Submit Quiz
+            </button>
+
+            <div id="quiz-results" style="display:none;">
+                <div class="quiz-score" id="quiz-score"></div>
+                <div id="quiz-result-cards"></div>
+                <button class="quiz-submit quiz-retry" onclick="resetQuiz()">Try Again</button>
+            </div>
+        </div>
+    
+
         </div>
     </div>
 
@@ -6272,6 +6663,104 @@ Output: "we can take an equation and generate an equation with the
                 const text = row.getAttribute('data-search');
                 row.classList.toggle('hidden', q !== '' && !text.includes(q));
             });
+        }
+
+        /* Quiz Logic */
+        const quizData = [{"question": "What are the 4 steps in the AI learning path, in order?", "options": ["Transformers \u2192 Neural Networks \u2192 RAG \u2192 Agents", "Fundamentals \u2192 Transformers \u2192 Pre-training/Fine-tuning/RAG \u2192 AI Apps & Agents", "Data Prep \u2192 Training \u2192 Evaluation \u2192 Deployment", "Python \u2192 PyTorch \u2192 LLMs \u2192 Production"], "correct": 1, "explanation": "The 4 steps are: (1) ML Fundamentals, (2) Transformers, (3) Pre-training/Fine-tuning/RAG, (4) AI Apps & Agents. Order matters \u2014 skip a step and the house falls down.", "topicIndex": 0}, {"question": "What is Common Crawl?", "options": ["A Python library for web scraping", "A free public dataset that crawls the internet every 1-2 months", "An AI model that cleans training data", "A Hugging Face tool for tokenization"], "correct": 1, "explanation": "Common Crawl is a free public dataset that crawls 2.7 billion web pages every 1-2 months. Hugging Face's FineWeb cleans it down to 44 TB / 15 trillion tokens.", "topicIndex": 1}, {"question": "What does BPE stand for?", "options": ["Binary Pair Embedding", "Byte Paid Encoding", "Byte Pair Encoding", "Basic Pattern Extraction"], "correct": 2, "explanation": "BPE = Byte Pair Encoding. It starts with individual characters, finds the most frequent pair, merges them into one token, and repeats. This gives a vocabulary of 50K-200K sub-word pieces.", "topicIndex": 2}, {"question": "What did the 2017 paper 'Attention Is All You Need' replace?", "options": ["Convolutional Neural Networks (CNNs)", "Recurrent Neural Networks (RNNs)", "Encoder-only architectures", "Reinforcement Learning algorithms"], "correct": 1, "explanation": "The Transformer replaced RNNs, which read text one word at a time (slow and forgetful). Transformers read ALL words at once using attention \u2014 each word can 'look at' every other word.", "topicIndex": 3}, {"question": "What are the 4 stages of the LLM pipeline (text in \u2192 next token out)?", "options": ["Input \u2192 Hidden Layer \u2192 Output \u2192 Softmax", "Tokenizer \u2192 Embedding \u2192 Transformer Blocks \u2192 Linear + Softmax", "Encoder \u2192 Attention \u2192 Decoder \u2192 Output", "Preprocessing \u2192 CNN \u2192 RNN \u2192 Classification"], "correct": 1, "explanation": "Text flows through 4 stages: Tokenizer (text\u2192IDs) \u2192 Embedding (IDs\u2192vectors) \u2192 Transformer Blocks (process vectors) \u2192 Linear+Softmax (pick next token from 50K options).", "topicIndex": 4}, {"question": "What is the training loop (in order)?", "options": ["Forward Pass \u2192 Loss \u2192 Backward Pass \u2192 Optimizer adjusts weights", "Data Loading \u2192 Tokenization \u2192 Embedding \u2192 Output", "Pre-training \u2192 Fine-tuning \u2192 RLHF \u2192 Deployment", "Loss \u2192 Forward Pass \u2192 Optimizer \u2192 Backward Pass"], "correct": 0, "explanation": "The training loop is FLBO: Forward pass (guess next word) \u2192 Loss (grade the guess) \u2192 Backward pass (calculate how to fix each weight) \u2192 Optimizer (actually adjust billions of weights). Repeat 1M+ times.", "topicIndex": 5}, {"question": "What sampling method do modern LLMs (ChatGPT, Claude) actually use for text generation?", "options": ["Greedy Search \u2014 always pick highest probability", "Beam Search \u2014 track top-K paths simultaneously", "Top-P (Nucleus) Sampling \u2014 keep tokens until cumulative probability > P, then sample", "Random Sampling \u2014 pick any token according to raw probabilities"], "correct": 2, "explanation": "Top-P (Nucleus) Sampling is used in practice. It keeps the most likely tokens until their cumulative probability hits a threshold (e.g., 90%), then randomly picks from those. The K is dynamic \u2014 that's the key advantage over Top-K.", "topicIndex": 6}, {"question": "What does SFT (Supervised Fine-Tuning) use as training data?", "options": ["Raw internet text (Common Crawl)", "Expert-curated instruction-response (Q&A) pairs", "Human preference rankings of model outputs", "Automatically generated code examples"], "correct": 1, "explanation": "SFT uses 14K-100K expert-curated Q&A pairs (e.g., InstructGPT ~13K, Alpaca 52K). The training math is identical to pre-training \u2014 only the DATA changes from messy internet to perfect conversations.", "topicIndex": 7}, {"question": "What is PPO's job in Reinforcement Learning?", "options": ["Score model responses as good or bad", "Collect human preference rankings", "Update model parameters to reinforce high-scoring responses", "Generate multiple candidate responses"], "correct": 2, "explanation": "PPO (Proximal Policy Optimization) updates the model's parameters to reinforce good responses. The reward model scores responses; PPO uses those scores to adjust weights so the model produces more high-scoring answers.", "topicIndex": 8}, {"question": "What is LM Arena (lmarena.ai)?", "options": ["A benchmark suite that tests models on math and coding", "A crowdsourcing platform where users blind-compare two anonymous models and vote", "A training platform where models compete against each other", "An API marketplace for deploying LLMs"], "correct": 1, "explanation": "LM Arena is a crowdsourcing platform by UC Berkeley researchers (LMSYS group). Two anonymous models respond to the same prompt, users vote for the better one, then identities are revealed. 2.9M+ votes across 211+ models, with ELO rankings.", "topicIndex": 9}];
+        const quizAnswers = {};
+
+        function selectAnswer(qIndex, optIndex) {
+            // Don't allow changes after submission
+            if (document.getElementById('quiz-results').style.display !== 'none') return;
+            quizAnswers[qIndex] = optIndex;
+            // Update selected state
+            const options = document.querySelectorAll('#quiz-q' + qIndex + ' .quiz-option');
+            options.forEach((opt, i) => {
+                opt.classList.toggle('selected', i === optIndex);
+            });
+            // Enable submit if all answered
+            const answered = Object.keys(quizAnswers).length;
+            document.getElementById('quiz-submit-btn').disabled = (answered < quizData.length);
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            quizData.forEach((q, i) => {
+                const userAnswer = quizAnswers[i];
+                const isCorrect = userAnswer === q.correct;
+                if (isCorrect) score++;
+
+                // Disable all options
+                const options = document.querySelectorAll('#quiz-q' + i + ' .quiz-option');
+                options.forEach((opt, j) => {
+                    opt.disabled = true;
+                    opt.classList.remove('selected');
+                    if (j === q.correct) {
+                        opt.classList.add('correct');
+                    } else if (j === userAnswer && !isCorrect) {
+                        opt.classList.add('wrong');
+                    }
+                });
+
+                // Show explanation
+                document.getElementById('q' + i + '-explanation').style.display = 'block';
+            });
+
+            // Build scorecard
+            const pct = Math.round((score / quizData.length) * 100);
+            let color, status;
+            if (pct >= 80) { color = '#16a34a'; status = 'Excellent!'; }
+            else if (pct >= 60) { color = '#f59e0b'; status = 'Good — review weak areas'; }
+            else { color = '#dc2626'; status = 'Needs review — re-read the stories'; }
+
+            const scoreHtml = '<div class="quiz-score-number" style="color:' + color + ';">' + score + '/' + quizData.length + '</div>' +
+                '<div class="quiz-score-label">' + pct + '% correct</div>' +
+                '<div class="quiz-score-status" style="color:' + color + ';">' + status + '</div>';
+            document.getElementById('quiz-score').innerHTML = scoreHtml;
+
+            // Build per-question result links
+            let resultCards = '';
+            quizData.forEach((q, i) => {
+                const isCorrect = quizAnswers[i] === q.correct;
+                const icon = isCorrect ? '✅' : '❌';
+                const topicLink = q.topicIndex !== null
+                    ? '<a class="quiz-result-link" onclick="navigateTo('topic-' + q.topicIndex + '')">→ Review story</a>'
+                    : '';
+                resultCards += '<div style="padding:8px 0;border-bottom:1px solid #2d2d2d;display:flex;align-items:center;gap:10px;">' +
+                    '<span style="font-size:16px;">' + icon + '</span>' +
+                    '<span style="flex:1;font-size:13px;color:#9ca3af;">Q' + (i+1) + ': ' + q.question.substring(0, 60) + (q.question.length > 60 ? '...' : '') + '</span>' +
+                    topicLink + '</div>';
+            });
+            document.getElementById('quiz-result-cards').innerHTML = resultCards;
+
+            // Show results, hide submit
+            document.getElementById('quiz-submit-btn').style.display = 'none';
+            document.getElementById('quiz-results').style.display = 'block';
+
+            // Scroll to top of quiz
+            document.querySelector('.content').scrollTop = 0;
+        }
+
+        function resetQuiz() {
+            // Clear answers
+            for (const key in quizAnswers) delete quizAnswers[key];
+
+            // Reset all options
+            quizData.forEach((q, i) => {
+                const options = document.querySelectorAll('#quiz-q' + i + ' .quiz-option');
+                options.forEach(opt => {
+                    opt.disabled = false;
+                    opt.classList.remove('selected', 'correct', 'wrong');
+                });
+                document.getElementById('q' + i + '-explanation').style.display = 'none';
+            });
+
+            // Reset buttons/results
+            document.getElementById('quiz-submit-btn').style.display = 'block';
+            document.getElementById('quiz-submit-btn').disabled = true;
+            document.getElementById('quiz-results').style.display = 'none';
+
+            document.querySelector('.content').scrollTop = 0;
         }
     </script>
 </body>
