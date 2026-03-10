@@ -358,15 +358,17 @@
 
         .week-quiz-btn {
             display: block;
+            width: 100%;
             text-align: center;
             margin-top: 12px;
-            padding: 8px 16px;
+            padding: 10px 16px;
             background: #1a1a2e;
             color: #a78bfa;
             border: 1px solid #8b5cf6;
             border-radius: 8px;
             font-size: 13px;
             font-weight: 600;
+            font-family: inherit;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.15s;
@@ -900,7 +902,7 @@
                 <div class="week-topics">
                     <a class="week-topic" onclick="navigateTo('topic-0')">4-Step LLM Learning Path</a><a class="week-topic" onclick="navigateTo('topic-1')">How LLMs Are Built + Data Prep</a><a class="week-topic" onclick="navigateTo('topic-2')">Tokenization</a><a class="week-topic" onclick="navigateTo('topic-3')">Transformers</a><a class="week-topic" onclick="navigateTo('topic-4')">Model Architecture</a><a class="week-topic" onclick="navigateTo('topic-5')">Model Training</a><a class="week-topic" onclick="navigateTo('topic-6')">Text Generation</a><a class="week-topic" onclick="navigateTo('topic-7')">Post Training SFT</a><a class="week-topic" onclick="navigateTo('topic-8')">Reinforcement Learning</a><a class="week-topic" onclick="navigateTo('topic-9')">Evaluation of LLMs</a>
                 </div>
-                <a class='week-quiz-btn' href='#' onclick="navigateTo('quiz'); return false;">📋 Take the Quiz</a>
+                <button class='week-quiz-btn' onclick="navigateTo('quiz')">📋 Take the Quiz</button>
             </div>
         
             <div class="week-tile week-coming" style="--accent: #3b82f6;">
