@@ -2914,7 +2914,7 @@ Way 3: RAG — Give them a cheat sheet to look stuff up (coming soon!) 📚</p>
         <div class="page" id="topic-12">
             <div class="story-top-bar">
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-                
+                <a class="guide-btn" href="#" onclick="navigateTo('guide-12'); return false;">📊 Visual Guide</a>
             </div>
             <div class="page-breadcrumb">Chapter 13 of 14</div>
             <h1 class="page-title">RAG — Retrieval-Augmented Generation</h1>
@@ -2981,7 +2981,7 @@ Way 3: RAG — Give them a cheat sheet to look stuff up (coming soon!) 📚</p>
             
 
             <div class="story-bottom-bar">
-                
+                <a class="guide-btn" href="#" onclick="navigateTo('guide-12'); return false;">📊 Visual Guide</a>
                 <a class="share-story-btn" href="#" onclick="shareStory(12); return false;">📧 Share This Story</a>
             </div>
         </div>
@@ -2989,7 +2989,7 @@ Way 3: RAG — Give them a cheat sheet to look stuff up (coming soon!) 📚</p>
         <div class="page" id="topic-13">
             <div class="story-top-bar">
                 <a class="back-link" href="#" onclick="navigateTo('pipeline'); return false;">← Back to Pipeline</a>
-                
+                <a class="guide-btn" href="#" onclick="navigateTo('guide-13'); return false;">📊 Visual Guide</a>
             </div>
             <div class="page-breadcrumb">Chapter 14 of 14</div>
             <h1 class="page-title">RAG Search & Retrieval</h1>
@@ -3050,7 +3050,7 @@ Way 3: RAG — Give them a cheat sheet to look stuff up (coming soon!) 📚</p>
             
 
             <div class="story-bottom-bar">
-                
+                <a class="guide-btn" href="#" onclick="navigateTo('guide-13'); return false;">📊 Visual Guide</a>
                 <a class="share-story-btn" href="#" onclick="shareStory(13); return false;">📧 Share This Story</a>
             </div>
         </div>
@@ -7248,6 +7248,665 @@ Output: "we can take an equation and generate an equation with the
 ║  Last lecture: Fine-tuning (LoRA) ✅                          ║
 ║  This lecture: Prompt Engineering ✅                          ║
 ║  Next lecture: RAG 🔜                                         ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="page" id="guide-12">
+            <div class="story-top-bar">
+                <a class="back-link" href="#" onclick="navigateTo('topic-12'); return false;">← Back to Story</a>
+            </div>
+            <div class="page-breadcrumb">Visual Guide • 8 diagrams</div>
+            <h1 class="page-title">📊 RAG — Retrieval-Augmented Generation</h1>
+            <div class="page-meta">Full visual guide — all diagrams from this session</div>
+
+            
+            <div class="guide-section">
+                <div class="guide-section-label">1. The Problem RAG Solves</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  ❌ PROMPT ENGINEERING'S CEILING                              ║
+║                                                               ║
+║  User Query: "What is our refund policy?"                     ║
+║                                                               ║
+║  ┌─────────────────────────────────────────────────────┐      ║
+║  │ SYSTEM PROMPT                                       │      ║
+║  │                                                     │      ║
+║  │  + All company docs (PDFs, HTMLs, reports...)       │      ║
+║  │  + 📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄    │      ║
+║  │  + 📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄    │      ║
+║  │  + 📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄📄    │      ║
+║  │  + User query at the bottom                         │      ║
+║  │                                                     │      ║
+║  │  ⚠️  EXCEEDS CONTEXT WINDOW! LLM CAN'T READ THIS   │      ║
+║  └─────────────────────────────────────────────────────┘      ║
+║                                                               ║
+║  Few PDFs ✅ → fits in context window                          ║
+║  Thousands of PDFs ❌ → exceeds limit, not practical           ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">2. RAG Architecture — The High-Level Picture</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🎯 RAG = RETRIEVAL + GENERATION                             ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  📄📄📄📄📄📄📄📄                                           ║
+║  Document Database                                            ║
+║  (1000s of PDFs, HTMLs)                                       ║
+║        │                                                      ║
+║  ┌─────▼─────────────────────────────────┐                    ║
+║  │  🔍 RETRIEVAL                          │                    ║
+║  │                                        │                    ║
+║  │  Looks at ALL documents                │                    ║
+║  │  Looks at the user's question          │                    ║
+║  │  Narrows down to RELEVANT pieces only  │                    ║
+║  │                                        │                    ║
+║  │  Output: Retrieve₁, Retrieve₂, ... Retrieveₖ              ║
+║  └─────┬─────────────────────────────────┘                    ║
+║        │                                                      ║
+║        │  + User Query: "What is refund policy?"              ║
+║        │                                                      ║
+║  ┌─────▼─────────────────────────────────┐                    ║
+║  │  🤖 GENERATION (the LLM)              │                    ║
+║  │                                        │                    ║
+║  │  Relevant chunks + user query          │                    ║
+║  │  → Fits in context window! ✅          │                    ║
+║  │  → Generates answer                    │                    ║
+║  └────────────────────────────────────────┘                    ║
+║                                                               ║
+║  💡 Key insight: Instead of ALL docs → only RELEVANT docs     ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">3. Building the Searchable Index (The Preprocessing Pipeline)</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🏗️ RETRIEVAL HAS 2 STEPS                                    ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  STEP A: BUILD A SEARCHABLE INDEX (preprocessing, one-time)   ║
+║  ┌────────────────────────────────────────────────────────┐   ║
+║  │  📄📄📄 Documents → [Build Logic] → 📇 INDEX          │   ║
+║  │                                     (searchable)        │   ║
+║  └────────────────────────────────────────────────────────┘   ║
+║                                                               ║
+║  STEP B: SEARCH THE INDEX (at runtime, per query)             ║
+║  ┌────────────────────────────────────────────────────────┐   ║
+║  │  User Query → [Search] ←→ 📇 INDEX → Relevant Chunks  │   ║
+║  └────────────────────────────────────────────────────────┘   ║
+║                                                               ║
+║  This lecture: Deep dive into Step A (building the index)     ║
+╚═══════════════════════════════════════════════════════════════╝
+
+  STEP A: THREE SUB-STEPS TO BUILD THE INDEX
+  ════════════════════════════════════════════
+
+  📄📄📄 Raw Documents (PDFs, HTMLs, images)
+       │
+  ┌────▼────────────────────────────────────┐
+  │ 1️⃣  DOCUMENT PARSING                    │
+  │    PDF/HTML → extracted text             │
+  │    Layout detection → text extraction    │
+  │    Libraries: Docling, LayoutParser      │
+  └────┬────────────────────────────────────┘
+       │
+  ┌────▼────────────────────────────────────┐
+  │ 2️⃣  DOCUMENT CHUNKING                   │
+  │    Long text → smaller, manageable pieces│
+  │    Each piece = one "chunk"              │
+  │    Libraries: LangChain TextSplitters    │
+  └────┬────────────────────────────────────┘
+       │
+  ┌────▼────────────────────────────────────┐
+  │ 3️⃣  INDEXING                             │
+  │    Chunks → searchable data structure    │
+  │    Vector-based = most common (95%+)     │
+  │    Embedding models map text → vectors   │
+  └────┬────────────────────────────────────┘
+       │
+       ▼
+  📇 SEARCHABLE INDEX (text index + image index)</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">4. Document Parsing — From PDF to Text</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  📑 DOCUMENT PARSING (Step 1 of 3)                            ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  PURPOSE: PDF/HTML → structured text output                   ║
+║  (LLMs can't read PDFs — they need plain text!)               ║
+║                                                               ║
+║  HOW IT WORKS (2 sub-steps):                                  ║
+║                                                               ║
+║  ┌──────────────────────────────────────────┐                 ║
+║  │  PDF PAGE                                │                 ║
+║  │  ┌──────────┐ ┌──────────────────┐       │                 ║
+║  │  │ TITLE    │ │ TEXT BLOCK       │       │                 ║
+║  │  └──────────┘ └──────────────────┘       │                 ║
+║  │  ┌──────────────────┐ ┌──────────┐       │                 ║
+║  │  │ TEXT BLOCK       │ │ FIGURE   │       │                 ║
+║  │  └──────────────────┘ └──────────┘       │                 ║
+║  │  ┌──────────────────────────────┐        │                 ║
+║  │  │ MORE TEXT                    │        │                 ║
+║  │  └──────────────────────────────┘        │                 ║
+║  └──────────────────────────────────────────┘                 ║
+║       │                                                       ║
+║  ┌────▼─────────────────────────────────┐                     ║
+║  │ 1. LAYOUT DETECTION                  │                     ║
+║  │    Identify: title, text, figure,    │                     ║
+║  │    table, image regions              │                     ║
+║  └────┬─────────────────────────────────┘                     ║
+║  ┌────▼─────────────────────────────────┐                     ║
+║  │ 2. TEXT EXTRACTION                   │                     ║
+║  │    AI/OCR methods extract actual     │                     ║
+║  │    text from each detected region    │                     ║
+║  │    Images → store coordinates        │                     ║
+║  └────┬─────────────────────────────────┘                     ║
+║       ▼                                                       ║
+║  STRUCTURED OUTPUT:                                           ║
+║  { type: "title", text: "Annual Report" }                     ║
+║  { type: "text", text: "Revenue grew by..." }                 ║
+║  { type: "figure", coords: [x, y, w, h] }                    ║
+║                                                               ║
+║  ─────────────────────────────────────────                    ║
+║  📚 LIBRARIES:                                                ║
+║  • Docling — automate parsing, uniform format                 ║
+║  • LayoutParser — deep learning-based document image analysis ║
+║    Works on: PDFs, magazines, websites, historical docs       ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">5. Document Chunking — Breaking Into Pieces</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  ✂️  DOCUMENT CHUNKING (Step 2 of 3)                          ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  WHY CHUNK?                                                   ║
+║  • Documents are too long (a book = huge text block)          ║
+║  • Non-uniform lengths (1 page vs 500 pages)                  ║
+║  • Better precision (find the EXACT relevant paragraph)       ║
+║  • Fits within LLM context window                             ║
+║  • Less computation (skip irrelevant parts)                   ║
+║                                                               ║
+║  ┌──────────────────────────────────────────────────────┐     ║
+║  │  LONG DOCUMENT TEXT                                   │     ║
+║  │  "The purpose of this report is to analyze the        │     ║
+║  │   market trends in renewable energy. Solar power      │     ║
+║  │   has grown 40% year over year. Wind energy has       │     ║
+║  │   shown steady improvement in offshore installations. │     ║
+║  │   Battery storage technology continues to advance..." │     ║
+║  └──────────────┬───────────────────────────────────────┘     ║
+║                 │ CHUNK IT!                                    ║
+║                 ▼                                              ║
+║  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐         ║
+║  │ Chunk 1  │ │ Chunk 2  │ │ Chunk 3  │ │ Chunk 4  │         ║
+║  │ Solar... │ │ Wind...  │ │ Battery..│ │ ...      │         ║
+║  └──────────┘ └──────────┘ └──────────┘ └──────────┘         ║
+║       ↑              ↑                                        ║
+║       └──── overlap ─┘  (chunks share some text at edges)     ║
+║                                                               ║
+╠═══════════════════════════════════════════════════════════════╣
+║  THREE CHUNKING ALGORITHMS:                                   ║
+║                                                               ║
+║  ❌ LENGTH-BASED: Split every N characters                     ║
+║     Problem: May split mid-sentence → meaningless chunks      ║
+║                                                               ║
+║  ⚠️  REGEX-BASED: Split on punctuation (., ?, !)              ║
+║     Better: doesn't break sentences                           ║
+║     Problem: No semantic understanding                        ║
+║                                                               ║
+║  ✅ SPECIALIZED SPLITTERS: HTML/Markdown-aware                 ║
+║     Split at headers, sections, code blocks                   ║
+║     Library: LangChain TextSplitters (most common)            ║
+║                                                               ║
+╠═══════════════════════════════════════════════════════════════╣
+║  HYPERPARAMETERS:                                             ║
+║  • chunk_size = 35 → target 35 characters per chunk           ║
+║  • chunk_overlap = N → overlap edges for context continuity   ║
+║  • separator → what to split on                               ║
+║                                                               ║
+║  Example: "...in the form of" │ "form of art that..."         ║
+║           ─── chunk 1 ends ───  ─── chunk 2 starts ───        ║
+║           "form of" is in BOTH = overlap! 🔄                  ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">6. Vector-Based Indexing — The Heart of RAG</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  📐 INDEXING (Step 3 of 3) — Vector-Based                     ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  INDEXING METHODS:                                            ║
+║  ❌ Keyword-based — exact/partial text match (too literal)     ║
+║  ❌ Full-text (Elastic Search) — better but no semantics       ║
+║  ⚠️  Knowledge graph — niche, only certain use cases           ║
+║  ✅ VECTOR-BASED — 90-95% of real-world RAG uses this          ║
+║                                                               ║
+║  WHY TEXT SEARCH FAILS:                                       ║
+║  Query: "How do I get my money back?"                         ║
+║  Document: "Our refund policy allows returns within 30 days"  ║
+║  ❌ No keyword match! ("money back" ≠ "refund policy")         ║
+║  ✅ But meaning is the SAME → vectors capture this!            ║
+╚═══════════════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════╗
+║  🧠 EMBEDDING MODELS — The Key Technology                     ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  An embedding model maps text → a vector in high-dimensional  ║
+║  space. Similar meanings → nearby vectors!                    ║
+║                                                               ║
+║  ┌─────────────┐    Embedding    ┌──────────────────────┐    ║
+║  │ "Learn ML"  │ ──── Model ──→  │ [0.3, -0.8, 0.5, …] │    ║
+║  └─────────────┘                 └──────────────────────┘    ║
+║                                                               ║
+║  ┌─────────────────┐  Model  ┌──────────────────────┐        ║
+║  │ "Study AI"      │ ──────→ │ [0.31, -0.79, 0.48…] │ NEAR! ║
+║  └─────────────────┘         └──────────────────────┘        ║
+║                                                               ║
+║  ┌─────────────────┐  Model  ┌──────────────────────┐        ║
+║  │ "Buy groceries" │ ──────→ │ [0.9, 0.2, -0.7, …] │ FAR!  ║
+║  └─────────────────┘         └──────────────────────┘        ║
+║                                                               ║
+║  ORIGIN: Word2Vec paper (first to show meaningful space)      ║
+║  King - Man + Woman ≈ Queen (directions = relationships!)     ║
+║                                                               ║
+║  ─────────────────────────────────────────                    ║
+║  POPULAR EMBEDDING MODELS:                                    ║
+║  • OpenAI text-embedding-3-large → 3,072 dimensions          ║
+║  • Google Gemini embedding → various sizes                    ║
+║  • Many open-source options available                         ║
+║                                                               ║
+║  THE INDEX TABLE:                                             ║
+║  ┌────────────────────────────────┬──────────────────────┐    ║
+║  │ Chunk Text                     │ Embedding Vector      │    ║
+║  ├────────────────────────────────┼──────────────────────┤    ║
+║  │ "To learn more, contact..."   │ [0.2, -0.1, 0.8, …] │    ║
+║  │ "Refund policy allows..."     │ [0.4, 0.3, -0.2, …] │    ║
+║  │ "Products ship within..."     │ [-0.1, 0.7, 0.5, …] │    ║
+║  └────────────────────────────────┴──────────────────────┘    ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">7. Handling Images — CLIP &amp; Captioning</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🖼️  WHAT ABOUT IMAGES IN YOUR DOCUMENTS?                     ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  PDFs often have diagrams, figures, tables → can't ignore!    ║
+║                                                               ║
+║  TWO OPTIONS:                                                 ║
+║                                                               ║
+║  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ║
+║  OPTION 1: IMAGE EMBEDDING MODEL (CLIP)                       ║
+║  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ║
+║                                                               ║
+║  OpenAI's CLIP (Contrastive Language-Image Pre-training):     ║
+║  Trains TWO encoders together:                                ║
+║                                                               ║
+║  ┌───────────────┐         ┌───────────────┐                  ║
+║  │ TEXT ENCODER   │         │ IMAGE ENCODER  │                  ║
+║  │ "a cute dog"   │         │ 🐕 [photo]     │                  ║
+║  └───────┬───────┘         └───────┬───────┘                  ║
+║          │                         │                          ║
+║          ▼                         ▼                          ║
+║    [0.3, -0.2, …]          [0.31, -0.19, …]                  ║
+║          └─────── NEARBY! ────────┘                           ║
+║                                                               ║
+║  SHARED EMBEDDING SPACE:                                      ║
+║  • Text "dog" and 🐕 photo → land near each other             ║
+║  • Text "car" and 🚗 photo → land near each other             ║
+║  • 🐕 photo and 🚗 photo → land far apart                     ║
+║                                                               ║
+║  ⚠️  CRITICAL: Use SAME model's text encoder for text chunks   ║
+║     AND its image encoder for images. Otherwise no relation!  ║
+║                                                               ║
+║  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ║
+║  OPTION 2: IMAGE CAPTIONING                                   ║
+║  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ║
+║                                                               ║
+║  🖼️ Image → [Captioning Model] → "A cat sitting on a mat"     ║
+║                                         │                     ║
+║                                    Use as text chunk!         ║
+║                                         │                     ║
+║                                    [Text Embedding Model]     ║
+║                                         │                     ║
+║                                    [0.4, 0.2, -0.1, …]       ║
+║                                                               ║
+║  Advantage: Use ANY text embedding model (no shared space     ║
+║  needed). Simpler pipeline!                                   ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">8. The Final Result — Two Index Tables</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  📇 THE END RESULT: TEXT INDEX + IMAGE INDEX                   ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  📄📄📄 Raw Documents (PDFs, HTMLs)                           ║
+║       │                                                       ║
+║       │  1. Parse → 2. Chunk → 3. Embed                      ║
+║       │                                                       ║
+║       ▼                                                       ║
+║  ┌─────────────────────────────────────────────────────┐      ║
+║  │  TEXT INDEX                                          │      ║
+║  │  ┌──────────────────────────┬──────────────────┐    │      ║
+║  │  │ Chunk 1: "Refund pol..." │ [0.4, 0.3, …]   │    │      ║
+║  │  │ Chunk 2: "Ships in..."   │ [-0.1, 0.7, …]  │    │      ║
+║  │  │ Chunk 3: "Contact us..." │ [0.2, -0.1, …]  │    │      ║
+║  │  │ ...                      │ ...              │    │      ║
+║  │  └──────────────────────────┴──────────────────┘    │      ║
+║  └─────────────────────────────────────────────────────┘      ║
+║                                                               ║
+║  ┌─────────────────────────────────────────────────────┐      ║
+║  │  IMAGE INDEX                                         │      ║
+║  │  ┌──────────────────────────┬──────────────────┐    │      ║
+║  │  │ Image 1: [product photo] │ [0.8, -0.3, …]  │    │      ║
+║  │  │ Image 2: [org chart]     │ [0.1, 0.6, …]   │    │      ║
+║  │  │ ...                      │ ...              │    │      ║
+║  │  └──────────────────────────┴──────────────────┘    │      ║
+║  └─────────────────────────────────────────────────────┘      ║
+║                                                               ║
+║  ✅ Ready for runtime search!                                  ║
+║  (Next lecture: How to SEARCH this index + Generation)        ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="page" id="guide-13">
+            <div class="story-top-bar">
+                <a class="back-link" href="#" onclick="navigateTo('topic-13'); return false;">← Back to Story</a>
+            </div>
+            <div class="page-breadcrumb">Visual Guide • 7 diagrams</div>
+            <h1 class="page-title">📊 RAG Search & Retrieval</h1>
+            <div class="page-meta">Full visual guide — all diagrams from this session</div>
+
+            
+            <div class="guide-section">
+                <div class="guide-section-label">1. The Big Picture — From Index to Answer</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🎯 RAG RUNTIME: INDEX IS READY — NOW SEARCH IT              ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  PART 1 (Last Session):                                       ║
+║  📄 Documents → Parse → Chunk → Embed → 🗄️ VECTOR INDEX      ║
+║                                         (DONE ✅)             ║
+║                                                               ║
+║  PART 2 (This Session):                                       ║
+║  👤 User Query → Embed → 🔍 SEARCH INDEX → Top K chunks      ║
+║                                              │                ║
+║                                              ▼                ║
+║                                    🤖 LLM generates answer    ║
+║                                       (Next lecture)          ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">2. How Search Works — Step by Step</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🔍 RUNTIME SEARCH — 4 STEPS                                 ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  1️⃣  USER ASKS A QUESTION                                     ║
+║     "What is your refund policy?"                             ║
+║           │                                                   ║
+║           ▼                                                   ║
+║  2️⃣  EMBED THE QUERY                                          ║
+║     ┌─────────────────────────────────┐                       ║
+║     │  Same embedding model used      │                       ║
+║     │  during indexing! (CRITICAL)    │                       ║
+║     │                                 │                       ║
+║     │  "refund policy" → [0.8, 0.2,  │                       ║
+║     │   0.5, ..., 0.1]  (vector)     │                       ║
+║     └──────────┬──────────────────────┘                       ║
+║                │                                              ║
+║                ▼                                              ║
+║  3️⃣  NEAREST NEIGHBOR SEARCH                                  ║
+║     ┌─────────────────────────────────┐                       ║
+║     │  Compare query vector against   │                       ║
+║     │  ALL vectors in the index       │                       ║
+║     │                                 │                       ║
+║     │  Distance metric: COSINE 📐     │                       ║
+║     │  Similar meaning = small dist   │                       ║
+║     └──────────┬──────────────────────┘                       ║
+║                │                                              ║
+║                ▼                                              ║
+║  4️⃣  RETURN TOP K CHUNKS                                      ║
+║     ┌─────────────────────────────────┐                       ║
+║     │  "To return or replace an       │                       ║
+║     │   item, contact support..."     │                       ║
+║     │  "After 30 days, store credit   │                       ║
+║     │   only..."                      │                       ║
+║     │  "Refund processed within 5     │                       ║
+║     │   business days..."             │                       ║
+║     └─────────────────────────────────┘                       ║
+║           │                                                   ║
+║           ▼  Feed to LLM (generation step — next lecture)     ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">3. The Core Problem — Exact vs Approximate</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  ⚖️ EXACT vs APPROXIMATE NEAREST NEIGHBOR                    ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  EXACT NEAREST NEIGHBOR (ENN)                                 ║
+║  ┌─────────────────────────────────────────────┐              ║
+║  │  ✅ Guaranteed correct: finds THE closest K  │              ║
+║  │  ❌ Compares query against EVERY point        │              ║
+║  │  ❌ Millions/billions of chunks = TOO SLOW    │              ║
+║  │                                               │              ║
+║  │  💡 Like checking EVERY batsman's stats       │              ║
+║  │     to find who scored the most runs          │              ║
+║  └─────────────────────────────────────────────┘              ║
+║                                                               ║
+║                        vs                                     ║
+║                                                               ║
+║  APPROXIMATE NEAREST NEIGHBOR (ANN)                           ║
+║  ┌─────────────────────────────────────────────┐              ║
+║  │  ✅ Fast: only searches a SUBSET of points    │              ║
+║  │  ✅ Good enough: returns reasonably close K   │              ║
+║  │  ⚠️  Might miss the absolute closest point    │              ║
+║  │     (but that's OK in practice!)              │              ║
+║  │                                               │              ║
+║  │  💡 Like asking "who are the TOP batsmen      │              ║
+║  │     in IPL?" — you'll get Kohli, Dhoni,       │              ║
+║  │     maybe miss one, but close enough          │              ║
+║  └─────────────────────────────────────────────┘              ║
+║                                                               ║
+║  ⚡ BOTTOM LINE: Real RAG systems use ANN                     ║
+║     (billions of vectors = exact is impossible)               ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">4. Three ANN Algorithm Categories</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🧩 3 TYPES OF APPROXIMATE NEAREST NEIGHBOR                  ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  1️⃣  CLUSTERING-BASED                                         ║
+║  ┌─────────────────────────────────────────────┐              ║
+║  │                                             │              ║
+║  │   ○ ○        ● ●          ◆ ◆              │              ║
+║  │  ○ ○ ○      ● ● ●        ◆ ◆ ◆            │              ║
+║  │   ○ ○        ● ●          ◆ ◆              │              ║
+║  │  Cluster 1   Cluster 2    Cluster 3         │              ║
+║  │                                             │              ║
+║  │  Query ★ arrives → find nearest CLUSTER     │              ║
+║  │  → search ONLY within that cluster          │              ║
+║  │                                             │              ║
+║  │  ⚠️ Might miss a closer point in Cluster 2  │              ║
+║  │     but saves searching ALL clusters        │              ║
+║  └─────────────────────────────────────────────┘              ║
+║                                                               ║
+║  2️⃣  TREE-BASED                                               ║
+║  ┌─────────────────────────────────────────────┐              ║
+║  │                                             │              ║
+║  │           [All Data]                        │              ║
+║  │           /        \                        │              ║
+║  │      [Left]      [Right]                    │              ║
+║  │      /    \       /    \                    │              ║
+║  │   [R1]  [R2]   [R3]  [R4]   ← regions     │              ║
+║  │                                             │              ║
+║  │  Query ★ → traverse tree → land in region  │              ║
+║  │  → search only that region's points         │              ║
+║  │                                             │              ║
+║  │  Partitions space into subspaces via tree   │              ║
+║  └─────────────────────────────────────────────┘              ║
+║                                                               ║
+║  3️⃣  LOCALITY-SENSITIVE HASHING (LSH)                         ║
+║  ┌─────────────────────────────────────────────┐              ║
+║  │                                             │              ║
+║  │  Special hash function:                     │              ║
+║  │  similar inputs → SAME bucket               │              ║
+║  │  (unlike normal hash where similar inputs    │              ║
+║  │   go to DIFFERENT buckets!)                 │              ║
+║  │                                             │              ║
+║  │  Bucket 1: [🔵🔵🔵]                         │              ║
+║  │  Bucket 2: [🟢🟢]                           │              ║
+║  │  Bucket 3: [🔴🔴🔴🔴]                       │              ║
+║  │                                             │              ║
+║  │  Query ★ → hash → lands in Bucket 3        │              ║
+║  │  → search only Bucket 3's points            │              ║
+║  └─────────────────────────────────────────────┘              ║
+║                                                               ║
+║  💡 ALL 3 DO THE SAME THING:                                  ║
+║     Organize points into groups BEFOREHAND                    ║
+║     → At query time, only search ONE group                    ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">5. FAISS — The Library That Does It All</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  📦 FAISS (Facebook AI Similarity Search)                     ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  🏢 Built by: Meta/Facebook AI Research                       ║
+║  🎯 Purpose: Efficient similarity search on dense vectors     ║
+║  📊 Scale: Handles billions of vectors                        ║
+║                                                               ║
+║  What it does:                                                ║
+║  ┌──────────────────────────────────────────┐                 ║
+║  │  • Implements ANN algorithms             │                 ║
+║  │  • Supports cosine distance, Euclidean   │                 ║
+║  │  • Clustering, tree, hashing — all built │                 ║
+║  │    in                                    │                 ║
+║  │  • You DON'T implement ANN yourself      │                 ║
+║  └──────────────────────────────────────────┘                 ║
+║                                                               ║
+║  Other options:                                               ║
+║  • Google ScaNN (Scalable Nearest Neighbors)                  ║
+║  • Pinecone, Weaviate, Chroma (vector DBs)                   ║
+║                                                               ║
+║  💡 KEY INSIGHT: You never code ANN from scratch.             ║
+║     Use a library. FAISS is the most popular.                 ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">6. The Complete Search Flow</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  🔄 COMPLETE RUNTIME RETRIEVAL FLOW                           ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  👤 "What is your refund policy?"                             ║
+║        │                                                      ║
+║        ▼                                                      ║
+║  ┌──────────────┐                                             ║
+║  │ SAME Embedding│   ← MUST be same model as indexing!       ║
+║  │    Model      │                                            ║
+║  └──────┬───────┘                                             ║
+║         │  Query Vector: [0.8, 0.2, 0.5, ...]                ║
+║         ▼                                                     ║
+║  ┌──────────────────────────────────────┐                     ║
+║  │  INTER-CLUSTER SEARCH               │                     ║
+║  │  "Which cluster does this belong to?"│                     ║
+║  │                                      │                     ║
+║  │  Cluster 1 ← ✅ MATCH!               │                     ║
+║  │  Cluster 2                           │                     ║
+║  │  Cluster 3                           │                     ║
+║  └──────┬───────────────────────────────┘                     ║
+║         ▼                                                     ║
+║  ┌──────────────────────────────────────┐                     ║
+║  │  INTRA-CLUSTER SEARCH               │                     ║
+║  │  "Find Top K closest in Cluster 1"  │                     ║
+║  │                                      │                     ║
+║  │  📄 Doc 1: "Return or replace..."   │                     ║
+║  │  📄 Doc 2: "After 30 days..."       │                     ║
+║  │  📄 Doc 3: "Refund in 5 days..."    │                     ║
+║  └──────┬───────────────────────────────┘                     ║
+║         ▼                                                     ║
+║  ┌──────────────────────────────────────┐                     ║
+║  │  MAP BACK TO ORIGINAL CHUNKS 📄      │                     ║
+║  │  Vectors → Original text returned    │                     ║
+║  │  → Ready for LLM generation step     │                     ║
+║  └──────────────────────────────────────┘                     ║
+╚═══════════════════════════════════════════════════════════════╝</pre>
+                </div>
+            </div>
+            
+            <div class="guide-section">
+                <div class="guide-section-label">7. Key Rules to Remember</div>
+                <div class="diagram-box">
+                    <pre>╔═══════════════════════════════════════════════════════════════╗
+║  📌 5 RULES OF RAG SEARCH                                    ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  1. SAME MODEL — Query MUST use the same embedding           ║
+║     model that built the index. Different model =             ║
+║     different vector space = garbage results.                 ║
+║                                                               ║
+║  2. COSINE DISTANCE — Most common metric for                 ║
+║     measuring similarity between vectors.                     ║
+║                                                               ║
+║  3. ANN &gt; EXACT — Real systems use approximate               ║
+║     nearest neighbor. Exact is too slow at scale.             ║
+║                                                               ║
+║  4. ALL ANN ALGORITHMS do the same thing:                    ║
+║     Group points beforehand → search only one                 ║
+║     group at query time.                                      ║
+║                                                               ║
+║  5. USE FAISS — Don't implement ANN yourself.                ║
+║     Facebook's FAISS handles billions of vectors.             ║
 ╚═══════════════════════════════════════════════════════════════╝</pre>
                 </div>
             </div>
